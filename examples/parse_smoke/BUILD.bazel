@@ -1,0 +1,31 @@
+load("@rules_postgres//postgres:defs.bzl", "pg_parse_valid_test")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+# Positive smoke: a trivial SELECT must parse cleanly.
+pg_parse_valid_test(
+    name = "select_one_parses",
+    sql = "testdata/select_one.sql",
+)
+
+# Positive smoke: CREATE FUNCTION with PL/pgSQL body parses cleanly.
+pg_parse_valid_test(
+    name = "create_function_parses",
+    sql = "testdata/create_function.sql",
+)
+
+# Negative smoke: a deliberately broken SQL string must be rejected.
+# Together with the positives, this proves the libpg_query toolchain
+# is wired end-to-end (download, build, link, run) AND that errors
+# actually surface as non-zero exit codes.
+sh_test(
+    name = "bad_sql_rejected",
+    srcs = ["run_inverted.sh"],
+    args = [
+        "$(location @rules_postgres//tools:parse_check)",
+        "$(location testdata/bad_sql.sql)",
+    ],
+    data = [
+        "testdata/bad_sql.sql",
+        "@rules_postgres//tools:parse_check",
+    ],
+)

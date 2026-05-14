@@ -1,0 +1,292 @@
+"""Module extension for rules_postgres.
+
+Exposes two tag classes:
+
+  pg.query(version = ...)  — fetches libpg_query and builds it as a
+                             `cc_library`. Creates @libpg_query.
+
+  pg.source(version = ...) — fetches the full PostgreSQL source tarball
+                             and lays a minimal BUILD overlay on top
+                             (filegroups for source dirs + a probe
+                             `pg_common_string` cc_library). Creates
+                             @postgres_src. Experimental — gives Bazel
+                             access to raw PG source for tooling that
+                             needs to compile pieces of the backend.
+
+The two paths are independent. Most consumers want only `pg.query` for
+SQL parse-validation gates; `pg.source` is for advanced tooling that
+needs the full PG codebase under Bazel.
+
+Default usage:
+
+    pg = use_extension("@rules_postgres//postgres:extensions.bzl", "pg")
+    pg.query(version = "17-6.2.2")
+    use_repo(pg, "libpg_query")
+
+With full PG source as well:
+
+    pg.source(version = "17.6")
+    use_repo(pg, "libpg_query", "postgres_src")
+"""
+
+load(
+    "//postgres/private:known_versions.bzl",
+    "LIBPG_QUERY_URL_TEMPLATE",
+    "LIBPG_QUERY_VERSIONS",
+    "POSTGRES_SOURCE_URL_TEMPLATE",
+    "POSTGRES_SOURCE_VERSIONS",
+)
+
+# ---------------------------------------------------------------------------
+# @libpg_query BUILD overlay. Splits the build into four modular
+# cc_library targets so consumers can pull pieces independently.
+# ---------------------------------------------------------------------------
+_LIBPG_QUERY_BUILD = """
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+# Vendored protobuf-c runtime. libpg_query bundles a copy under
+# vendor/protobuf-c/. Exposed standalone so other tools can use
+# protobuf-c without pulling in the full parser.
+cc_library(
+    name = "protobuf_c_runtime",
+    srcs = ["vendor/protobuf-c/protobuf-c.c"],
+    hdrs = ["vendor/protobuf-c/protobuf-c.h"],
+    includes = ["vendor"],
+    copts = [
+        "-Wno-unused-function",
+        "-Wno-unused-but-set-variable",
+        "-fno-strict-aliasing",
+    ],
+)
+
+# Vendored xxhash — the hash function libpg_query uses internally
+# for parse-tree fingerprinting (pg_query_fingerprint).
+cc_library(
+    name = "xxhash",
+    srcs = ["vendor/xxhash/xxhash.c"],
+    hdrs = ["vendor/xxhash/xxhash.h"],
+    includes = ["vendor"],
+    copts = [
+        "-Wno-unused-function",
+        "-fno-strict-aliasing",
+    ],
+)
+
+# Pre-generated protobuf-c bindings for pg_query.proto. Shipped in the
+# release tarball; used as-is rather than re-running protoc-c.
+cc_library(
+    name = "pg_query_pb_c",
+    srcs = ["protobuf/pg_query.pb-c.c"],
+    hdrs = ["protobuf/pg_query.pb-c.h"],
+    deps = [":protobuf_c_runtime"],
+    copts = ["-Wno-unused-function"],
+)
+
+# The parser library proper.
+cc_library(
+    name = "libpg_query",
+    srcs = glob([
+        "src/*.c",
+        "src/postgres/*.c",
+    ]),
+    hdrs = [
+        "pg_query.h",
+        "postgres_deparse.h",
+    ],
+    textual_hdrs = glob(
+        [
+            "src/*.h",
+            "src/include/**/*.c",
+            "src/include/**/*.h",
+            "src/postgres/include/**/*.h",
+            "src/postgres/include/**/*.c",
+        ],
+        allow_empty = True,
+    ),
+    includes = [
+        ".",
+        "src/include",
+        "src/postgres/include",
+    ],
+    deps = [
+        ":protobuf_c_runtime",
+        ":xxhash",
+        ":pg_query_pb_c",
+    ],
+    copts = [
+        "-Wno-unused-function",
+        "-Wno-unused-value",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-Wno-implicit-fallthrough",
+        "-Wno-deprecated-declarations",
+        "-fno-strict-aliasing",
+        "-fwrapv",
+    ],
+)
+
+# Raw protobuf schema, exposed for downstream codegen (other-language
+# bindings, type-checked AST readers, etc.).
+exports_files(["protobuf/pg_query.proto"])
+
+filegroup(
+    name = "pg_query_proto_file",
+    srcs = ["protobuf/pg_query.proto"],
+)
+"""
+
+# ---------------------------------------------------------------------------
+# @postgres_src BUILD overlay. Exposes filegroups for source-tree
+# inspection + a probe cc_library compiling one small chunk of PG.
+# Real callers extend this BUILD with their own cc_library targets.
+# ---------------------------------------------------------------------------
+_POSTGRES_SRC_BUILD = """
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "all_source",
+    srcs = glob(["**"]),
+)
+
+filegroup(
+    name = "common_sources",
+    srcs = glob(["src/common/*.c"], allow_empty = True),
+)
+
+filegroup(
+    name = "include_headers",
+    srcs = glob(["src/include/**/*.h"], allow_empty = True),
+)
+
+# Probe: compile one file from src/common/ as a feasibility test for
+# the Bazel-driven PG build. Defines FRONTEND=1 to select the frontend
+# include path (no backend-only palloc etc.).
+cc_library(
+    name = "pg_common_string",
+    srcs = ["src/common/string.c"],
+    hdrs = glob(["src/include/**/*.h"], allow_empty = True),
+    includes = ["src/include"],
+    defines = ["FRONTEND=1"],
+    copts = [
+        "-Wno-unused-function",
+        "-Wno-unused-but-set-variable",
+        "-Wno-deprecated-declarations",
+        "-fno-strict-aliasing",
+        "-fwrapv",
+    ],
+)
+"""
+
+def _libpg_query_impl(rctx):
+    version = rctx.attr.version
+    sha256 = LIBPG_QUERY_VERSIONS.get(version, "")
+    if not sha256:
+        # buildifier: disable=print
+        print(("rules_postgres: WARNING — no pinned sha256 for libpg_query " +
+               "@%s; downloading unverified. Add an entry to " +
+               "known_versions.bzl for hermetic builds.") % version)
+    url = LIBPG_QUERY_URL_TEMPLATE.format(version = version)
+    rctx.download_and_extract(
+        url = url,
+        sha256 = sha256 or "",
+        stripPrefix = "libpg_query-" + version,
+    )
+    rctx.file("BUILD.bazel", _LIBPG_QUERY_BUILD)
+
+_libpg_query_repository = repository_rule(
+    implementation = _libpg_query_impl,
+    attrs = {
+        "version": attr.string(
+            mandatory = True,
+            doc = "libpg_query release tag (e.g. \"17-6.2.2\").",
+        ),
+    },
+    doc = "Fetch libpg_query source tarball and build it as a cc_library.",
+)
+
+def _postgres_src_impl(rctx):
+    version = rctx.attr.version
+    sha256 = POSTGRES_SOURCE_VERSIONS.get(version, "")
+    if not sha256:
+        # buildifier: disable=print
+        print(("rules_postgres: WARNING — no pinned sha256 for PostgreSQL " +
+               "@%s; downloading unverified. Add an entry to " +
+               "known_versions.bzl for hermetic builds.") % version)
+    url = POSTGRES_SOURCE_URL_TEMPLATE.format(version = version)
+    rctx.download_and_extract(
+        url = url,
+        sha256 = sha256 or "",
+        stripPrefix = "postgresql-" + version,
+    )
+
+    # Layer the hand-written overlay headers into src/include/, replacing
+    # what configure would have generated. The overlay assumes the
+    # FRONTEND=1 build path (no backend palloc etc.) and a modern
+    # darwin_aarch64 / linux_x86_64 host.
+    for fname in ["pg_config.h", "pg_config_ext.h", "pg_config_os.h"]:
+        rctx.symlink(
+            Label("@rules_postgres//postgres/private:overlay/" + fname),
+            "src/include/" + fname,
+        )
+
+    rctx.file("BUILD.bazel", _POSTGRES_SRC_BUILD)
+
+_postgres_src_repository = repository_rule(
+    implementation = _postgres_src_impl,
+    attrs = {
+        "version": attr.string(
+            mandatory = True,
+            doc = "PostgreSQL release version (e.g. \"17.6\").",
+        ),
+    },
+    doc = "Fetch the PostgreSQL source tarball + lay a minimal BUILD overlay on top.",
+)
+
+def _pg_extension_impl(mctx):
+    # Reduce tags across the dep graph. Root module wins; otherwise the
+    # last-seen value takes precedence.
+    query_version = None
+    source_version = None
+    for mod in mctx.modules:
+        for tag in mod.tags.query:
+            query_version = tag.version
+        for tag in mod.tags.source:
+            source_version = tag.version
+
+    if query_version:
+        _libpg_query_repository(name = "libpg_query", version = query_version)
+    if source_version:
+        _postgres_src_repository(name = "postgres_src", version = source_version)
+
+_query_tag = tag_class(
+    attrs = {
+        "version": attr.string(
+            mandatory = True,
+            doc = "libpg_query release tag (e.g. \"17-6.2.2\").",
+        ),
+    },
+    doc = "Pull libpg_query as @libpg_query.",
+)
+
+_source_tag = tag_class(
+    attrs = {
+        "version": attr.string(
+            mandatory = True,
+            doc = "PostgreSQL release version (e.g. \"17.6\").",
+        ),
+    },
+    doc = "Pull the PostgreSQL source tarball as @postgres_src.",
+)
+
+pg = module_extension(
+    implementation = _pg_extension_impl,
+    tag_classes = {
+        "query": _query_tag,
+        "source": _source_tag,
+    },
+    doc = "Module extension fetching libpg_query and/or the full PostgreSQL source tree.",
+)

@@ -1,0 +1,25 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+# parse_check — CLI around libpg_query's `pg_query_parse`. Reads a .sql
+# file, exits 0 if it parses cleanly, 1 otherwise (with error + cursor
+# position on stderr). Used by `pg_parse_valid_test` to gate SQL files
+# against postgres's own parser as a CI check.
+cc_binary(
+    name = "parse_check",
+    srcs = ["parse_check.c"],
+    deps = ["@libpg_query"],
+)
+
+# plpgsql_to_json — CLI around libpg_query's `pg_query_parse_plpgsql`.
+# Reads a CREATE FUNCTION .sql file, parses the PL/pgSQL body, writes
+# the JSON AST to stdout. Useful for downstream tools that want to
+# inspect PL/pgSQL structure without re-implementing the parser.
+cc_binary(
+    name = "plpgsql_to_json",
+    srcs = ["plpgsql_to_json.c"],
+    deps = ["@libpg_query"],
+)
+
+exports_files(["run_parse_check.sh"])

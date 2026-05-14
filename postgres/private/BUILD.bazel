@@ -1,0 +1,20 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//postgres:__pkg__"])
+
+bzl_library(
+    name = "known_versions_bzl",
+    srcs = ["known_versions.bzl"],
+)
+
+# Overlay headers used by the @postgres_src repository rule to replace
+# the autoconf-generated pg_config*.h files. Visibility kept narrow so
+# the overlay isn't a stable API.
+exports_files(
+    [
+        "overlay/pg_config.h",
+        "overlay/pg_config_ext.h",
+        "overlay/pg_config_os.h",
+    ],
+    visibility = ["//visibility:public"],
+)
