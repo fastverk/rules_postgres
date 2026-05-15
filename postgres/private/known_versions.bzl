@@ -19,9 +19,10 @@ POSTGRES_SOURCE_VERSIONS = {
     "17.6": "e0630a3600aea27511715563259ec2111cd5f4353a4b040e0be827f94cd7a8b0",
 }
 
-LIBPG_QUERY_URL_TEMPLATE = (
-    "https://github.com/pganalyze/libpg_query/archive/refs/tags/{version}.tar.gz"
-)
+# libpg_query fetching is delegated to
+# @rules_github//github:repositories.bzl%github_source_repository — the
+# URL template lives there as a fixed `https://github.com/<repo>/archive/
+# refs/tags/<tag>.tar.gz` shape, so we just supply the repo + tag_format.
 
 POSTGRES_SOURCE_URL_TEMPLATE = (
     "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.bz2"

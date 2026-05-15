@@ -30,8 +30,11 @@ With full PG source as well:
 """
 
 load(
+    "@rules_github//github:repositories.bzl",
+    "github_source_repository",
+)
+load(
     "//postgres/private:known_versions.bzl",
-    "LIBPG_QUERY_URL_TEMPLATE",
     "LIBPG_QUERY_VERSIONS",
     "POSTGRES_SOURCE_URL_TEMPLATE",
     "POSTGRES_SOURCE_VERSIONS",
@@ -181,32 +184,19 @@ cc_library(
 )
 """
 
-def _libpg_query_impl(rctx):
-    version = rctx.attr.version
-    sha256 = LIBPG_QUERY_VERSIONS.get(version, "")
-    if not sha256:
-        # buildifier: disable=print
-        print(("rules_postgres: WARNING — no pinned sha256 for libpg_query " +
-               "@%s; downloading unverified. Add an entry to " +
-               "known_versions.bzl for hermetic builds.") % version)
-    url = LIBPG_QUERY_URL_TEMPLATE.format(version = version)
-    rctx.download_and_extract(
-        url = url,
-        sha256 = sha256 or "",
-        stripPrefix = "libpg_query-" + version,
+def _fetch_libpg_query(version):
+    """Use @rules_github//github:repositories.bzl%github_source_repository to
+    fetch the libpg_query archive tag and lay our own BUILD overlay on it."""
+    github_source_repository(
+        name = "libpg_query",
+        repo = "pganalyze/libpg_query",
+        version = version,
+        # libpg_query tags don't use a `v` prefix — the tag IS `17-6.2.2`.
+        tag_format = "{version}",
+        sha256 = LIBPG_QUERY_VERSIONS.get(version, ""),
+        allow_unverified = True,
+        build_file_content = _LIBPG_QUERY_BUILD,
     )
-    rctx.file("BUILD.bazel", _LIBPG_QUERY_BUILD)
-
-_libpg_query_repository = repository_rule(
-    implementation = _libpg_query_impl,
-    attrs = {
-        "version": attr.string(
-            mandatory = True,
-            doc = "libpg_query release tag (e.g. \"17-6.2.2\").",
-        ),
-    },
-    doc = "Fetch libpg_query source tarball and build it as a cc_library.",
-)
 
 def _postgres_src_impl(rctx):
     version = rctx.attr.version
@@ -258,7 +248,7 @@ def _pg_extension_impl(mctx):
             source_version = tag.version
 
     if query_version:
-        _libpg_query_repository(name = "libpg_query", version = query_version)
+        _fetch_libpg_query(query_version)
     if source_version:
         _postgres_src_repository(name = "postgres_src", version = source_version)
 

@@ -18,5 +18,8 @@ bzl_library(
     name = "extensions_bzl",
     srcs = ["extensions.bzl"],
     visibility = ["//docs:__pkg__"],
-    deps = ["//postgres/private:known_versions_bzl"],
+    deps = [
+        "//postgres/private:known_versions_bzl",
+        "@rules_github//github:repositories_bzl",
+    ],
 )
