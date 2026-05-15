@@ -14,7 +14,7 @@ See [docs/extensions.md](docs/extensions.md) and [docs/defs.md](docs/defs.md) fo
 Add the registry to your `.bazelrc`:
 
 ```
-common --registry=https://raw.githubusercontent.com/mattmarshall/bazel-registry/main/
+common --registry=https://raw.githubusercontent.com/fastverk/bazel-registry/main/
 common --registry=https://bcr.bazel.build/
 ```
 
