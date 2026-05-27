@@ -51,19 +51,16 @@ def renderItemPointerCmpHelper : String :=
   "/// Returns -1, 0, or 1.\n" ++
   "#[inline]\n" ++
   "unsafe fn itempointer_cmp_internal(arg1: *const u8, arg2: *const u8) -> i32 {\n" ++
-  "    // BlockIdData: first 4 bytes (little-endian u32)\n" ++
-  "    let b1 = u32::from_le_bytes([\n" ++
-  "        *arg1,\n" ++
-  "        *arg1.add(1),\n" ++
-  "        *arg1.add(2),\n" ++
-  "        *arg1.add(3),\n" ++
-  "    ]);\n" ++
-  "    let b2 = u32::from_le_bytes([\n" ++
-  "        *arg2,\n" ++
-  "        *arg2.add(1),\n" ++
-  "        *arg2.add(2),\n" ++
-  "        *arg2.add(3),\n" ++
-  "    ]);\n" ++
+  "    // BlockIdData = { bi_hi: u16, bi_lo: u16 } with block number =\n" ++
+  "    // (bi_hi << 16) | bi_lo. bi_hi sits at offset 0-1, bi_lo at 2-3,\n" ++
+  "    // both as native (little-endian) u16. Reading bytes 0-3 as a\n" ++
+  "    // single LE u32 would compare in the wrong byte order.\n" ++
+  "    let b1_hi = u16::from_le_bytes([*arg1, *arg1.add(1)]) as u32;\n" ++
+  "    let b1_lo = u16::from_le_bytes([*arg1.add(2), *arg1.add(3)]) as u32;\n" ++
+  "    let b1 = (b1_hi << 16) | b1_lo;\n" ++
+  "    let b2_hi = u16::from_le_bytes([*arg2, *arg2.add(1)]) as u32;\n" ++
+  "    let b2_lo = u16::from_le_bytes([*arg2.add(2), *arg2.add(3)]) as u32;\n" ++
+  "    let b2 = (b2_hi << 16) | b2_lo;\n" ++
   "    if b1 < b2 {\n" ++
   "        return -1;\n" ++
   "    } else if b1 > b2 {\n" ++

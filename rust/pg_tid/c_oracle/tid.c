@@ -279,7 +279,10 @@ hash_any(const unsigned char *k, int keylen)
     uint32_t a, b, c, len;
 
     len = keylen;
-    a = b = c = 0x9e3779b9 + len + 0;
+    /* Init matches real Postgres hashfn.c hash_bytes: `+ 3923095` magic
+     * constant. The original vendored code had `+ 0` which silently
+     * disagreed with PG's actual hash_any; Gate 2 caught it. */
+    a = b = c = 0x9e3779b9 + len + 3923095;
 
     while (len >= 12)
     {
@@ -346,8 +349,19 @@ hash_any_extended(const unsigned char *k, int keylen, uint64 seed)
     uint32_t seed2 = (uint32_t) (seed >> 32);
 
     len = keylen;
-    a = b = c = 0x9e3779b9 + len + seed1;
-    c += seed2;
+    /* Init matches real Postgres hashfn.c hash_bytes_extended: the
+     * `+ 3923095` is the same magic constant as hash_bytes. The
+     * seed perturbation comes after the init via mix(a,b,c). The
+     * original vendored code rolled `+ seed1; c += seed2` into the
+     * init, which both omitted `+ 3923095` AND skipped the mix step
+     * — wrong on two counts. */
+    a = b = c = 0x9e3779b9 + len + 3923095;
+    if (seed != 0)
+    {
+        a += seed2;
+        b += seed1;
+        mix(a, b, c);
+    }
 
     while (len >= 12)
     {
@@ -393,5 +407,10 @@ hash_any_extended(const unsigned char *k, int keylen, uint64 seed)
 
     final(a, b, c);
 
-    return (Datum) (((uint64) seed2 << 32) | c);
+    /* Real Postgres hash_bytes_extended returns ((uint64) b << 32) | c
+     * — both halves come from the mixed state. The original vendored
+     * code returned seed2 in the high half (the original seed input,
+     * pre-mix), which made the high 32 bits equal to seed_hi instead
+     * of a real hash. Gate 2 caught it. */
+    return (Datum) (((uint64) b << 32) | c);
 }
