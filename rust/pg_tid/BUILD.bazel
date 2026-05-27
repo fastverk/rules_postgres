@@ -45,3 +45,24 @@ filegroup(
     name = "tid_emit_c",
     srcs = ["c_oracle/tid_emit.c"],
 )
+
+load("//tools/regen:cluster.bzl", "gate3_cluster")
+
+gate3_cluster(
+    name = "tid",
+    pg_source = "@postgres_src//:src/backend/utils/adt/tid.c",
+    lean_emit_c = ":tid_emit_c",
+    fn_names = [
+        "tideq",
+        "tidne",
+        "tidlt",
+        "tidle",
+        "tidgt",
+        "tidge",
+        "bttidcmp",
+        "tidlarger",
+        "tidsmaller",
+        "hashtid",
+        "hashtidextended",
+    ],
+)

@@ -141,6 +141,17 @@ filegroup(
     name = "pg_query_proto_file",
     srcs = ["protobuf/pg_query.proto"],
 )
+
+# cc_library bundling libpg_query's vendored PG headers — specifically
+# the generated fmgrprotos.h + errcodes.h that the real PG source tree
+# doesn't carry (they're produced by PG's own build). Consumers needing
+# clang -ast-dump on PG-header-using TUs pair this with
+# @postgres_src//:pg_headers.
+cc_library(
+    name = "pg_generated_headers",
+    hdrs = glob(["src/postgres/include/**/*.h"], allow_empty = True),
+    includes = ["src/postgres/include"],
+)
 """
 
 # ---------------------------------------------------------------------------
@@ -171,6 +182,27 @@ filegroup(
 filegroup(
     name = "include_headers",
     srcs = glob(["src/include/**/*.h"], allow_empty = True),
+)
+
+# cc_library bundling the public PG header tree. Consumers that need
+# `#include "postgres.h"` etc. resolved by clang (e.g. rules_lang's
+# c_ast_dump_single via the `deps` attr) depend on this.
+cc_library(
+    name = "pg_headers",
+    hdrs = glob(["src/include/**/*.h"], allow_empty = True),
+    includes = ["src/include"],
+)
+
+# Expose specific backend .c sources that the Pg.Ir cluster gates
+# structurally diff against (clang -ast-dump=json target). One
+# exports_files block per directory so consumers reference them via
+# `@postgres_src//src/backend/utils/adt:uuid.c` style labels.
+exports_files(
+    glob([
+        "src/backend/utils/adt/*.c",
+        "src/backend/access/hash/*.c",
+        "src/backend/utils/hash/*.c",
+    ], allow_empty = True),
 )
 
 # Every C source + header that meson's compile_commands.json might

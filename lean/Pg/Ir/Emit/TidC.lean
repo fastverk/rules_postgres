@@ -61,10 +61,11 @@ def renderCmpInternal : String :=
 /-- Render one tid clamp function (tidlarger/tidsmaller). -/
 def renderClampFn (fam : TidClampFamily) : String :=
   let fnName := fam.fnName
-  let opStr := match fam.cmpOp with
-    | ">= 0" => ">="
-    | "<= 0" => "<="
-    | _      => "unknown_op"
+  -- `cmpOp` is already a full predicate like ">= 0" / "<= 0" — pass
+  -- through verbatim. Earlier versions of this match stripped the
+  -- trailing "0", which produced syntactically invalid C
+  -- (`... <= ? arg1 : arg2`); Gate 3 caught it.
+  let opStr := fam.cmpOp
   "Datum\n" ++
   fnName ++ "(PG_FUNCTION_ARGS)\n" ++
   "{\n" ++

@@ -53,10 +53,11 @@ use_repo(lake, "rules_postgres_lake")
 
 register_toolchains("@rules_postgres_lake//:lean_toolchain_def")
 
-# rules_lang — exposes `Polyglot.Sql.Ast` (the generic 32-ctor
-# SQL AST that `Pg.Ast` extends via the Pattern-A `Ext` slot).
-# Resolved via the premium private registry (see .bazelrc).
-bazel_dep(name = "rules_lang", version = "0.0.0")
+# rules_lang — `Polyglot.Sql.Ast` (Pattern-A `Ext` slot for Pg.Ast)
+# plus the `c_ast_struct_diff_test` rule that backs Gate 3 (clang AST
+# structural diff vs real Postgres source). Resolved via the premium
+# private registry (see .bazelrc).
+bazel_dep(name = "rules_lang", version = "0.0.2")
 
 # rules_lora — Bazel-native LoRA fine-tuning. Used by Pg.Ir's
 # local-model fine-tune track: the Stream A LLM-authoring loop's

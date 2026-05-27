@@ -1,14 +1,6 @@
-load("@rules_shell//shell:sh_test.bzl", "sh_test")
-
 package(default_visibility = ["//visibility:public"])
 
-exports_files(
-    glob(["regen-*.sh"]) + glob(["check-*-grounding.sh"]) + [
-        "check-all.sh",
-        "check-all-behavioral.sh",
-        "check-all-grounding.sh",
-    ],
-)
+exports_files(glob(["regen-*.sh"]))
 
 # ─── Gate 1 — regen idempotence ────────────────────────────────────
 #
@@ -77,22 +69,19 @@ test_suite(
     ],
 )
 
-# ─── Gate 3 — clang AST structural diff (shell, pending native rules) ──
+# ─── Gate 3 — clang AST structural diff vs real Postgres ──────────
 #
-# Migration target: clang_ast_dump rule (cc file → AST JSON via the cc
-# toolchain) + c_ast_struct_diff_test rule wrapping the rules_lang
-# binary as a Bazel-native target. Both could lift upstream into
-# rules_lang. Until that migration lands, the shell aggregator stays.
-#
-#   bazel test //tools/regen:gate3_clang_struct_diff
-sh_test(
-    name = "gate3_clang_struct_diff",
-    srcs = ["check-all-grounding.sh"],
-    data = glob(["check-*-grounding.sh"]),
-    tags = [
-        "external",
-        "manual",
-        "no-sandbox",
+# Bazel-native via rules_lang's `c_ast_dump_single` + `c_ast_struct_diff_test`.
+# Each per-cluster `gate3_<cluster>` test_suite (defined in
+# //rust/pg_<cluster>/BUILD.bazel) dumps the Lean-emit C and the real
+# PG source via clang -ast-dump=json, then per-function structurally
+# diffs them via the c_ast_struct_diff rust_binary in rules_lang.
+test_suite(
+    name = "gate3_all",
+    tests = [
+        "//rust/pg_macaddr:gate3_macaddr",
+        "//rust/pg_tid:gate3_tid",
+        "//rust/pg_uuid:gate3_uuid",
     ],
 )
 
@@ -102,6 +91,6 @@ test_suite(
     tests = [
         ":gate1_all",
         ":gate2_all",
-        ":gate3_clang_struct_diff",
+        ":gate3_all",
     ],
 )

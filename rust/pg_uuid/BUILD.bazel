@@ -45,3 +45,23 @@ filegroup(
     name = "uuid_emit_c",
     srcs = ["c_oracle/uuid_emit.c"],
 )
+
+# ─── Gate 3 — clang AST structural diff vs real PG ────────────────
+load("//tools/regen:cluster.bzl", "gate3_cluster")
+
+gate3_cluster(
+    name = "uuid",
+    pg_source = "@postgres_src//:src/backend/utils/adt/uuid.c",
+    lean_emit_c = ":uuid_emit_c",
+    fn_names = [
+        "uuid_eq",
+        "uuid_ne",
+        "uuid_lt",
+        "uuid_le",
+        "uuid_gt",
+        "uuid_ge",
+        "uuid_cmp",
+        "uuid_hash",
+        "uuid_hash_extended",
+    ],
+)

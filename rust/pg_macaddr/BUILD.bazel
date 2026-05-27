@@ -45,3 +45,22 @@ filegroup(
     name = "macaddr_emit_c",
     srcs = ["c_oracle/macaddr_emit.c"],
 )
+
+load("//tools/regen:cluster.bzl", "gate3_cluster")
+
+gate3_cluster(
+    name = "macaddr",
+    pg_source = "@postgres_src//:src/backend/utils/adt/mac.c",
+    lean_emit_c = ":macaddr_emit_c",
+    fn_names = [
+        "macaddr_eq",
+        "macaddr_ne",
+        "macaddr_lt",
+        "macaddr_le",
+        "macaddr_gt",
+        "macaddr_ge",
+        "macaddr_cmp",
+        "hashmacaddr",
+        "hashmacaddrextended",
+    ],
+)
