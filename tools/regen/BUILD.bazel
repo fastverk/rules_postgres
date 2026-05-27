@@ -3,7 +3,11 @@ load("@rules_shell//shell:sh_test.bzl", "sh_test")
 package(default_visibility = ["//visibility:public"])
 
 exports_files(
-    glob(["regen-*.sh"]) + glob(["check-*-grounding.sh"]) + ["check-all.sh"],
+    glob(["regen-*.sh"]) + glob(["check-*-grounding.sh"]) + [
+        "check-all.sh",
+        "check-all-behavioral.sh",
+        "check-all-grounding.sh",
+    ],
 )
 
 # Gate 1 — regen idempotence.
@@ -28,5 +32,64 @@ sh_test(
         "external",
         "manual",
         "no-sandbox",
+    ],
+)
+
+# Gate 2 — cluster behavioral diff-test.
+#
+# Runs `cargo test --release` for every emit-Rust cluster crate with a
+# `tests/diff_*.rs` harness. Each harness links the cluster's `c_oracle/`
+# (vendored real-PG C body + setjmp wrapper) and the Lean-emitted Rust
+# impl, drives both through pg_fcinfo, and asserts bit-identical Datums
+# + matching FmgrErrorKind on a corpus of inputs.
+#
+#   bazel test //tools/regen:gate2_behavioral_diff
+#
+# Requires `cargo` + a C compiler on PATH. No PG checkout needed — each
+# cluster ships its own renamed PG C body under `c_oracle/`.
+sh_test(
+    name = "gate2_behavioral_diff",
+    srcs = ["check-all-behavioral.sh"],
+    tags = [
+        "external",
+        "manual",
+        "no-sandbox",
+    ],
+)
+
+# Gate 3 — clang AST structural diff vs real Postgres source.
+#
+# Runs every per-cluster `check-*-grounding.sh`: clang-AST-dumps both
+# the Lean-emitted C body and the corresponding real PG C source, then
+# per-function structurally diffs them via `c_ast_struct_diff`.
+#
+#   bazel test //tools/regen:gate3_clang_struct_diff
+#
+# Requires lean + clang on PATH, postgres_src materialized under the
+# Bazel cache (any prior `bazel build` that pulled @postgres_src), and
+# the `c_ast_struct_diff` binary built in sibling rules_lang:
+#   (cd ../rules_lang/translated/pipeline && cargo build --release)
+#
+# Skipped clusters (rc=2 — missing toolchain/cache) are reported but
+# don't fail the gate; real structural divergence (rc=1) does.
+sh_test(
+    name = "gate3_clang_struct_diff",
+    srcs = ["check-all-grounding.sh"],
+    data = glob(["check-*-grounding.sh"]),
+    tags = [
+        "external",
+        "manual",
+        "no-sandbox",
+    ],
+)
+
+# Convenience: run all three gates as a single test_suite handle.
+test_suite(
+    name = "gates_all",
+    tags = ["manual"],
+    tests = [
+        ":gate1_regen_idempotence",
+        ":gate2_behavioral_diff",
+        ":gate3_clang_struct_diff",
     ],
 )

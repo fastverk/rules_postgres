@@ -17,7 +17,12 @@ set -euo pipefail
 LEAN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../lean" && pwd)"
 REPO_ROOT="$(cd "$LEAN_DIR/.." && pwd)"
 RUST_TARGET="$REPO_ROOT/rust/pg_uuid/src/lib.rs"
-C_TARGET="$REPO_ROOT/rust/pg_uuid/c_oracle/uuid.c"
+# NOTE: writes the real-PG-headers emit to `uuid_emit.c` (Gate 3 input
+# for clang AST diff). The sibling `uuid.c` is the standalone form
+# (no PG headers) that c_oracle's build.rs compiles via cc-rs for the
+# Gate 2 behavioral diff harness — those two roles must stay separate.
+# Mirrors the pg_tid convention (tid.c + tid_emit.c).
+C_TARGET="$REPO_ROOT/rust/pg_uuid/c_oracle/uuid_emit.c"
 
 # Pre-compile Lean dependencies.
 (
