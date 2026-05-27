@@ -272,6 +272,7 @@ lean_test(
         "Pg/Catalog/Generated.lean",
         "Pg/Catalog.lean",
         "Pg/Ast.lean",
+        "Pg/Stmt.lean",
         "Pg/Pretty.lean",
         "Pg/Smoke.lean",
     ],
