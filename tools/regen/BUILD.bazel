@@ -10,43 +10,47 @@ exports_files(
     ],
 )
 
-# Gate 1 — regen idempotence.
+# ─── Gate 1 — regen idempotence ────────────────────────────────────
 #
-# Runs every per-cluster `regen-*.sh --check` and asserts that the
-# committed Rust/C cluster emits match what the Lean source-of-truth
-# currently produces. Fails the build if any committed emit has drifted.
-#
-# Tagged `manual` because it requires `lean` on PATH (the underlying
-# regen scripts shell out to the host's Lean binary). Invoke explicitly:
-#
-#   bazel test //tools/regen:gate1_regen_idempotence
-#
-# Tagged `external` + `no-sandbox` so the regen scripts can resolve
-# `$(dirname BASH_SOURCE)/../../lean` against the real workspace tree
-# (Lean source layout is workspace-relative, not data-dep relative).
-sh_test(
-    name = "gate1_regen_idempotence",
-    srcs = ["check-all.sh"],
-    data = glob(["regen-*.sh"]),
-    tags = [
-        "external",
-        "manual",
-        "no-sandbox",
+# Bazel-native via `lean_emit` + skylib `diff_test` per cluster. The
+# per-cluster targets live in `//lean:gate1_<name>{,_c}` because that's
+# where the Lean source srcs are reachable; this test_suite aggregates
+# all 22 of them (19 Rust emits + 3 C emits for clusters that have one).
+test_suite(
+    name = "gate1_all",
+    tests = [
+        "//lean:gate1_bytea",
+        "//lean:gate1_cash_arith",
+        "//lean:gate1_date_arith",
+        "//lean:gate1_float_arith",
+        "//lean:gate1_float_to_int",
+        "//lean:gate1_float_unary",
+        "//lean:gate1_int_arith",
+        "//lean:gate1_int_bitwise",
+        "//lean:gate1_int_casts",
+        "//lean:gate1_int_cmp",
+        "//lean:gate1_int_div",
+        "//lean:gate1_int_hash",
+        "//lean:gate1_int_unary",
+        "//lean:gate1_interval",
+        "//lean:gate1_macaddr",
+        "//lean:gate1_macaddr_c",
+        "//lean:gate1_text",
+        "//lean:gate1_tid",
+        "//lean:gate1_tid_c",
+        "//lean:gate1_timestamp_arith",
+        "//lean:gate1_uuid",
+        "//lean:gate1_uuid_c",
     ],
 )
 
-# Gate 2 — cluster behavioral diff-test.
+# ─── Gate 2 — cluster behavioral diff-test (shell, pending rules_rust) ──
 #
-# Runs `cargo test --release` for every emit-Rust cluster crate with a
-# `tests/diff_*.rs` harness. Each harness links the cluster's `c_oracle/`
-# (vendored real-PG C body + setjmp wrapper) and the Lean-emitted Rust
-# impl, drives both through pg_fcinfo, and asserts bit-identical Datums
-# + matching FmgrErrorKind on a corpus of inputs.
+# Migration target: each `rust/pg_<cluster>/` becomes a rules_rust
+# crate with cc_library(c_oracle) + rust_library + rust_test. Until
+# that migration lands, the shell aggregator stays in place.
 #
 #   bazel test //tools/regen:gate2_behavioral_diff
-#
-# Requires `cargo` + a C compiler on PATH. No PG checkout needed — each
-# cluster ships its own renamed PG C body under `c_oracle/`.
 sh_test(
     name = "gate2_behavioral_diff",
     srcs = ["check-all-behavioral.sh"],
@@ -57,21 +61,14 @@ sh_test(
     ],
 )
 
-# Gate 3 — clang AST structural diff vs real Postgres source.
+# ─── Gate 3 — clang AST structural diff (shell, pending native rules) ──
 #
-# Runs every per-cluster `check-*-grounding.sh`: clang-AST-dumps both
-# the Lean-emitted C body and the corresponding real PG C source, then
-# per-function structurally diffs them via `c_ast_struct_diff`.
+# Migration target: clang_ast_dump rule (cc file → AST JSON via the cc
+# toolchain) + c_ast_struct_diff_test rule wrapping the rules_lang
+# binary as a Bazel-native target. Both could lift upstream into
+# rules_lang. Until that migration lands, the shell aggregator stays.
 #
 #   bazel test //tools/regen:gate3_clang_struct_diff
-#
-# Requires lean + clang on PATH, postgres_src materialized under the
-# Bazel cache (any prior `bazel build` that pulled @postgres_src), and
-# the `c_ast_struct_diff` binary built in sibling rules_lang:
-#   (cd ../rules_lang/translated/pipeline && cargo build --release)
-#
-# Skipped clusters (rc=2 — missing toolchain/cache) are reported but
-# don't fail the gate; real structural divergence (rc=1) does.
 sh_test(
     name = "gate3_clang_struct_diff",
     srcs = ["check-all-grounding.sh"],
@@ -86,9 +83,8 @@ sh_test(
 # Convenience: run all three gates as a single test_suite handle.
 test_suite(
     name = "gates_all",
-    tags = ["manual"],
     tests = [
-        ":gate1_regen_idempotence",
+        ":gate1_all",
         ":gate2_behavioral_diff",
         ":gate3_clang_struct_diff",
     ],

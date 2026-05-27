@@ -38,24 +38,20 @@ jobs:
       - run: buildifier --mode=check --lint=warn -r .
 
   # Gate 1 — regen idempotence. Re-emits every cluster from its Lean
-  # source and asserts the committed Rust/C files match. Catches the
-  # "Lean spec edited, regen forgotten" failure mode.
+  # source via lean_emit and asserts the committed Rust/C files match
+  # via skylib diff_test. Lean toolchain is hermetic via rules_lean —
+  # no elan install needed.
   gate1_regen_idempotence:
     name: gate 1 — regen idempotence
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: install elan + Lean toolchain
-        run: |
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
-            | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: pin Lean toolchain from tools/lake/lean-toolchain
-        run: |
-          export PATH="$HOME/.elan/bin:$PATH"
-          elan toolchain install "$(cat tools/lake/lean-toolchain)"
-          lean --version
-      - run: tools/regen/check-all.sh
+      - uses: bazel-contrib/setup-bazel@0.10.0
+        with:
+          bazelisk-cache: true
+          disk-cache: gate1-${{ github.workflow }}
+          repository-cache: true
+      - run: bazel test --jobs=4 //tools/regen:gate1_all --test_output=errors
 
   # Gate 2 — cluster behavioral diff-test. For each emit-Rust cluster
   # crate with a `tests/diff_*.rs` harness, runs `cargo test --release`

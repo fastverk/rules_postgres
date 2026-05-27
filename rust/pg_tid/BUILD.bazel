@@ -1,0 +1,11 @@
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "lib_rs",
+    srcs = ["src/lib.rs"],
+)
+
+filegroup(
+    name = "tid_emit_c",
+    srcs = ["c_oracle/tid_emit.c"],
+)

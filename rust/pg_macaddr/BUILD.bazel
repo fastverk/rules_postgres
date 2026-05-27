@@ -1,0 +1,11 @@
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "lib_rs",
+    srcs = ["src/lib.rs"],
+)
+
+filegroup(
+    name = "macaddr_emit_c",
+    srcs = ["c_oracle/macaddr_emit.c"],
+)

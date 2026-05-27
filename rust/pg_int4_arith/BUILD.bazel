@@ -1,0 +1,8 @@
+package(default_visibility = ["//visibility:public"])
+
+# Exported as a Bazel label so //tools/regen:gate1_int_arith can
+# diff_test the committed lib.rs against the Lean-emit lean_emit output.
+filegroup(
+    name = "lib_rs",
+    srcs = ["src/lib.rs"],
+)
