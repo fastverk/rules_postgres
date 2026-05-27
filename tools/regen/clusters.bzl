@@ -235,8 +235,7 @@ CLUSTERS = [
         crate = "pg_timestamp_arith",
         c_base = "timestamp_arith",
         lean_module = "TimestampArith",
-        # NB: no tests/diff_timestamp_arith.rs upstream — Gate 2 gap.
-        diff_test = None,
+        diff_test = "diff_timestamp_arith",
         lean_emit_c = False,
         pg_source = None,
         gate3_fn_names = [],
@@ -244,7 +243,7 @@ CLUSTERS = [
         lean_prelude = "old",
         lean_no_cluster_common = False,
         uses_palloc = True,
-        diff_test_uses_palloc = False,
+        diff_test_uses_palloc = True,
         uses_libc = False,
     ),
     struct(
