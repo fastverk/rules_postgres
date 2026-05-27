@@ -1,0 +1,19 @@
+[package]
+name = "pg_int4_bitwise"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+description = "Postgres int bitwise (and/or/xor/not/shl/shr × int2/int4/int8) V1 fmgr cluster — Pg.Ir-emitted"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"

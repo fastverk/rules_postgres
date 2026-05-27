@@ -1,0 +1,26 @@
+[package]
+name = "pg_fcinfo"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# Postgres V1 fmgr ABI bridge — `FunctionCallInfoBaseData`, `NullableDatum`,
+# `Datum` mirrors + per-type encode/decode helpers + `build_fcinfo!` macro.
+# Consumed by auto_cluster --emit-difftest's V1 fmgr template (phase 2)
+# so the emitted scaffolds have zero TODO(fcinfo) markers — fcinfo
+# construction becomes one macro call.
+#
+# Layout assertions live in build.rs and a runtime sizeof check;
+# any drift between this Rust layout and Postgres' headers triggers
+# a compile-time / cargo-test-time failure.
+description = "Postgres V1 fmgr ABI bridge for C↔Rust differential testing"
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]

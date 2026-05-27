@@ -1,0 +1,4357 @@
+[
+  {
+    "ident": "pg_finfo__int_contained",
+    "fmgr_name": "_int_contained",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo__int_contained_joinsel",
+    "fmgr_name": "_int_contained_joinsel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_selfuncs.c"
+  },
+  {
+    "ident": "pg_finfo__int_contained_sel",
+    "fmgr_name": "_int_contained_sel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_selfuncs.c"
+  },
+  {
+    "ident": "pg_finfo__int_contains",
+    "fmgr_name": "_int_contains",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo__int_contains_joinsel",
+    "fmgr_name": "_int_contains_joinsel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_selfuncs.c"
+  },
+  {
+    "ident": "pg_finfo__int_contains_sel",
+    "fmgr_name": "_int_contains_sel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_selfuncs.c"
+  },
+  {
+    "ident": "pg_finfo__int_different",
+    "fmgr_name": "_int_different",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo__int_inter",
+    "fmgr_name": "_int_inter",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo__int_matchsel",
+    "fmgr_name": "_int_matchsel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_selfuncs.c"
+  },
+  {
+    "ident": "pg_finfo__int_overlap",
+    "fmgr_name": "_int_overlap",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo__int_overlap_joinsel",
+    "fmgr_name": "_int_overlap_joinsel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_selfuncs.c"
+  },
+  {
+    "ident": "pg_finfo__int_overlap_sel",
+    "fmgr_name": "_int_overlap_sel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_selfuncs.c"
+  },
+  {
+    "ident": "pg_finfo__int_same",
+    "fmgr_name": "_int_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo__int_union",
+    "fmgr_name": "_int_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo__intbig_in",
+    "fmgr_name": "_intbig_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo__intbig_out",
+    "fmgr_name": "_intbig_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo__lca",
+    "fmgr_name": "_lca",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__lt_q_regex",
+    "fmgr_name": "_lt_q_regex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__lt_q_rregex",
+    "fmgr_name": "_lt_q_rregex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltq_extract_regex",
+    "fmgr_name": "_ltq_extract_regex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltq_regex",
+    "fmgr_name": "_ltq_regex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltq_rregex",
+    "fmgr_name": "_ltq_rregex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_compress",
+    "fmgr_name": "_ltree_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_consistent",
+    "fmgr_name": "_ltree_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_extract_isparent",
+    "fmgr_name": "_ltree_extract_isparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_extract_risparent",
+    "fmgr_name": "_ltree_extract_risparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_gist_options",
+    "fmgr_name": "_ltree_gist_options",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_isparent",
+    "fmgr_name": "_ltree_isparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_penalty",
+    "fmgr_name": "_ltree_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_picksplit",
+    "fmgr_name": "_ltree_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_r_isparent",
+    "fmgr_name": "_ltree_r_isparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_r_risparent",
+    "fmgr_name": "_ltree_r_risparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_risparent",
+    "fmgr_name": "_ltree_risparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_same",
+    "fmgr_name": "_ltree_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo__ltree_union",
+    "fmgr_name": "_ltree_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo__ltxtq_exec",
+    "fmgr_name": "_ltxtq_exec",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltxtq_extract_exec",
+    "fmgr_name": "_ltxtq_extract_exec",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo__ltxtq_rexec",
+    "fmgr_name": "_ltxtq_rexec",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/_ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_accept_weak_input",
+    "fmgr_name": "accept_weak_input",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_akeys",
+    "fmgr_name": "akeys",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_autoinc",
+    "fmgr_name": "autoinc",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/spi/autoinc.c"
+  },
+  {
+    "ident": "pg_finfo_autoprewarm_dump_now",
+    "fmgr_name": "autoprewarm_dump_now",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_prewarm/autoprewarm.c"
+  },
+  {
+    "ident": "pg_finfo_autoprewarm_start_worker",
+    "fmgr_name": "autoprewarm_start_worker",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_prewarm/autoprewarm.c"
+  },
+  {
+    "ident": "pg_finfo_avals",
+    "fmgr_name": "avals",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_big5_to_euc_tw",
+    "fmgr_name": "big5_to_euc_tw",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_tw_and_big5/euc_tw_and_big5.c"
+  },
+  {
+    "ident": "pg_finfo_big5_to_mic",
+    "fmgr_name": "big5_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_tw_and_big5/euc_tw_and_big5.c"
+  },
+  {
+    "ident": "pg_finfo_binary_coercible",
+    "fmgr_name": "binary_coercible",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_blhandler",
+    "fmgr_name": "blhandler",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/bloom/blutils.c"
+  },
+  {
+    "ident": "pg_finfo_boolop",
+    "fmgr_name": "boolop",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_bool.c"
+  },
+  {
+    "ident": "pg_finfo_bqarr_in",
+    "fmgr_name": "bqarr_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_bool.c"
+  },
+  {
+    "ident": "pg_finfo_bqarr_out",
+    "fmgr_name": "bqarr_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_bool.c"
+  },
+  {
+    "ident": "pg_finfo_brin_metapage_info",
+    "fmgr_name": "brin_metapage_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/brinfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_brin_page_items",
+    "fmgr_name": "brin_page_items",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/brinfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_brin_page_type",
+    "fmgr_name": "brin_page_type",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/brinfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_brin_revmap_data",
+    "fmgr_name": "brin_revmap_data",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/brinfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_bt_index_check",
+    "fmgr_name": "bt_index_check",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/amcheck/verify_nbtree.c"
+  },
+  {
+    "ident": "pg_finfo_bt_index_parent_check",
+    "fmgr_name": "bt_index_parent_check",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/amcheck/verify_nbtree.c"
+  },
+  {
+    "ident": "pg_finfo_bt_metap",
+    "fmgr_name": "bt_metap",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/btreefuncs.c"
+  },
+  {
+    "ident": "pg_finfo_bt_multi_page_stats",
+    "fmgr_name": "bt_multi_page_stats",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/btreefuncs.c"
+  },
+  {
+    "ident": "pg_finfo_bt_page_items",
+    "fmgr_name": "bt_page_items",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/btreefuncs.c"
+  },
+  {
+    "ident": "pg_finfo_bt_page_items_1_9",
+    "fmgr_name": "bt_page_items_1_9",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/btreefuncs.c"
+  },
+  {
+    "ident": "pg_finfo_bt_page_items_bytea",
+    "fmgr_name": "bt_page_items_bytea",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/btreefuncs.c"
+  },
+  {
+    "ident": "pg_finfo_bt_page_stats",
+    "fmgr_name": "bt_page_stats",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/btreefuncs.c"
+  },
+  {
+    "ident": "pg_finfo_bt_page_stats_1_9",
+    "fmgr_name": "bt_page_stats_1_9",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/btreefuncs.c"
+  },
+  {
+    "ident": "pg_finfo_cash_dist",
+    "fmgr_name": "cash_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_check_foreign_key",
+    "fmgr_name": "check_foreign_key",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/spi/refint.c"
+  },
+  {
+    "ident": "pg_finfo_check_primary_key",
+    "fmgr_name": "check_primary_key",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/spi/refint.c"
+  },
+  {
+    "ident": "pg_finfo_check_set_block_offsets",
+    "fmgr_name": "check_set_block_offsets",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_tidstore/test_tidstore.c"
+  },
+  {
+    "ident": "pg_finfo_citext_cmp",
+    "fmgr_name": "citext_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_eq",
+    "fmgr_name": "citext_eq",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_ge",
+    "fmgr_name": "citext_ge",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_gt",
+    "fmgr_name": "citext_gt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_hash",
+    "fmgr_name": "citext_hash",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_hash_extended",
+    "fmgr_name": "citext_hash_extended",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_larger",
+    "fmgr_name": "citext_larger",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_le",
+    "fmgr_name": "citext_le",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_lt",
+    "fmgr_name": "citext_lt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_ne",
+    "fmgr_name": "citext_ne",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_pattern_cmp",
+    "fmgr_name": "citext_pattern_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_pattern_ge",
+    "fmgr_name": "citext_pattern_ge",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_pattern_gt",
+    "fmgr_name": "citext_pattern_gt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_pattern_le",
+    "fmgr_name": "citext_pattern_le",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_pattern_lt",
+    "fmgr_name": "citext_pattern_lt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_citext_smaller",
+    "fmgr_name": "citext_smaller",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/citext/citext.c"
+  },
+  {
+    "ident": "pg_finfo_connectby_text",
+    "fmgr_name": "connectby_text",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tablefunc/tablefunc.c"
+  },
+  {
+    "ident": "pg_finfo_connectby_text_serial",
+    "fmgr_name": "connectby_text_serial",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tablefunc/tablefunc.c"
+  },
+  {
+    "ident": "pg_finfo_consume_xids",
+    "fmgr_name": "consume_xids",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/xid_wraparound/xid_wraparound.c"
+  },
+  {
+    "ident": "pg_finfo_consume_xids_until",
+    "fmgr_name": "consume_xids_until",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/xid_wraparound/xid_wraparound.c"
+  },
+  {
+    "ident": "pg_finfo_crosstab",
+    "fmgr_name": "crosstab",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tablefunc/tablefunc.c"
+  },
+  {
+    "ident": "pg_finfo_crosstab_hash",
+    "fmgr_name": "crosstab_hash",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tablefunc/tablefunc.c"
+  },
+  {
+    "ident": "pg_finfo_cube_a_f8",
+    "fmgr_name": "cube_a_f8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_a_f8_f8",
+    "fmgr_name": "cube_a_f8_f8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_c_f8",
+    "fmgr_name": "cube_c_f8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_c_f8_f8",
+    "fmgr_name": "cube_c_f8_f8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_cmp",
+    "fmgr_name": "cube_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_contained",
+    "fmgr_name": "cube_contained",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_contains",
+    "fmgr_name": "cube_contains",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_coord",
+    "fmgr_name": "cube_coord",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_coord_llur",
+    "fmgr_name": "cube_coord_llur",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_dim",
+    "fmgr_name": "cube_dim",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_distance",
+    "fmgr_name": "cube_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_enlarge",
+    "fmgr_name": "cube_enlarge",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_eq",
+    "fmgr_name": "cube_eq",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_f8",
+    "fmgr_name": "cube_f8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_f8_f8",
+    "fmgr_name": "cube_f8_f8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_ge",
+    "fmgr_name": "cube_ge",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_gt",
+    "fmgr_name": "cube_gt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_in",
+    "fmgr_name": "cube_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_inter",
+    "fmgr_name": "cube_inter",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_is_point",
+    "fmgr_name": "cube_is_point",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_le",
+    "fmgr_name": "cube_le",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_ll_coord",
+    "fmgr_name": "cube_ll_coord",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_lt",
+    "fmgr_name": "cube_lt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_ne",
+    "fmgr_name": "cube_ne",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_out",
+    "fmgr_name": "cube_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_overlap",
+    "fmgr_name": "cube_overlap",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_recv",
+    "fmgr_name": "cube_recv",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_send",
+    "fmgr_name": "cube_send",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_size",
+    "fmgr_name": "cube_size",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_subset",
+    "fmgr_name": "cube_subset",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_union",
+    "fmgr_name": "cube_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_cube_ur_coord",
+    "fmgr_name": "cube_ur_coord",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_daitch_mokotoff",
+    "fmgr_name": "daitch_mokotoff",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/daitch_mokotoff.c"
+  },
+  {
+    "ident": "pg_finfo_date_dist",
+    "fmgr_name": "date_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_build_sql_delete",
+    "fmgr_name": "dblink_build_sql_delete",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_build_sql_insert",
+    "fmgr_name": "dblink_build_sql_insert",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_build_sql_update",
+    "fmgr_name": "dblink_build_sql_update",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_cancel_query",
+    "fmgr_name": "dblink_cancel_query",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_close",
+    "fmgr_name": "dblink_close",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_connect",
+    "fmgr_name": "dblink_connect",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_current_query",
+    "fmgr_name": "dblink_current_query",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_disconnect",
+    "fmgr_name": "dblink_disconnect",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_error_message",
+    "fmgr_name": "dblink_error_message",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_exec",
+    "fmgr_name": "dblink_exec",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_fdw_validator",
+    "fmgr_name": "dblink_fdw_validator",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_fetch",
+    "fmgr_name": "dblink_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_get_connections",
+    "fmgr_name": "dblink_get_connections",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_get_notify",
+    "fmgr_name": "dblink_get_notify",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_get_pkey",
+    "fmgr_name": "dblink_get_pkey",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_get_result",
+    "fmgr_name": "dblink_get_result",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_is_busy",
+    "fmgr_name": "dblink_is_busy",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_open",
+    "fmgr_name": "dblink_open",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_record",
+    "fmgr_name": "dblink_record",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_dblink_send_query",
+    "fmgr_name": "dblink_send_query",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dblink/dblink.c"
+  },
+  {
+    "ident": "pg_finfo_defined",
+    "fmgr_name": "defined",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_delete",
+    "fmgr_name": "delete",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_difference",
+    "fmgr_name": "difference",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/fuzzystrmatch.c"
+  },
+  {
+    "ident": "pg_finfo_dihandler",
+    "fmgr_name": "dihandler",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/dummy_index_am/dummy_index_am.c"
+  },
+  {
+    "ident": "pg_finfo_dintdict_init",
+    "fmgr_name": "dintdict_init",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dict_int/dict_int.c"
+  },
+  {
+    "ident": "pg_finfo_dintdict_lexize",
+    "fmgr_name": "dintdict_lexize",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dict_int/dict_int.c"
+  },
+  {
+    "ident": "pg_finfo_distance_chebyshev",
+    "fmgr_name": "distance_chebyshev",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_distance_taxicab",
+    "fmgr_name": "distance_taxicab",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_dmetaphone",
+    "fmgr_name": "dmetaphone",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/dmetaphone.c"
+  },
+  {
+    "ident": "pg_finfo_dmetaphone_alt",
+    "fmgr_name": "dmetaphone_alt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/dmetaphone.c"
+  },
+  {
+    "ident": "pg_finfo_do_set_block_offsets",
+    "fmgr_name": "do_set_block_offsets",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_tidstore/test_tidstore.c"
+  },
+  {
+    "ident": "pg_finfo_dsnowball_init",
+    "fmgr_name": "dsnowball_init",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/snowball/dict_snowball.c"
+  },
+  {
+    "ident": "pg_finfo_dsnowball_lexize",
+    "fmgr_name": "dsnowball_lexize",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/snowball/dict_snowball.c"
+  },
+  {
+    "ident": "pg_finfo_dummy_seclabel_dummy",
+    "fmgr_name": "dummy_seclabel_dummy",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/dummy_seclabel/dummy_seclabel.c"
+  },
+  {
+    "ident": "pg_finfo_dxsyn_init",
+    "fmgr_name": "dxsyn_init",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dict_xsyn/dict_xsyn.c"
+  },
+  {
+    "ident": "pg_finfo_dxsyn_lexize",
+    "fmgr_name": "dxsyn_lexize",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/dict_xsyn/dict_xsyn.c"
+  },
+  {
+    "ident": "pg_finfo_each",
+    "fmgr_name": "each",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_ean13_in",
+    "fmgr_name": "ean13_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_ean13_out",
+    "fmgr_name": "ean13_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_euc_cn_to_mic",
+    "fmgr_name": "euc_cn_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_cn_and_mic/euc_cn_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_euc_jis_2004_to_shift_jis_2004",
+    "fmgr_name": "euc_jis_2004_to_shift_jis_2004",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc2004_sjis2004/euc2004_sjis2004.c"
+  },
+  {
+    "ident": "pg_finfo_euc_kr_to_mic",
+    "fmgr_name": "euc_kr_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_kr_and_mic/euc_kr_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_euc_tw_to_big5",
+    "fmgr_name": "euc_tw_to_big5",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_tw_and_big5/euc_tw_and_big5.c"
+  },
+  {
+    "ident": "pg_finfo_euc_tw_to_mic",
+    "fmgr_name": "euc_tw_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_tw_and_big5/euc_tw_and_big5.c"
+  },
+  {
+    "ident": "pg_finfo_exists",
+    "fmgr_name": "exists",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_fetchval",
+    "fmgr_name": "fetchval",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_file_fdw_handler",
+    "fmgr_name": "file_fdw_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/file_fdw/file_fdw.c"
+  },
+  {
+    "ident": "pg_finfo_file_fdw_validator",
+    "fmgr_name": "file_fdw_validator",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/file_fdw/file_fdw.c"
+  },
+  {
+    "ident": "pg_finfo_float4_dist",
+    "fmgr_name": "float4_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_float8_dist",
+    "fmgr_name": "float8_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_fsm_page_contents",
+    "fmgr_name": "fsm_page_contents",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/fsmfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_compress",
+    "fmgr_name": "g_cube_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_consistent",
+    "fmgr_name": "g_cube_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_decompress",
+    "fmgr_name": "g_cube_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_distance",
+    "fmgr_name": "g_cube_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_penalty",
+    "fmgr_name": "g_cube_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_picksplit",
+    "fmgr_name": "g_cube_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_same",
+    "fmgr_name": "g_cube_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_cube_union",
+    "fmgr_name": "g_cube_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/cube/cube.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_compress",
+    "fmgr_name": "g_int_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_consistent",
+    "fmgr_name": "g_int_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_decompress",
+    "fmgr_name": "g_int_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_options",
+    "fmgr_name": "g_int_options",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_penalty",
+    "fmgr_name": "g_int_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_picksplit",
+    "fmgr_name": "g_int_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_same",
+    "fmgr_name": "g_int_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_int_union",
+    "fmgr_name": "g_int_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_compress",
+    "fmgr_name": "g_intbig_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_consistent",
+    "fmgr_name": "g_intbig_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_decompress",
+    "fmgr_name": "g_intbig_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_options",
+    "fmgr_name": "g_intbig_options",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_penalty",
+    "fmgr_name": "g_intbig_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_picksplit",
+    "fmgr_name": "g_intbig_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_same",
+    "fmgr_name": "g_intbig_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_g_intbig_union",
+    "fmgr_name": "g_intbig_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_intbig_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bit_compress",
+    "fmgr_name": "gbt_bit_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bit.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bit_consistent",
+    "fmgr_name": "gbt_bit_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bit.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bit_penalty",
+    "fmgr_name": "gbt_bit_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bit.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bit_picksplit",
+    "fmgr_name": "gbt_bit_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bit.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bit_same",
+    "fmgr_name": "gbt_bit_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bit.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bit_union",
+    "fmgr_name": "gbt_bit_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bit.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bool_compress",
+    "fmgr_name": "gbt_bool_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bool.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bool_consistent",
+    "fmgr_name": "gbt_bool_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bool.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bool_fetch",
+    "fmgr_name": "gbt_bool_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bool.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bool_penalty",
+    "fmgr_name": "gbt_bool_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bool.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bool_picksplit",
+    "fmgr_name": "gbt_bool_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bool.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bool_same",
+    "fmgr_name": "gbt_bool_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bool.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bool_union",
+    "fmgr_name": "gbt_bool_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bool.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bpchar_compress",
+    "fmgr_name": "gbt_bpchar_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bpchar_consistent",
+    "fmgr_name": "gbt_bpchar_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bytea_compress",
+    "fmgr_name": "gbt_bytea_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bytea.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bytea_consistent",
+    "fmgr_name": "gbt_bytea_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bytea.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bytea_penalty",
+    "fmgr_name": "gbt_bytea_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bytea.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bytea_picksplit",
+    "fmgr_name": "gbt_bytea_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bytea.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bytea_same",
+    "fmgr_name": "gbt_bytea_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bytea.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_bytea_union",
+    "fmgr_name": "gbt_bytea_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_bytea.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_compress",
+    "fmgr_name": "gbt_cash_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_consistent",
+    "fmgr_name": "gbt_cash_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_distance",
+    "fmgr_name": "gbt_cash_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_fetch",
+    "fmgr_name": "gbt_cash_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_penalty",
+    "fmgr_name": "gbt_cash_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_picksplit",
+    "fmgr_name": "gbt_cash_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_same",
+    "fmgr_name": "gbt_cash_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_cash_union",
+    "fmgr_name": "gbt_cash_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_cash.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_compress",
+    "fmgr_name": "gbt_date_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_consistent",
+    "fmgr_name": "gbt_date_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_distance",
+    "fmgr_name": "gbt_date_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_fetch",
+    "fmgr_name": "gbt_date_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_penalty",
+    "fmgr_name": "gbt_date_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_picksplit",
+    "fmgr_name": "gbt_date_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_same",
+    "fmgr_name": "gbt_date_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_date_union",
+    "fmgr_name": "gbt_date_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_date.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_decompress",
+    "fmgr_name": "gbt_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_enum_compress",
+    "fmgr_name": "gbt_enum_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_enum.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_enum_consistent",
+    "fmgr_name": "gbt_enum_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_enum.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_enum_fetch",
+    "fmgr_name": "gbt_enum_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_enum.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_enum_penalty",
+    "fmgr_name": "gbt_enum_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_enum.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_enum_picksplit",
+    "fmgr_name": "gbt_enum_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_enum.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_enum_same",
+    "fmgr_name": "gbt_enum_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_enum.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_enum_union",
+    "fmgr_name": "gbt_enum_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_enum.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_compress",
+    "fmgr_name": "gbt_float4_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_consistent",
+    "fmgr_name": "gbt_float4_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_distance",
+    "fmgr_name": "gbt_float4_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_fetch",
+    "fmgr_name": "gbt_float4_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_penalty",
+    "fmgr_name": "gbt_float4_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_picksplit",
+    "fmgr_name": "gbt_float4_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_same",
+    "fmgr_name": "gbt_float4_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float4_union",
+    "fmgr_name": "gbt_float4_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_compress",
+    "fmgr_name": "gbt_float8_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_consistent",
+    "fmgr_name": "gbt_float8_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_distance",
+    "fmgr_name": "gbt_float8_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_fetch",
+    "fmgr_name": "gbt_float8_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_penalty",
+    "fmgr_name": "gbt_float8_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_picksplit",
+    "fmgr_name": "gbt_float8_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_same",
+    "fmgr_name": "gbt_float8_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_float8_union",
+    "fmgr_name": "gbt_float8_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_float8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_inet_compress",
+    "fmgr_name": "gbt_inet_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_inet.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_inet_consistent",
+    "fmgr_name": "gbt_inet_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_inet.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_inet_penalty",
+    "fmgr_name": "gbt_inet_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_inet.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_inet_picksplit",
+    "fmgr_name": "gbt_inet_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_inet.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_inet_same",
+    "fmgr_name": "gbt_inet_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_inet.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_inet_union",
+    "fmgr_name": "gbt_inet_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_inet.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_compress",
+    "fmgr_name": "gbt_int2_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_consistent",
+    "fmgr_name": "gbt_int2_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_distance",
+    "fmgr_name": "gbt_int2_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_fetch",
+    "fmgr_name": "gbt_int2_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_penalty",
+    "fmgr_name": "gbt_int2_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_picksplit",
+    "fmgr_name": "gbt_int2_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_same",
+    "fmgr_name": "gbt_int2_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int2_union",
+    "fmgr_name": "gbt_int2_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_compress",
+    "fmgr_name": "gbt_int4_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_consistent",
+    "fmgr_name": "gbt_int4_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_distance",
+    "fmgr_name": "gbt_int4_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_fetch",
+    "fmgr_name": "gbt_int4_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_penalty",
+    "fmgr_name": "gbt_int4_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_picksplit",
+    "fmgr_name": "gbt_int4_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_same",
+    "fmgr_name": "gbt_int4_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int4_union",
+    "fmgr_name": "gbt_int4_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_compress",
+    "fmgr_name": "gbt_int8_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_consistent",
+    "fmgr_name": "gbt_int8_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_distance",
+    "fmgr_name": "gbt_int8_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_fetch",
+    "fmgr_name": "gbt_int8_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_penalty",
+    "fmgr_name": "gbt_int8_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_picksplit",
+    "fmgr_name": "gbt_int8_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_same",
+    "fmgr_name": "gbt_int8_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_int8_union",
+    "fmgr_name": "gbt_int8_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_compress",
+    "fmgr_name": "gbt_intv_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_consistent",
+    "fmgr_name": "gbt_intv_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_decompress",
+    "fmgr_name": "gbt_intv_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_distance",
+    "fmgr_name": "gbt_intv_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_fetch",
+    "fmgr_name": "gbt_intv_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_penalty",
+    "fmgr_name": "gbt_intv_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_picksplit",
+    "fmgr_name": "gbt_intv_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_same",
+    "fmgr_name": "gbt_intv_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_intv_union",
+    "fmgr_name": "gbt_intv_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad8_compress",
+    "fmgr_name": "gbt_macad8_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad8_consistent",
+    "fmgr_name": "gbt_macad8_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad8_fetch",
+    "fmgr_name": "gbt_macad8_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad8_penalty",
+    "fmgr_name": "gbt_macad8_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad8_picksplit",
+    "fmgr_name": "gbt_macad8_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad8_same",
+    "fmgr_name": "gbt_macad8_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad8_union",
+    "fmgr_name": "gbt_macad8_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr8.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad_compress",
+    "fmgr_name": "gbt_macad_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad_consistent",
+    "fmgr_name": "gbt_macad_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad_fetch",
+    "fmgr_name": "gbt_macad_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad_penalty",
+    "fmgr_name": "gbt_macad_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad_picksplit",
+    "fmgr_name": "gbt_macad_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad_same",
+    "fmgr_name": "gbt_macad_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_macad_union",
+    "fmgr_name": "gbt_macad_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_macaddr.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_numeric_compress",
+    "fmgr_name": "gbt_numeric_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_numeric.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_numeric_consistent",
+    "fmgr_name": "gbt_numeric_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_numeric.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_numeric_penalty",
+    "fmgr_name": "gbt_numeric_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_numeric.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_numeric_picksplit",
+    "fmgr_name": "gbt_numeric_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_numeric.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_numeric_same",
+    "fmgr_name": "gbt_numeric_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_numeric.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_numeric_union",
+    "fmgr_name": "gbt_numeric_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_numeric.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_compress",
+    "fmgr_name": "gbt_oid_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_consistent",
+    "fmgr_name": "gbt_oid_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_distance",
+    "fmgr_name": "gbt_oid_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_fetch",
+    "fmgr_name": "gbt_oid_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_penalty",
+    "fmgr_name": "gbt_oid_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_picksplit",
+    "fmgr_name": "gbt_oid_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_same",
+    "fmgr_name": "gbt_oid_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_oid_union",
+    "fmgr_name": "gbt_oid_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_text_compress",
+    "fmgr_name": "gbt_text_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_text_consistent",
+    "fmgr_name": "gbt_text_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_text_penalty",
+    "fmgr_name": "gbt_text_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_text_picksplit",
+    "fmgr_name": "gbt_text_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_text_same",
+    "fmgr_name": "gbt_text_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_text_union",
+    "fmgr_name": "gbt_text_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_text.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_compress",
+    "fmgr_name": "gbt_time_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_consistent",
+    "fmgr_name": "gbt_time_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_distance",
+    "fmgr_name": "gbt_time_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_fetch",
+    "fmgr_name": "gbt_time_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_penalty",
+    "fmgr_name": "gbt_time_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_picksplit",
+    "fmgr_name": "gbt_time_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_same",
+    "fmgr_name": "gbt_time_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_time_union",
+    "fmgr_name": "gbt_time_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_timetz_compress",
+    "fmgr_name": "gbt_timetz_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_timetz_consistent",
+    "fmgr_name": "gbt_timetz_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_compress",
+    "fmgr_name": "gbt_ts_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_consistent",
+    "fmgr_name": "gbt_ts_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_distance",
+    "fmgr_name": "gbt_ts_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_fetch",
+    "fmgr_name": "gbt_ts_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_penalty",
+    "fmgr_name": "gbt_ts_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_picksplit",
+    "fmgr_name": "gbt_ts_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_same",
+    "fmgr_name": "gbt_ts_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_ts_union",
+    "fmgr_name": "gbt_ts_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_tstz_compress",
+    "fmgr_name": "gbt_tstz_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_tstz_consistent",
+    "fmgr_name": "gbt_tstz_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_tstz_distance",
+    "fmgr_name": "gbt_tstz_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_uuid_compress",
+    "fmgr_name": "gbt_uuid_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_uuid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_uuid_consistent",
+    "fmgr_name": "gbt_uuid_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_uuid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_uuid_fetch",
+    "fmgr_name": "gbt_uuid_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_uuid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_uuid_penalty",
+    "fmgr_name": "gbt_uuid_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_uuid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_uuid_picksplit",
+    "fmgr_name": "gbt_uuid_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_uuid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_uuid_same",
+    "fmgr_name": "gbt_uuid_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_uuid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_uuid_union",
+    "fmgr_name": "gbt_uuid_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_uuid.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_var_decompress",
+    "fmgr_name": "gbt_var_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_utils_var.c"
+  },
+  {
+    "ident": "pg_finfo_gbt_var_fetch",
+    "fmgr_name": "gbt_var_fetch",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_utils_var.c"
+  },
+  {
+    "ident": "pg_finfo_gbtreekey_in",
+    "fmgr_name": "gbtreekey_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gbtreekey_out",
+    "fmgr_name": "gbtreekey_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_geo_distance",
+    "fmgr_name": "geo_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/earthdistance/earthdistance.c"
+  },
+  {
+    "ident": "pg_finfo_get_altertable_subcmdinfo",
+    "fmgr_name": "get_altertable_subcmdinfo",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_ddl_deparse/test_ddl_deparse.c"
+  },
+  {
+    "ident": "pg_finfo_get_command_tag",
+    "fmgr_name": "get_command_tag",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_ddl_deparse/test_ddl_deparse.c"
+  },
+  {
+    "ident": "pg_finfo_get_command_type",
+    "fmgr_name": "get_command_type",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_ddl_deparse/test_ddl_deparse.c"
+  },
+  {
+    "ident": "pg_finfo_get_environ",
+    "fmgr_name": "get_environ",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_get_raw_page",
+    "fmgr_name": "get_raw_page",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/rawpage.c"
+  },
+  {
+    "ident": "pg_finfo_get_raw_page_1_9",
+    "fmgr_name": "get_raw_page_1_9",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/rawpage.c"
+  },
+  {
+    "ident": "pg_finfo_get_raw_page_fork",
+    "fmgr_name": "get_raw_page_fork",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/rawpage.c"
+  },
+  {
+    "ident": "pg_finfo_get_raw_page_fork_1_9",
+    "fmgr_name": "get_raw_page_fork_1_9",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/rawpage.c"
+  },
+  {
+    "ident": "pg_finfo_get_val_in_shmem",
+    "fmgr_name": "get_val_in_shmem",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_dsm_registry/test_dsm_registry.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_compress",
+    "fmgr_name": "ghstore_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_consistent",
+    "fmgr_name": "ghstore_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_decompress",
+    "fmgr_name": "ghstore_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_in",
+    "fmgr_name": "ghstore_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_options",
+    "fmgr_name": "ghstore_options",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_out",
+    "fmgr_name": "ghstore_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_penalty",
+    "fmgr_name": "ghstore_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_picksplit",
+    "fmgr_name": "ghstore_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_same",
+    "fmgr_name": "ghstore_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ghstore_union",
+    "fmgr_name": "ghstore_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gin_btree_consistent",
+    "fmgr_name": "gin_btree_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_anyenum",
+    "fmgr_name": "gin_compare_prefix_anyenum",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_bit",
+    "fmgr_name": "gin_compare_prefix_bit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_bool",
+    "fmgr_name": "gin_compare_prefix_bool",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_bpchar",
+    "fmgr_name": "gin_compare_prefix_bpchar",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_bytea",
+    "fmgr_name": "gin_compare_prefix_bytea",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_char",
+    "fmgr_name": "gin_compare_prefix_char",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_cidr",
+    "fmgr_name": "gin_compare_prefix_cidr",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_date",
+    "fmgr_name": "gin_compare_prefix_date",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_float4",
+    "fmgr_name": "gin_compare_prefix_float4",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_float8",
+    "fmgr_name": "gin_compare_prefix_float8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_inet",
+    "fmgr_name": "gin_compare_prefix_inet",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_int2",
+    "fmgr_name": "gin_compare_prefix_int2",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_int4",
+    "fmgr_name": "gin_compare_prefix_int4",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_int8",
+    "fmgr_name": "gin_compare_prefix_int8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_interval",
+    "fmgr_name": "gin_compare_prefix_interval",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_macaddr",
+    "fmgr_name": "gin_compare_prefix_macaddr",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_macaddr8",
+    "fmgr_name": "gin_compare_prefix_macaddr8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_money",
+    "fmgr_name": "gin_compare_prefix_money",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_name",
+    "fmgr_name": "gin_compare_prefix_name",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_numeric",
+    "fmgr_name": "gin_compare_prefix_numeric",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_oid",
+    "fmgr_name": "gin_compare_prefix_oid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_text",
+    "fmgr_name": "gin_compare_prefix_text",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_time",
+    "fmgr_name": "gin_compare_prefix_time",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_timestamp",
+    "fmgr_name": "gin_compare_prefix_timestamp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_timestamptz",
+    "fmgr_name": "gin_compare_prefix_timestamptz",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_timetz",
+    "fmgr_name": "gin_compare_prefix_timetz",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_uuid",
+    "fmgr_name": "gin_compare_prefix_uuid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_compare_prefix_varbit",
+    "fmgr_name": "gin_compare_prefix_varbit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_consistent_hstore",
+    "fmgr_name": "gin_consistent_hstore",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_enum_cmp",
+    "fmgr_name": "gin_enum_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_hstore",
+    "fmgr_name": "gin_extract_hstore",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_hstore_query",
+    "fmgr_name": "gin_extract_hstore_query",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_anyenum",
+    "fmgr_name": "gin_extract_query_anyenum",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_bit",
+    "fmgr_name": "gin_extract_query_bit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_bool",
+    "fmgr_name": "gin_extract_query_bool",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_bpchar",
+    "fmgr_name": "gin_extract_query_bpchar",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_bytea",
+    "fmgr_name": "gin_extract_query_bytea",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_char",
+    "fmgr_name": "gin_extract_query_char",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_cidr",
+    "fmgr_name": "gin_extract_query_cidr",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_date",
+    "fmgr_name": "gin_extract_query_date",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_float4",
+    "fmgr_name": "gin_extract_query_float4",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_float8",
+    "fmgr_name": "gin_extract_query_float8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_inet",
+    "fmgr_name": "gin_extract_query_inet",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_int2",
+    "fmgr_name": "gin_extract_query_int2",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_int4",
+    "fmgr_name": "gin_extract_query_int4",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_int8",
+    "fmgr_name": "gin_extract_query_int8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_interval",
+    "fmgr_name": "gin_extract_query_interval",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_macaddr",
+    "fmgr_name": "gin_extract_query_macaddr",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_macaddr8",
+    "fmgr_name": "gin_extract_query_macaddr8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_money",
+    "fmgr_name": "gin_extract_query_money",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_name",
+    "fmgr_name": "gin_extract_query_name",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_numeric",
+    "fmgr_name": "gin_extract_query_numeric",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_oid",
+    "fmgr_name": "gin_extract_query_oid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_text",
+    "fmgr_name": "gin_extract_query_text",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_time",
+    "fmgr_name": "gin_extract_query_time",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_timestamp",
+    "fmgr_name": "gin_extract_query_timestamp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_timestamptz",
+    "fmgr_name": "gin_extract_query_timestamptz",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_timetz",
+    "fmgr_name": "gin_extract_query_timetz",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_trgm",
+    "fmgr_name": "gin_extract_query_trgm",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_uuid",
+    "fmgr_name": "gin_extract_query_uuid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_query_varbit",
+    "fmgr_name": "gin_extract_query_varbit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_trgm",
+    "fmgr_name": "gin_extract_trgm",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_anyenum",
+    "fmgr_name": "gin_extract_value_anyenum",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_bit",
+    "fmgr_name": "gin_extract_value_bit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_bool",
+    "fmgr_name": "gin_extract_value_bool",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_bpchar",
+    "fmgr_name": "gin_extract_value_bpchar",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_bytea",
+    "fmgr_name": "gin_extract_value_bytea",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_char",
+    "fmgr_name": "gin_extract_value_char",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_cidr",
+    "fmgr_name": "gin_extract_value_cidr",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_date",
+    "fmgr_name": "gin_extract_value_date",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_float4",
+    "fmgr_name": "gin_extract_value_float4",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_float8",
+    "fmgr_name": "gin_extract_value_float8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_inet",
+    "fmgr_name": "gin_extract_value_inet",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_int2",
+    "fmgr_name": "gin_extract_value_int2",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_int4",
+    "fmgr_name": "gin_extract_value_int4",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_int8",
+    "fmgr_name": "gin_extract_value_int8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_interval",
+    "fmgr_name": "gin_extract_value_interval",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_macaddr",
+    "fmgr_name": "gin_extract_value_macaddr",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_macaddr8",
+    "fmgr_name": "gin_extract_value_macaddr8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_money",
+    "fmgr_name": "gin_extract_value_money",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_name",
+    "fmgr_name": "gin_extract_value_name",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_numeric",
+    "fmgr_name": "gin_extract_value_numeric",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_oid",
+    "fmgr_name": "gin_extract_value_oid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_text",
+    "fmgr_name": "gin_extract_value_text",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_time",
+    "fmgr_name": "gin_extract_value_time",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_timestamp",
+    "fmgr_name": "gin_extract_value_timestamp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_timestamptz",
+    "fmgr_name": "gin_extract_value_timestamptz",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_timetz",
+    "fmgr_name": "gin_extract_value_timetz",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_trgm",
+    "fmgr_name": "gin_extract_value_trgm",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_uuid",
+    "fmgr_name": "gin_extract_value_uuid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_extract_value_varbit",
+    "fmgr_name": "gin_extract_value_varbit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_leafpage_items",
+    "fmgr_name": "gin_leafpage_items",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/ginfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_gin_metapage_info",
+    "fmgr_name": "gin_metapage_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/ginfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_gin_numeric_cmp",
+    "fmgr_name": "gin_numeric_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gin/btree_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_page_opaque_info",
+    "fmgr_name": "gin_page_opaque_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/ginfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_gin_trgm_consistent",
+    "fmgr_name": "gin_trgm_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gin_trgm_triconsistent",
+    "fmgr_name": "gin_trgm_triconsistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gin.c"
+  },
+  {
+    "ident": "pg_finfo_ginint4_consistent",
+    "fmgr_name": "ginint4_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gin.c"
+  },
+  {
+    "ident": "pg_finfo_ginint4_queryextract",
+    "fmgr_name": "ginint4_queryextract",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_gin.c"
+  },
+  {
+    "ident": "pg_finfo_gist_page_items",
+    "fmgr_name": "gist_page_items",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/gistfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_gist_page_items_bytea",
+    "fmgr_name": "gist_page_items_bytea",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/gistfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_gist_page_opaque_info",
+    "fmgr_name": "gist_page_opaque_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/gistfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_gseg_compress",
+    "fmgr_name": "gseg_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_gseg_consistent",
+    "fmgr_name": "gseg_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_gseg_decompress",
+    "fmgr_name": "gseg_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_gseg_penalty",
+    "fmgr_name": "gseg_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_gseg_picksplit",
+    "fmgr_name": "gseg_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_gseg_same",
+    "fmgr_name": "gseg_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_gseg_union",
+    "fmgr_name": "gseg_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_compress",
+    "fmgr_name": "gtrgm_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_consistent",
+    "fmgr_name": "gtrgm_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_decompress",
+    "fmgr_name": "gtrgm_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_distance",
+    "fmgr_name": "gtrgm_distance",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_in",
+    "fmgr_name": "gtrgm_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_options",
+    "fmgr_name": "gtrgm_options",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_out",
+    "fmgr_name": "gtrgm_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_penalty",
+    "fmgr_name": "gtrgm_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_picksplit",
+    "fmgr_name": "gtrgm_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_same",
+    "fmgr_name": "gtrgm_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_gtrgm_union",
+    "fmgr_name": "gtrgm_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_gist.c"
+  },
+  {
+    "ident": "pg_finfo_hash_bitmap_info",
+    "fmgr_name": "hash_bitmap_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/hashfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_hash_ltree",
+    "fmgr_name": "hash_ltree",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_hash_ltree_extended",
+    "fmgr_name": "hash_ltree_extended",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_hash_metapage_info",
+    "fmgr_name": "hash_metapage_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/hashfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_hash_page_items",
+    "fmgr_name": "hash_page_items",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/hashfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_hash_page_stats",
+    "fmgr_name": "hash_page_stats",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/hashfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_hash_page_type",
+    "fmgr_name": "hash_page_type",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/hashfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_heap_force_freeze",
+    "fmgr_name": "heap_force_freeze",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_surgery/heap_surgery.c"
+  },
+  {
+    "ident": "pg_finfo_heap_force_kill",
+    "fmgr_name": "heap_force_kill",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_surgery/heap_surgery.c"
+  },
+  {
+    "ident": "pg_finfo_heap_page_items",
+    "fmgr_name": "heap_page_items",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/heapfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_heap_tuple_infomask_flags",
+    "fmgr_name": "heap_tuple_infomask_flags",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/heapfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_hs_concat",
+    "fmgr_name": "hs_concat",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hs_contained",
+    "fmgr_name": "hs_contained",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hs_contains",
+    "fmgr_name": "hs_contains",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_akeys",
+    "fmgr_name": "hstore_akeys",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_avals",
+    "fmgr_name": "hstore_avals",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_cmp",
+    "fmgr_name": "hstore_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_concat",
+    "fmgr_name": "hstore_concat",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_contained",
+    "fmgr_name": "hstore_contained",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_contains",
+    "fmgr_name": "hstore_contains",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_defined",
+    "fmgr_name": "hstore_defined",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_delete",
+    "fmgr_name": "hstore_delete",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_delete_array",
+    "fmgr_name": "hstore_delete_array",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_delete_hstore",
+    "fmgr_name": "hstore_delete_hstore",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_each",
+    "fmgr_name": "hstore_each",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_eq",
+    "fmgr_name": "hstore_eq",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_exists",
+    "fmgr_name": "hstore_exists",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_exists_all",
+    "fmgr_name": "hstore_exists_all",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_exists_any",
+    "fmgr_name": "hstore_exists_any",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_fetchval",
+    "fmgr_name": "hstore_fetchval",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_from_array",
+    "fmgr_name": "hstore_from_array",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_from_arrays",
+    "fmgr_name": "hstore_from_arrays",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_from_record",
+    "fmgr_name": "hstore_from_record",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_from_text",
+    "fmgr_name": "hstore_from_text",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_ge",
+    "fmgr_name": "hstore_ge",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_gt",
+    "fmgr_name": "hstore_gt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_hash",
+    "fmgr_name": "hstore_hash",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_hash_extended",
+    "fmgr_name": "hstore_hash_extended",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_in",
+    "fmgr_name": "hstore_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_le",
+    "fmgr_name": "hstore_le",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_lt",
+    "fmgr_name": "hstore_lt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_ne",
+    "fmgr_name": "hstore_ne",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_out",
+    "fmgr_name": "hstore_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_populate_record",
+    "fmgr_name": "hstore_populate_record",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_recv",
+    "fmgr_name": "hstore_recv",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_send",
+    "fmgr_name": "hstore_send",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_skeys",
+    "fmgr_name": "hstore_skeys",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_slice_to_array",
+    "fmgr_name": "hstore_slice_to_array",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_slice_to_hstore",
+    "fmgr_name": "hstore_slice_to_hstore",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_subscript_handler",
+    "fmgr_name": "hstore_subscript_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_subs.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_svals",
+    "fmgr_name": "hstore_svals",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_to_array",
+    "fmgr_name": "hstore_to_array",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_to_json",
+    "fmgr_name": "hstore_to_json",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_to_json_loose",
+    "fmgr_name": "hstore_to_json_loose",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_to_jsonb",
+    "fmgr_name": "hstore_to_jsonb",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_to_jsonb_loose",
+    "fmgr_name": "hstore_to_jsonb_loose",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_to_matrix",
+    "fmgr_name": "hstore_to_matrix",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_hstore_version_diag",
+    "fmgr_name": "hstore_version_diag",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_compat.c"
+  },
+  {
+    "ident": "pg_finfo_icount",
+    "fmgr_name": "icount",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_idx",
+    "fmgr_name": "idx",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_insert_username",
+    "fmgr_name": "insert_username",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/spi/insert_username.c"
+  },
+  {
+    "ident": "pg_finfo_int2_dist",
+    "fmgr_name": "int2_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int2.c"
+  },
+  {
+    "ident": "pg_finfo_int44in",
+    "fmgr_name": "int44in",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_int44out",
+    "fmgr_name": "int44out",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_int4_dist",
+    "fmgr_name": "int4_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int4.c"
+  },
+  {
+    "ident": "pg_finfo_int8_dist",
+    "fmgr_name": "int8_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_int8.c"
+  },
+  {
+    "ident": "pg_finfo_intarray_del_elem",
+    "fmgr_name": "intarray_del_elem",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_intarray_push_array",
+    "fmgr_name": "intarray_push_array",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_intarray_push_elem",
+    "fmgr_name": "intarray_push_elem",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_interpt_pp",
+    "fmgr_name": "interpt_pp",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_interval_dist",
+    "fmgr_name": "interval_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_interval.c"
+  },
+  {
+    "ident": "pg_finfo_intset",
+    "fmgr_name": "intset",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_intset_subtract",
+    "fmgr_name": "intset_subtract",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_intset_union_elem",
+    "fmgr_name": "intset_union_elem",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_is_valid",
+    "fmgr_name": "is_valid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_isbn_cast_from_ean13",
+    "fmgr_name": "isbn_cast_from_ean13",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_isbn_in",
+    "fmgr_name": "isbn_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_ismn_cast_from_ean13",
+    "fmgr_name": "ismn_cast_from_ean13",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_ismn_in",
+    "fmgr_name": "ismn_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_isn_out",
+    "fmgr_name": "isn_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_iso8859_1_to_utf8",
+    "fmgr_name": "iso8859_1_to_utf8",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/utf8_and_iso8859_1/utf8_and_iso8859_1.c"
+  },
+  {
+    "ident": "pg_finfo_iso_to_koi8r",
+    "fmgr_name": "iso_to_koi8r",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_iso_to_mic",
+    "fmgr_name": "iso_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_iso_to_win1251",
+    "fmgr_name": "iso_to_win1251",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_iso_to_win866",
+    "fmgr_name": "iso_to_win866",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_issn_cast_from_ean13",
+    "fmgr_name": "issn_cast_from_ean13",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_issn_in",
+    "fmgr_name": "issn_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_koi8r_to_iso",
+    "fmgr_name": "koi8r_to_iso",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_koi8r_to_mic",
+    "fmgr_name": "koi8r_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_koi8r_to_win1251",
+    "fmgr_name": "koi8r_to_win1251",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_koi8r_to_win866",
+    "fmgr_name": "koi8r_to_win866",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_latin1_to_mic",
+    "fmgr_name": "latin1_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin_and_mic/latin_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_latin2_to_mic",
+    "fmgr_name": "latin2_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin2_and_win1250/latin2_and_win1250.c"
+  },
+  {
+    "ident": "pg_finfo_latin2_to_win1250",
+    "fmgr_name": "latin2_to_win1250",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin2_and_win1250/latin2_and_win1250.c"
+  },
+  {
+    "ident": "pg_finfo_latin3_to_mic",
+    "fmgr_name": "latin3_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin_and_mic/latin_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_latin4_to_mic",
+    "fmgr_name": "latin4_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin_and_mic/latin_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_lca",
+    "fmgr_name": "lca",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_levenshtein",
+    "fmgr_name": "levenshtein",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/fuzzystrmatch.c"
+  },
+  {
+    "ident": "pg_finfo_levenshtein_less_equal",
+    "fmgr_name": "levenshtein_less_equal",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/fuzzystrmatch.c"
+  },
+  {
+    "ident": "pg_finfo_levenshtein_less_equal_with_costs",
+    "fmgr_name": "levenshtein_less_equal_with_costs",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/fuzzystrmatch.c"
+  },
+  {
+    "ident": "pg_finfo_levenshtein_with_costs",
+    "fmgr_name": "levenshtein_with_costs",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/fuzzystrmatch.c"
+  },
+  {
+    "ident": "pg_finfo_lo_manage",
+    "fmgr_name": "lo_manage",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/lo/lo.c"
+  },
+  {
+    "ident": "pg_finfo_lquery_in",
+    "fmgr_name": "lquery_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_lquery_out",
+    "fmgr_name": "lquery_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_lquery_recv",
+    "fmgr_name": "lquery_recv",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_lquery_send",
+    "fmgr_name": "lquery_send",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_lt_q_regex",
+    "fmgr_name": "lt_q_regex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/lquery_op.c"
+  },
+  {
+    "ident": "pg_finfo_lt_q_rregex",
+    "fmgr_name": "lt_q_rregex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/lquery_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltq_regex",
+    "fmgr_name": "ltq_regex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/lquery_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltq_rregex",
+    "fmgr_name": "ltq_rregex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/lquery_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree2text",
+    "fmgr_name": "ltree2text",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_addltree",
+    "fmgr_name": "ltree_addltree",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_addtext",
+    "fmgr_name": "ltree_addtext",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_cmp",
+    "fmgr_name": "ltree_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_compress",
+    "fmgr_name": "ltree_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_consistent",
+    "fmgr_name": "ltree_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_decompress",
+    "fmgr_name": "ltree_decompress",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_eq",
+    "fmgr_name": "ltree_eq",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_ge",
+    "fmgr_name": "ltree_ge",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_gist_in",
+    "fmgr_name": "ltree_gist_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_gist_options",
+    "fmgr_name": "ltree_gist_options",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_gist_out",
+    "fmgr_name": "ltree_gist_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_gt",
+    "fmgr_name": "ltree_gt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_in",
+    "fmgr_name": "ltree_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_index",
+    "fmgr_name": "ltree_index",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_isparent",
+    "fmgr_name": "ltree_isparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_le",
+    "fmgr_name": "ltree_le",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_lt",
+    "fmgr_name": "ltree_lt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_ne",
+    "fmgr_name": "ltree_ne",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_out",
+    "fmgr_name": "ltree_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_penalty",
+    "fmgr_name": "ltree_penalty",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_picksplit",
+    "fmgr_name": "ltree_picksplit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_recv",
+    "fmgr_name": "ltree_recv",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_risparent",
+    "fmgr_name": "ltree_risparent",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_same",
+    "fmgr_name": "ltree_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_send",
+    "fmgr_name": "ltree_send",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_io.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_textadd",
+    "fmgr_name": "ltree_textadd",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltree_union",
+    "fmgr_name": "ltree_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_gist.c"
+  },
+  {
+    "ident": "pg_finfo_ltreeparentsel",
+    "fmgr_name": "ltreeparentsel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltxtq_exec",
+    "fmgr_name": "ltxtq_exec",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltxtquery_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltxtq_in",
+    "fmgr_name": "ltxtq_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltxtquery_io.c"
+  },
+  {
+    "ident": "pg_finfo_ltxtq_out",
+    "fmgr_name": "ltxtq_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltxtquery_io.c"
+  },
+  {
+    "ident": "pg_finfo_ltxtq_recv",
+    "fmgr_name": "ltxtq_recv",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltxtquery_io.c"
+  },
+  {
+    "ident": "pg_finfo_ltxtq_rexec",
+    "fmgr_name": "ltxtq_rexec",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltxtquery_op.c"
+  },
+  {
+    "ident": "pg_finfo_ltxtq_send",
+    "fmgr_name": "ltxtq_send",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltxtquery_io.c"
+  },
+  {
+    "ident": "pg_finfo_make_tuple_indirect",
+    "fmgr_name": "make_tuple_indirect",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_make_valid",
+    "fmgr_name": "make_valid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_metaphone",
+    "fmgr_name": "metaphone",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/fuzzystrmatch.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_big5",
+    "fmgr_name": "mic_to_big5",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_tw_and_big5/euc_tw_and_big5.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_euc_cn",
+    "fmgr_name": "mic_to_euc_cn",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_cn_and_mic/euc_cn_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_euc_kr",
+    "fmgr_name": "mic_to_euc_kr",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_kr_and_mic/euc_kr_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_euc_tw",
+    "fmgr_name": "mic_to_euc_tw",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc_tw_and_big5/euc_tw_and_big5.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_iso",
+    "fmgr_name": "mic_to_iso",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_koi8r",
+    "fmgr_name": "mic_to_koi8r",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_latin1",
+    "fmgr_name": "mic_to_latin1",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin_and_mic/latin_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_latin2",
+    "fmgr_name": "mic_to_latin2",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin2_and_win1250/latin2_and_win1250.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_latin3",
+    "fmgr_name": "mic_to_latin3",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin_and_mic/latin_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_latin4",
+    "fmgr_name": "mic_to_latin4",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin_and_mic/latin_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_win1250",
+    "fmgr_name": "mic_to_win1250",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin2_and_win1250/latin2_and_win1250.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_win1251",
+    "fmgr_name": "mic_to_win1251",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_mic_to_win866",
+    "fmgr_name": "mic_to_win866",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_moddatetime",
+    "fmgr_name": "moddatetime",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/spi/moddatetime.c"
+  },
+  {
+    "ident": "pg_finfo_nlevel",
+    "fmgr_name": "nlevel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_normal_rand",
+    "fmgr_name": "normal_rand",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tablefunc/tablefunc.c"
+  },
+  {
+    "ident": "pg_finfo_oid_dist",
+    "fmgr_name": "oid_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_oid.c"
+  },
+  {
+    "ident": "pg_finfo_overpaid",
+    "fmgr_name": "overpaid",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_page_checksum",
+    "fmgr_name": "page_checksum",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/rawpage.c"
+  },
+  {
+    "ident": "pg_finfo_page_checksum_1_9",
+    "fmgr_name": "page_checksum_1_9",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/rawpage.c"
+  },
+  {
+    "ident": "pg_finfo_page_header",
+    "fmgr_name": "page_header",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/rawpage.c"
+  },
+  {
+    "ident": "pg_finfo_pg_buffercache_evict",
+    "fmgr_name": "pg_buffercache_evict",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_buffercache/pg_buffercache_pages.c"
+  },
+  {
+    "ident": "pg_finfo_pg_buffercache_pages",
+    "fmgr_name": "pg_buffercache_pages",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_buffercache/pg_buffercache_pages.c"
+  },
+  {
+    "ident": "pg_finfo_pg_buffercache_summary",
+    "fmgr_name": "pg_buffercache_summary",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_buffercache/pg_buffercache_pages.c"
+  },
+  {
+    "ident": "pg_finfo_pg_buffercache_usage_counts",
+    "fmgr_name": "pg_buffercache_usage_counts",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_buffercache/pg_buffercache_pages.c"
+  },
+  {
+    "ident": "pg_finfo_pg_check_frozen",
+    "fmgr_name": "pg_check_frozen",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pg_check_visible",
+    "fmgr_name": "pg_check_visible",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pg_freespace",
+    "fmgr_name": "pg_freespace",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_freespacemap/pg_freespacemap.c"
+  },
+  {
+    "ident": "pg_finfo_pg_get_wal_block_info",
+    "fmgr_name": "pg_get_wal_block_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_walinspect/pg_walinspect.c"
+  },
+  {
+    "ident": "pg_finfo_pg_get_wal_record_info",
+    "fmgr_name": "pg_get_wal_record_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_walinspect/pg_walinspect.c"
+  },
+  {
+    "ident": "pg_finfo_pg_get_wal_records_info",
+    "fmgr_name": "pg_get_wal_records_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_walinspect/pg_walinspect.c"
+  },
+  {
+    "ident": "pg_finfo_pg_get_wal_records_info_till_end_of_wal",
+    "fmgr_name": "pg_get_wal_records_info_till_end_of_wal",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_walinspect/pg_walinspect.c"
+  },
+  {
+    "ident": "pg_finfo_pg_get_wal_stats",
+    "fmgr_name": "pg_get_wal_stats",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_walinspect/pg_walinspect.c"
+  },
+  {
+    "ident": "pg_finfo_pg_get_wal_stats_till_end_of_wal",
+    "fmgr_name": "pg_get_wal_stats_till_end_of_wal",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_walinspect/pg_walinspect.c"
+  },
+  {
+    "ident": "pg_finfo_pg_prewarm",
+    "fmgr_name": "pg_prewarm",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_prewarm/pg_prewarm.c"
+  },
+  {
+    "ident": "pg_finfo_pg_relpages",
+    "fmgr_name": "pg_relpages",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pg_relpages_v1_5",
+    "fmgr_name": "pg_relpages_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pg_relpagesbyid",
+    "fmgr_name": "pg_relpagesbyid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pg_relpagesbyid_v1_5",
+    "fmgr_name": "pg_relpagesbyid_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements",
+    "fmgr_name": "pg_stat_statements",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_1_10",
+    "fmgr_name": "pg_stat_statements_1_10",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_1_11",
+    "fmgr_name": "pg_stat_statements_1_11",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_1_2",
+    "fmgr_name": "pg_stat_statements_1_2",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_1_3",
+    "fmgr_name": "pg_stat_statements_1_3",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_1_8",
+    "fmgr_name": "pg_stat_statements_1_8",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_1_9",
+    "fmgr_name": "pg_stat_statements_1_9",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_info",
+    "fmgr_name": "pg_stat_statements_info",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_reset",
+    "fmgr_name": "pg_stat_statements_reset",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_reset_1_11",
+    "fmgr_name": "pg_stat_statements_reset_1_11",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_stat_statements_reset_1_7",
+    "fmgr_name": "pg_stat_statements_reset_1_7",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_stat_statements/pg_stat_statements.c"
+  },
+  {
+    "ident": "pg_finfo_pg_truncate_visibility_map",
+    "fmgr_name": "pg_truncate_visibility_map",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pg_visibility",
+    "fmgr_name": "pg_visibility",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pg_visibility_map",
+    "fmgr_name": "pg_visibility_map",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pg_visibility_map_rel",
+    "fmgr_name": "pg_visibility_map_rel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pg_visibility_map_summary",
+    "fmgr_name": "pg_visibility_map_summary",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pg_visibility_rel",
+    "fmgr_name": "pg_visibility_rel",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_visibility/pg_visibility.c"
+  },
+  {
+    "ident": "pg_finfo_pgrowlocks",
+    "fmgr_name": "pgrowlocks",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgrowlocks/pgrowlocks.c"
+  },
+  {
+    "ident": "pg_finfo_pgstatginindex",
+    "fmgr_name": "pgstatginindex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pgstatginindex_v1_5",
+    "fmgr_name": "pgstatginindex_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pgstathashindex",
+    "fmgr_name": "pgstathashindex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pgstatindex",
+    "fmgr_name": "pgstatindex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pgstatindex_v1_5",
+    "fmgr_name": "pgstatindex_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pgstatindexbyid",
+    "fmgr_name": "pgstatindexbyid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pgstatindexbyid_v1_5",
+    "fmgr_name": "pgstatindexbyid_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatindex.c"
+  },
+  {
+    "ident": "pg_finfo_pgstattuple",
+    "fmgr_name": "pgstattuple",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstattuple.c"
+  },
+  {
+    "ident": "pg_finfo_pgstattuple_approx",
+    "fmgr_name": "pgstattuple_approx",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatapprox.c"
+  },
+  {
+    "ident": "pg_finfo_pgstattuple_approx_v1_5",
+    "fmgr_name": "pgstattuple_approx_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstatapprox.c"
+  },
+  {
+    "ident": "pg_finfo_pgstattuple_v1_5",
+    "fmgr_name": "pgstattuple_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstattuple.c"
+  },
+  {
+    "ident": "pg_finfo_pgstattuplebyid",
+    "fmgr_name": "pgstattuplebyid",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstattuple.c"
+  },
+  {
+    "ident": "pg_finfo_pgstattuplebyid_v1_5",
+    "fmgr_name": "pgstattuplebyid_v1_5",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pgstattuple/pgstattuple.c"
+  },
+  {
+    "ident": "pg_finfo_plpgsql_call_handler",
+    "fmgr_name": "plpgsql_call_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/src/pl/plpgsql/src/pl_handler.c"
+  },
+  {
+    "ident": "pg_finfo_plpgsql_inline_handler",
+    "fmgr_name": "plpgsql_inline_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/src/pl/plpgsql/src/pl_handler.c"
+  },
+  {
+    "ident": "pg_finfo_plpgsql_validator",
+    "fmgr_name": "plpgsql_validator",
+    "tu": "external/rules_postgres++pg+postgres_src/src/pl/plpgsql/src/pl_handler.c"
+  },
+  {
+    "ident": "pg_finfo_plsample_call_handler",
+    "fmgr_name": "plsample_call_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/plsample/plsample.c"
+  },
+  {
+    "ident": "pg_finfo_postgres_fdw_disconnect",
+    "fmgr_name": "postgres_fdw_disconnect",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/postgres_fdw/connection.c"
+  },
+  {
+    "ident": "pg_finfo_postgres_fdw_disconnect_all",
+    "fmgr_name": "postgres_fdw_disconnect_all",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/postgres_fdw/connection.c"
+  },
+  {
+    "ident": "pg_finfo_postgres_fdw_get_connections",
+    "fmgr_name": "postgres_fdw_get_connections",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/postgres_fdw/connection.c"
+  },
+  {
+    "ident": "pg_finfo_postgres_fdw_handler",
+    "fmgr_name": "postgres_fdw_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/postgres_fdw/postgres_fdw.c"
+  },
+  {
+    "ident": "pg_finfo_postgres_fdw_validator",
+    "fmgr_name": "postgres_fdw_validator",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/postgres_fdw/option.c"
+  },
+  {
+    "ident": "pg_finfo_pt_in_widget",
+    "fmgr_name": "pt_in_widget",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_querytree",
+    "fmgr_name": "querytree",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_bool.c"
+  },
+  {
+    "ident": "pg_finfo_rboolop",
+    "fmgr_name": "rboolop",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_bool.c"
+  },
+  {
+    "ident": "pg_finfo_regress_setenv",
+    "fmgr_name": "regress_setenv",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_reverse_name",
+    "fmgr_name": "reverse_name",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_seg_center",
+    "fmgr_name": "seg_center",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_cmp",
+    "fmgr_name": "seg_cmp",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_contained",
+    "fmgr_name": "seg_contained",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_contains",
+    "fmgr_name": "seg_contains",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_different",
+    "fmgr_name": "seg_different",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_ge",
+    "fmgr_name": "seg_ge",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_gt",
+    "fmgr_name": "seg_gt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_in",
+    "fmgr_name": "seg_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_inter",
+    "fmgr_name": "seg_inter",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_le",
+    "fmgr_name": "seg_le",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_left",
+    "fmgr_name": "seg_left",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_lower",
+    "fmgr_name": "seg_lower",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_lt",
+    "fmgr_name": "seg_lt",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_out",
+    "fmgr_name": "seg_out",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_over_left",
+    "fmgr_name": "seg_over_left",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_over_right",
+    "fmgr_name": "seg_over_right",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_overlap",
+    "fmgr_name": "seg_overlap",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_right",
+    "fmgr_name": "seg_right",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_same",
+    "fmgr_name": "seg_same",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_size",
+    "fmgr_name": "seg_size",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_union",
+    "fmgr_name": "seg_union",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_seg_upper",
+    "fmgr_name": "seg_upper",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/seg/seg.c"
+  },
+  {
+    "ident": "pg_finfo_set_limit",
+    "fmgr_name": "set_limit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_set_ttdummy",
+    "fmgr_name": "set_ttdummy",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_set_val_in_shmem",
+    "fmgr_name": "set_val_in_shmem",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_dsm_registry/test_dsm_registry.c"
+  },
+  {
+    "ident": "pg_finfo_shift_jis_2004_to_euc_jis_2004",
+    "fmgr_name": "shift_jis_2004_to_euc_jis_2004",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/euc2004_sjis2004/euc2004_sjis2004.c"
+  },
+  {
+    "ident": "pg_finfo_show_limit",
+    "fmgr_name": "show_limit",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_show_trgm",
+    "fmgr_name": "show_trgm",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_similarity",
+    "fmgr_name": "similarity",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_similarity_dist",
+    "fmgr_name": "similarity_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_similarity_op",
+    "fmgr_name": "similarity_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_skeys",
+    "fmgr_name": "skeys",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_sort",
+    "fmgr_name": "sort",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_sort_asc",
+    "fmgr_name": "sort_asc",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_sort_desc",
+    "fmgr_name": "sort_desc",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_soundex",
+    "fmgr_name": "soundex",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/fuzzystrmatch/fuzzystrmatch.c"
+  },
+  {
+    "ident": "pg_finfo_spgist_name_choose",
+    "fmgr_name": "spgist_name_choose",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/spgist_name_ops/spgist_name_ops.c"
+  },
+  {
+    "ident": "pg_finfo_spgist_name_compress",
+    "fmgr_name": "spgist_name_compress",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/spgist_name_ops/spgist_name_ops.c"
+  },
+  {
+    "ident": "pg_finfo_spgist_name_config",
+    "fmgr_name": "spgist_name_config",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/spgist_name_ops/spgist_name_ops.c"
+  },
+  {
+    "ident": "pg_finfo_spgist_name_inner_consistent",
+    "fmgr_name": "spgist_name_inner_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/spgist_name_ops/spgist_name_ops.c"
+  },
+  {
+    "ident": "pg_finfo_spgist_name_leaf_consistent",
+    "fmgr_name": "spgist_name_leaf_consistent",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/spgist_name_ops/spgist_name_ops.c"
+  },
+  {
+    "ident": "pg_finfo_strict_word_similarity",
+    "fmgr_name": "strict_word_similarity",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_strict_word_similarity_commutator_op",
+    "fmgr_name": "strict_word_similarity_commutator_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_strict_word_similarity_dist_commutator_op",
+    "fmgr_name": "strict_word_similarity_dist_commutator_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_strict_word_similarity_dist_op",
+    "fmgr_name": "strict_word_similarity_dist_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_strict_word_similarity_op",
+    "fmgr_name": "strict_word_similarity_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_subarray",
+    "fmgr_name": "subarray",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_subltree",
+    "fmgr_name": "subltree",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_subpath",
+    "fmgr_name": "subpath",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_svals",
+    "fmgr_name": "svals",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_op.c"
+  },
+  {
+    "ident": "pg_finfo_tconvert",
+    "fmgr_name": "tconvert",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/hstore/hstore_io.c"
+  },
+  {
+    "ident": "pg_finfo_test_atomic_ops",
+    "fmgr_name": "test_atomic_ops",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_test_bloomfilter",
+    "fmgr_name": "test_bloomfilter",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_bloomfilter/test_bloomfilter.c"
+  },
+  {
+    "ident": "pg_finfo_test_canonicalize_path",
+    "fmgr_name": "test_canonicalize_path",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_test_copy_to_callback",
+    "fmgr_name": "test_copy_to_callback",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_copy_callbacks/test_copy_callbacks.c"
+  },
+  {
+    "ident": "pg_finfo_test_create",
+    "fmgr_name": "test_create",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_tidstore/test_tidstore.c"
+  },
+  {
+    "ident": "pg_finfo_test_custom_rmgrs_insert_wal_record",
+    "fmgr_name": "test_custom_rmgrs_insert_wal_record",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_custom_rmgrs/test_custom_rmgrs.c"
+  },
+  {
+    "ident": "pg_finfo_test_destroy",
+    "fmgr_name": "test_destroy",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_tidstore/test_tidstore.c"
+  },
+  {
+    "ident": "pg_finfo_test_dsa_basic",
+    "fmgr_name": "test_dsa_basic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_dsa/test_dsa.c"
+  },
+  {
+    "ident": "pg_finfo_test_dsa_resowners",
+    "fmgr_name": "test_dsa_resowners",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_dsa/test_dsa.c"
+  },
+  {
+    "ident": "pg_finfo_test_enc_conversion",
+    "fmgr_name": "test_enc_conversion",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_test_enc_setup",
+    "fmgr_name": "test_enc_setup",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_test_fdw_handler",
+    "fmgr_name": "test_fdw_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_test_ginpostinglist",
+    "fmgr_name": "test_ginpostinglist",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_ginpostinglist/test_ginpostinglist.c"
+  },
+  {
+    "ident": "pg_finfo_test_integerset",
+    "fmgr_name": "test_integerset",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_integerset/test_integerset.c"
+  },
+  {
+    "ident": "pg_finfo_test_is_full",
+    "fmgr_name": "test_is_full",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_tidstore/test_tidstore.c"
+  },
+  {
+    "ident": "pg_finfo_test_lfind32",
+    "fmgr_name": "test_lfind32",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_lfind/test_lfind.c"
+  },
+  {
+    "ident": "pg_finfo_test_lfind8",
+    "fmgr_name": "test_lfind8",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_lfind/test_lfind.c"
+  },
+  {
+    "ident": "pg_finfo_test_lfind8_le",
+    "fmgr_name": "test_lfind8_le",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_lfind/test_lfind.c"
+  },
+  {
+    "ident": "pg_finfo_test_opclass_options_func",
+    "fmgr_name": "test_opclass_options_func",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_test_predtest",
+    "fmgr_name": "test_predtest",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_predtest/test_predtest.c"
+  },
+  {
+    "ident": "pg_finfo_test_radixtree",
+    "fmgr_name": "test_radixtree",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_radixtree/test_radixtree.c"
+  },
+  {
+    "ident": "pg_finfo_test_rb_tree",
+    "fmgr_name": "test_rb_tree",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_rbtree/test_rbtree.c"
+  },
+  {
+    "ident": "pg_finfo_test_regex",
+    "fmgr_name": "test_regex",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_regex/test_regex.c"
+  },
+  {
+    "ident": "pg_finfo_test_resowner_forget_between_phases",
+    "fmgr_name": "test_resowner_forget_between_phases",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_resowner/test_resowner_basic.c"
+  },
+  {
+    "ident": "pg_finfo_test_resowner_leak",
+    "fmgr_name": "test_resowner_leak",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_resowner/test_resowner_basic.c"
+  },
+  {
+    "ident": "pg_finfo_test_resowner_many",
+    "fmgr_name": "test_resowner_many",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_resowner/test_resowner_many.c"
+  },
+  {
+    "ident": "pg_finfo_test_resowner_priorities",
+    "fmgr_name": "test_resowner_priorities",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_resowner/test_resowner_basic.c"
+  },
+  {
+    "ident": "pg_finfo_test_resowner_remember_between_phases",
+    "fmgr_name": "test_resowner_remember_between_phases",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_resowner/test_resowner_basic.c"
+  },
+  {
+    "ident": "pg_finfo_test_shm_mq",
+    "fmgr_name": "test_shm_mq",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_shm_mq/test.c"
+  },
+  {
+    "ident": "pg_finfo_test_shm_mq_pipelined",
+    "fmgr_name": "test_shm_mq_pipelined",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_shm_mq/test.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_delete_all",
+    "fmgr_name": "test_slru_delete_all",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_delete",
+    "fmgr_name": "test_slru_page_delete",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_exists",
+    "fmgr_name": "test_slru_page_exists",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_read",
+    "fmgr_name": "test_slru_page_read",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_readonly",
+    "fmgr_name": "test_slru_page_readonly",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_sync",
+    "fmgr_name": "test_slru_page_sync",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_truncate",
+    "fmgr_name": "test_slru_page_truncate",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_write",
+    "fmgr_name": "test_slru_page_write",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_slru_page_writeall",
+    "fmgr_name": "test_slru_page_writeall",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_slru/test_slru.c"
+  },
+  {
+    "ident": "pg_finfo_test_support_func",
+    "fmgr_name": "test_support_func",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_testprs_end",
+    "fmgr_name": "testprs_end",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_parser/test_parser.c"
+  },
+  {
+    "ident": "pg_finfo_testprs_getlexeme",
+    "fmgr_name": "testprs_getlexeme",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_parser/test_parser.c"
+  },
+  {
+    "ident": "pg_finfo_testprs_lextype",
+    "fmgr_name": "testprs_lextype",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_parser/test_parser.c"
+  },
+  {
+    "ident": "pg_finfo_testprs_start",
+    "fmgr_name": "testprs_start",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/test_parser/test_parser.c"
+  },
+  {
+    "ident": "pg_finfo_text2ltree",
+    "fmgr_name": "text2ltree",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/ltree/ltree_op.c"
+  },
+  {
+    "ident": "pg_finfo_time_dist",
+    "fmgr_name": "time_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_time.c"
+  },
+  {
+    "ident": "pg_finfo_trigger_return_old",
+    "fmgr_name": "trigger_return_old",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_triggered_change_notification",
+    "fmgr_name": "triggered_change_notification",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tcn/tcn.c"
+  },
+  {
+    "ident": "pg_finfo_ts_dist",
+    "fmgr_name": "ts_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_tsm_system_rows_handler",
+    "fmgr_name": "tsm_system_rows_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tsm_system_rows/tsm_system_rows.c"
+  },
+  {
+    "ident": "pg_finfo_tsm_system_time_handler",
+    "fmgr_name": "tsm_system_time_handler",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/tsm_system_time/tsm_system_time.c"
+  },
+  {
+    "ident": "pg_finfo_tstz_dist",
+    "fmgr_name": "tstz_dist",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/btree_gist/btree_ts.c"
+  },
+  {
+    "ident": "pg_finfo_ttdummy",
+    "fmgr_name": "ttdummy",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_tuple_data_split",
+    "fmgr_name": "tuple_data_split",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pageinspect/heapfuncs.c"
+  },
+  {
+    "ident": "pg_finfo_unaccent_dict",
+    "fmgr_name": "unaccent_dict",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/unaccent/unaccent.c"
+  },
+  {
+    "ident": "pg_finfo_unaccent_init",
+    "fmgr_name": "unaccent_init",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/unaccent/unaccent.c"
+  },
+  {
+    "ident": "pg_finfo_unaccent_lexize",
+    "fmgr_name": "unaccent_lexize",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/unaccent/unaccent.c"
+  },
+  {
+    "ident": "pg_finfo_uniq",
+    "fmgr_name": "uniq",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/intarray/_int_op.c"
+  },
+  {
+    "ident": "pg_finfo_upc_cast_from_ean13",
+    "fmgr_name": "upc_cast_from_ean13",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_upc_in",
+    "fmgr_name": "upc_in",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_utf8_to_iso8859_1",
+    "fmgr_name": "utf8_to_iso8859_1",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/utf8_and_iso8859_1/utf8_and_iso8859_1.c"
+  },
+  {
+    "ident": "pg_finfo_verify_heapam",
+    "fmgr_name": "verify_heapam",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/amcheck/verify_heapam.c"
+  },
+  {
+    "ident": "pg_finfo_wait_pid",
+    "fmgr_name": "wait_pid",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_weak_input_status",
+    "fmgr_name": "weak_input_status",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/isn/isn.c"
+  },
+  {
+    "ident": "pg_finfo_widget_in",
+    "fmgr_name": "widget_in",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_widget_out",
+    "fmgr_name": "widget_out",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/regress/regress.c"
+  },
+  {
+    "ident": "pg_finfo_win1250_to_latin2",
+    "fmgr_name": "win1250_to_latin2",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin2_and_win1250/latin2_and_win1250.c"
+  },
+  {
+    "ident": "pg_finfo_win1250_to_mic",
+    "fmgr_name": "win1250_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/latin2_and_win1250/latin2_and_win1250.c"
+  },
+  {
+    "ident": "pg_finfo_win1251_to_iso",
+    "fmgr_name": "win1251_to_iso",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_win1251_to_koi8r",
+    "fmgr_name": "win1251_to_koi8r",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_win1251_to_mic",
+    "fmgr_name": "win1251_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_win1251_to_win866",
+    "fmgr_name": "win1251_to_win866",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_win866_to_iso",
+    "fmgr_name": "win866_to_iso",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_win866_to_koi8r",
+    "fmgr_name": "win866_to_koi8r",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_win866_to_mic",
+    "fmgr_name": "win866_to_mic",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_win866_to_win1251",
+    "fmgr_name": "win866_to_win1251",
+    "tu": "external/rules_postgres++pg+postgres_src/src/backend/utils/mb/conversion_procs/cyrillic_and_mic/cyrillic_and_mic.c"
+  },
+  {
+    "ident": "pg_finfo_word_similarity",
+    "fmgr_name": "word_similarity",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_word_similarity_commutator_op",
+    "fmgr_name": "word_similarity_commutator_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_word_similarity_dist_commutator_op",
+    "fmgr_name": "word_similarity_dist_commutator_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_word_similarity_dist_op",
+    "fmgr_name": "word_similarity_dist_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_word_similarity_op",
+    "fmgr_name": "word_similarity_op",
+    "tu": "external/rules_postgres++pg+postgres_src/contrib/pg_trgm/trgm_op.c"
+  },
+  {
+    "ident": "pg_finfo_worker_spi_launch",
+    "fmgr_name": "worker_spi_launch",
+    "tu": "external/rules_postgres++pg+postgres_src/src/test/modules/worker_spi/worker_spi.c"
+  }
+]

@@ -1,0 +1,74 @@
+load("@rules_lean//lean:lean.bzl", "lean_test")
+
+# Receiving scaffolding for the PgAst extraction (Phase 1).
+#
+# Currently: empty stub Lean modules at `Pg/*` + `Pg/Catalog/*`.
+# Phase 1 of the extraction (Aion-side drives, target start
+# 2026-06-01) overwrites the stubs with the moved content from
+# `lean/Aion/Db/PgTy.lean`, `PgAst.lean`, `PgPretty.lean`,
+# `PgRegexAst.lean`, `Catalog.lean` (umbrella), and `Catalog/*`.
+#
+# Full decision trail (8 docs):
+#   ~/Documents/rfcs/narrative/pgast-extraction-proposal.md
+#   ~/Documents/rfcs/narrative/pgast-extraction-review.md
+#   ~/Documents/rfcs/narrative/pgast-extraction-response.md
+#   ~/Documents/rfcs/narrative/pgast-extraction-phase1-plan.md
+#   ~/Documents/rfcs/narrative/pgast-extraction-phase1-ack.md
+#   ~/Documents/rfcs/narrative/pgast-extraction-scaffold-landed.md
+#   ~/Documents/rfcs/narrative/pgast-extraction-scaffold-landed-ack.md
+#   ~/Documents/rfcs/narrative/pgast-extraction-pre-phase1-followup.md
+#
+# Note: Pg/RegexAst.lean + Pg/Catalog.lean added 2026-05-25 by the
+# Aion-side agent per the pre-Phase-1 dep audit (commit `c4e49f1`
+# Aion-side; see pre-phase1-followup.md). PgRegexAst is a hard dep
+# of Pg.Ast via `Expr.regexMatch`, so it must land in Phase 1
+# (not Phase 4 as originally scoped). Pg/Catalog.lean is the
+# umbrella re-exporter; Aion's current umbrella is missing
+# `AttributeRef` + `Generated` imports — Phase 1 PR completes them.
+#
+# This `:smoke_test` proves the build wiring on empty stubs: it
+# imports every scaffolded module and asserts they type-check
+# together. Stays in place after Phase 1 as a structural
+# regression-gate on the receiving-side imports.
+lean_test(
+    name = "smoke_test",
+    srcs = [
+        "Pg/Ty.lean",
+        "Pg/RegexAst.lean",
+        "Pg/Ast.lean",
+        "Pg/Pretty.lean",
+        "Pg/Catalog/Oid.lean",
+        "Pg/Catalog/Tables.lean",
+        "Pg/Catalog/RegTypes.lean",
+        "Pg/Catalog/Snapshot.lean",
+        "Pg/Catalog/Resolution.lean",
+        "Pg/Catalog/AttributeRef.lean",
+        "Pg/Catalog/Generated.lean",
+        "Pg/Catalog.lean",
+        "Pg/Smoke.lean",
+    ],
+    entry = "Pg/Smoke.lean",
+    visibility = ["//visibility:public"],
+)
+
+# Smoke test that exercises cross-repo wiring with rules_lang's
+# `Polyglot.Sql.Ast` (the generic SQL atlas). Pg/Ast.lean's factor
+# step (Phase 1b) will `import Polyglot.Sql.Ast` and define
+# `Pg.Ast.ExprExt` extending it; this smoke test proves the import
+# path resolves before the heavy factor work proceeds.
+#
+# Sources include the rules_lang-side file via `@rules_lang//lean:...`
+# (which works under bzlmod local_path_override + the rules_lean
+# cross-repo `_module_path` patch). The package check sees
+# `lean/Polyglot/Sql/Ast.lean` after the `../rules_lang+/` prefix
+# strip — same package as the rules_postgres-side files, so the
+# stage layout works.
+lean_test(
+    name = "polyglot_sql_smoke_test",
+    srcs = [
+        "@rules_lang//lean:Polyglot/Sql/Ast.lean",
+        "Polyglot/SqlSmoke.lean",
+    ],
+    entry = "Polyglot/SqlSmoke.lean",
+    visibility = ["//visibility:public"],
+)

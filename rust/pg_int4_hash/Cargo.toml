@@ -1,0 +1,32 @@
+[package]
+name = "pg_int4_hash"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# Pg.Ir hash family. Sister crate to pg_int4_cmp: instead of 2-arg →
+# bool comparison V1 fmgr stubs, this is the 1-arg → uint32 (and
+# 2-arg → uint64 extended) hash V1 fmgr stubs from
+# `src/backend/access/hash/hashfunc.c`.
+#
+# Six families v0:
+#   hashchar, hashint2, hashint4, hashint8, hashoid, hashenum
+#
+# All route through `pg_fcinfo::hash_bytes_uint32` (the Lean spec's
+# canonical primitive — mirror of Postgres' Jenkins/lookup3
+# `hash_bytes_uint32` from `src/common/hashfn.c`).
+#
+# The extended variants (`*extended`) are deferred to v1.
+description = "Postgres int hash V1 fmgr family — pg_int4_hash"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"

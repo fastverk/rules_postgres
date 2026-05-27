@@ -1,0 +1,25 @@
+[package]
+name = "pg_text"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# Second varlena-using Pg.Ir cluster. Text reuses bytea's varlena codec
+# at the Datum level (decode_bytea_p, encode_bytea_p, vardata/varsize
+# helpers all work identically on text pointers).
+#
+# v0 (smoke): textcat (palloc result, memcpy two inputs)
+description = "Postgres text V1 fmgr cluster (second varlena-using Pg.Ir cluster)"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+pg_palloc = { path = "../pg_palloc" }
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"

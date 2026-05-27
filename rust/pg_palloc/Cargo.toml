@@ -1,0 +1,31 @@
+[package]
+name = "pg_palloc"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# The MemoryContext / palloc adapter for the Pg.Ir / cluster-driven
+# translation pipeline. Productizes the pgfnames spike's design
+# (bumpalo::Bump-backed MemoryContext, thread-local CurrentMemoryContext,
+# pfree as no-op, reclamation via Reset) into a standalone crate that
+# future palloc-using clusters can depend on without pulling in pgfnames.
+#
+# Key changes from the spike:
+#   - Per-allocation chunk header (8-byte size prefix) so repalloc shrink
+#     no longer reads uninitialized memory. Pgfnames-spike "known sharp
+#     edge" → closed.
+#   - Full Postgres palloc API surface: MemoryContextAlloc[Zero|Extended],
+#     MemoryContextReset, MemoryContextDelete, palloc_extended,
+#     pnstrdup, plus the originals from the spike.
+#   - Companion include/pg_palloc.h for C oracles in future
+#     palloc-using crates (e.g., pg_int4_array_meta).
+description = "Postgres MemoryContext adapter — bumpalo-backed palloc/pfree/repalloc for the cluster-driven translation pipeline"
+
+[lib]
+crate-type = ["rlib", "staticlib", "cdylib"]
+
+[dependencies]
+bumpalo = "3"
+
+[build-dependencies]
+cc = "1"

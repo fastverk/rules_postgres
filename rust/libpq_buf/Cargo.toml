@@ -1,0 +1,18 @@
+[package]
+name = "libpq_buf"
+version = "0.0.1"
+edition = "2021"
+description = "Hand-translation of Postgres' pqCheckOut/InBufferSpace (src/interfaces/libpq/fe-misc.c) → Rust. Second milestone of the cluster-driven C→Rust translation spike (see project_c_to_rust_translation memory): validates that the pipeline generalizes beyond the SHA family."
+publish = false
+
+[lib]
+crate-type = ["rlib", "staticlib", "cdylib"]
+# staticlib + cdylib so the Rust .o can drop-in for the C .o at link
+# time. `no_mangle extern "C"` keeps symbols ABI-identical to
+# libpq's C exports (pqCheckOutBufferSpace, pqCheckInBufferSpace).
+
+[dependencies]
+libc = "0.2"
+
+[features]
+default = []

@@ -1,0 +1,19 @@
+[package]
+name = "pg_finfo_v1"
+version = "0.0.1"
+edition = "2021"
+description = "Cluster lift: the 871 `pg_finfo_NAME` stubs from Postgres' PG_FUNCTION_INFO_V1 macro expansion. All-trivial bodies; one template, ~10% of the leaf-pool translatable today (see project_c_to_rust_translation memo, 2026-05-25 update)."
+publish = false
+
+[lib]
+crate-type = ["rlib", "staticlib", "cdylib"]
+# staticlib + cdylib so the symbols can link into Postgres as
+# drop-in replacements for the C-macro-generated versions.
+
+[build-dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[dev-dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

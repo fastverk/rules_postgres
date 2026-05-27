@@ -1,0 +1,38 @@
+# Per-cluster overrides for the SHA-256 → SHA-384 translation lift.
+#
+# Used by `c_to_rust_bindings.py --overrides`. These supplement the
+# default naming policy with cases that the policy can't infer.
+
+# ─── Type overrides ───────────────────────────────────────────────────
+# Maps C struct names → Rust type names. Used when the default rule
+# (strip `pg_`, Pascal-case) doesn't apply, e.g. for alias collapses
+# where C has distinct typedefs but Rust uses one struct.
+
+[type_overrides]
+# SHA-384 and SHA-512 in our Rust translation share `Sha512Ctx` (the
+# `_384` C typedef is just an alias for the same struct).
+pg_sha384_ctx = "Sha512Ctx"
+
+# ─── Extra bindings ───────────────────────────────────────────────────
+# Bindings the tensor diff can't supply — typically the structural
+# holes (`bitcount = 0` ↔ `bitcount[0] = bitcount[1] = 0`) that
+# `c_cluster_diff.py` reports as `[[structural_hole]]` blocks.
+#
+# Key: canonical Rust value. Value: target Rust value.
+
+[extra_bindings]
+"0" = "[0, 0]"
+
+# ─── Contextual bindings (sibling synthesis) ──────────────────────────
+# When the engine synthesizes the sibling Rust source from the canonical
+# (eliminating the need for a hand-written sibling), it must
+# disambiguate which occurrence of a non-unique literal is the hole.
+# The `context` field names the nearest parent identifier — pulled from
+# the C tensor's `structural_hole.canonical_subtree` summary
+# (`MemberExpr(bitcount) > ...`).
+#
+# `c_to_rust_bindings.py` ignores this section; `translate-engine
+# synthesize` reads it via `--overrides`.
+
+[contextual_bindings."0"]
+context = "bitcount"

@@ -1,0 +1,21 @@
+load("//c:rules.bzl", "rust_llvm_ir_single")
+
+# Rust LLVM IR for the pg_sha2 crate, paired with the C IR produced by
+# `//examples/postgres_smoke:sha2_ll` for the `llvm_ir_equiv_test`
+# structural gate.
+#
+# Non-hermetic spike: the rule shells out to host `rustc`. Replace with
+# rules_rust + a pinned toolchain when this graduates beyond the
+# C→Rust translation prototype.
+#
+# Single-file build: pg_sha2's lib.rs is self-contained (no `mod`
+# subfiles), so the genrule passes it directly to rustc. The output
+# .ll matches what `cargo rustc --release -- --emit=llvm-ir -C opt-level=1`
+# produces in target/release/deps/pg_sha2.ll.
+rust_llvm_ir_single(
+    name = "pg_sha2_ll",
+    src = "src/lib.rs",
+    crate_type = "lib",
+    opt_level = "1",
+    visibility = ["//visibility:public"],
+)

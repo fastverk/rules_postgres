@@ -1,0 +1,33 @@
+[package]
+name = "pg_interval"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# First palloc-using Pg.Ir cluster: Postgres' interval arithmetic
+# V1 fmgr family. Validates the architectural composition of:
+#   - pg_palloc (palloc/pfree for the variable-result body shape)
+#   - pg_fcinfo's Interval Datum codec (decode_interval_p / encode_interval_p)
+#   - The ereport mirror's new FmgrErrorKind::DatetimeValueOutOfRange
+#   - C oracle setjmp/longjmp wiring extended for the new SQLSTATE
+#
+# v0 scope (smoke test, hand-written before lifting to Lean):
+#   - interval_um (unary negate) — exercises the full architecture
+#     with the simplest possible body shape.
+#
+# v1 (next session, mechanical): lift to Lean (sister to
+# Pg.Ir.Emit.IntArith); extend to interval_pl, interval_mi.
+description = "Postgres interval arithmetic V1 fmgr cluster (first palloc-using Pg.Ir cluster)"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+pg_palloc = { path = "../pg_palloc" }
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"

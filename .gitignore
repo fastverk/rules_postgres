@@ -4,3 +4,13 @@ bazel-*
 .claude/
 MODULE.bazel.lock
 .lake/
+
+# Rust build artifacts inside rust/pg_*/ crates
+rust/*/target/
+rust/*/Cargo.lock
+
+# c_ast_struct_diff intermediate AST dumps (per-gate temp files)
+tools/regen/.tmp/
+
+# Pg.Ir corpus extract artifacts (regenerable from sources)
+tools/corpus_extract/*.jsonl.bak

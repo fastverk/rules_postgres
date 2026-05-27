@@ -1,0 +1,31 @@
+[package]
+name = "pg_uuid"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# Pg.Ir UUID comparison and hash cluster. 9 functions total:
+#   Comparison: uuid_eq, uuid_ne, uuid_lt, uuid_le, uuid_gt, uuid_ge (6 ops)
+#   3-way cmp: uuid_cmp (1 op)
+#   Hash: uuid_hash, uuid_hash_extended (2 ops)
+#
+# The comparison operators all delegate to a memcmp-based helper
+# (mirroring Postgres' uuid_internal_cmp). The hash operators use
+# Jenkins/lookup3 hashing via pg_fcinfo::hash_bytes_16 helpers.
+#
+# Source of truth: Pg/Ir/Emit/UuidCommon.lean (family table),
+# Pg/Ir/Emit/Uuid.lean (Rust codegen), Pg/Ir/Emit/UuidC.lean (C oracle).
+description = "Postgres UUID comparison and hash V1 fmgr cluster"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+libc = "0.2"
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"

@@ -1,0 +1,15 @@
+[package]
+name = "pg_pgfnames"
+version = "0.0.1"
+edition = "2021"
+description = "Hand-translation of Postgres' src/common/pgfnames.c → Rust. First MemoryContext (palloc/pfree → bumpalo::Bump) spike of the cluster-driven C→Rust translation initiative (see project_c_to_rust_translation memory)."
+publish = false
+
+[lib]
+crate-type = ["rlib", "staticlib", "cdylib"]
+# Same crate-type set as pg_sha2 so this can drop in at link time
+# against a Postgres build (modulo the MemoryContext design choices
+# documented in src/lib.rs).
+
+[dependencies]
+pg_palloc = { path = "../pg_palloc" }

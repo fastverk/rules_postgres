@@ -1,0 +1,31 @@
+[package]
+name = "pg_macaddr"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# Pg.Ir macaddr comparison and hash cluster. 9 functions total:
+#   Comparison: macaddr_eq, macaddr_ne, macaddr_lt, macaddr_le, macaddr_gt, macaddr_ge (6 ops)
+#   3-way cmp: macaddr_cmp (1 op)
+#   Hash: hashmacaddr, hashmacaddrextended (2 ops)
+#
+# The comparison operators all delegate to a 3-way comparison of high/low
+# 3-byte groups (mirroring Postgres' macaddr_cmp_internal). The hash operators
+# use Jenkins/lookup3 hashing via pg_fcinfo::hash_bytes_6 helpers.
+#
+# Source of truth: Pg/Ir/Emit/MacaddrCommon.lean (family table),
+# Pg/Ir/Emit/Macaddr.lean (Rust codegen), Pg/Ir/Emit/MacaddrC.lean (C oracle).
+description = "Postgres macaddr comparison and hash V1 fmgr cluster"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+libc = "0.2"
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"

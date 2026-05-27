@@ -1,0 +1,19 @@
+load("//c:rules.bzl", "rust_llvm_ir_single")
+
+# Rust LLVM IR for the libpq_buf crate, paired with the C IR produced by
+# `//examples/postgres_smoke:fe_misc_c_ll` for the `llvm_ir_equiv_test`
+# structural gate.
+#
+# Non-hermetic spike: same pattern as `//translated/sha2:pg_sha2_ll` —
+# shells out to host `rustc`. Single-file `lib_ir.rs` is used (not the
+# `cargo`-built `src/lib.rs`) because the rule passes one file to rustc
+# with no `--extern` flags; lib_ir.rs declares the C runtime fns
+# (realloc, memmove) as plain `extern "C"` instead of pulling in the
+# `libc` crate.
+rust_llvm_ir_single(
+    name = "libpq_buf_ll",
+    src = "src/lib_ir.rs",
+    crate_type = "lib",
+    opt_level = "1",
+    visibility = ["//visibility:public"],
+)

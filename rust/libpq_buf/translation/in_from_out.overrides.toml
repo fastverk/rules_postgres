@@ -1,0 +1,33 @@
+# Per-cluster overrides for the libpq buffer-grow lift
+# (pqCheckOutBufferSpace → pqCheckInBufferSpace).
+#
+# Used by `c_to_rust_bindings.py --overrides`. The tensor-level
+# `c_cluster_diff.py` for this cluster surfaces:
+#   - 1 ident binding: pqCheckOutBufferSpace → pqCheckInBufferSpace
+#     (the function name itself)
+#   - 1 structural hole at the outermost CompoundStmt: the In version
+#     has 13 stmts vs Out's 10 (the extra 3 are the left-justify
+#     prelude unique to In).
+#
+# Idents *inside* the structural hole are now surfaced by
+# c_cluster_diff.py as `c_structural_idents.{canonical,sibling}`
+# (since 2026-05-24). We pair them here via [structural_pairs] — the
+# cleaner channel for cross-side renames inside structural holes.
+
+[structural_pairs]
+# canonical (Out-side) C ident → sibling (In-side) C ident.
+# The naming policy is identity for these mixed-case C identifiers,
+# so the emitted bindings are e.g. `outBuffer → inBuffer` verbatim.
+# Verified against `c_structural_idents.{canonical,sibling}` — typos
+# fail loudly rather than silently dropping.
+outBuffer = "inBuffer"
+outBufSize = "inBufSize"
+
+[extra_bindings]
+# `try_grow_out_buffer` is a Rust-side helper the Rust canonical
+# extracted from the body; the C source inlines that logic. So the
+# C tensor never surfaces this ident, and `structural_pairs` (which
+# validates against the tensor) would reject it. `extra_bindings` is
+# the right escape hatch: explicit canonical-Rust → sibling-Rust
+# bindings the tensor can't supply.
+try_grow_out_buffer = "try_grow_in_buffer"

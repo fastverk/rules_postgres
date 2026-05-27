@@ -1,0 +1,25 @@
+[package]
+name = "pg_int4_div"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# Diff-test crate for the Pg.Ir integer-division V1 fmgr cluster.
+# Mirrors pg_int4_arith architecture: Lean-emitted Rust bodies +
+# vendored C oracle (renamed) + diff-test harness validating ereport
+# semantics round-trip for division-by-zero and overflow errors.
+#
+# Three functions: int2div, int4div, int8div.
+description = "Postgres int division V1 fmgr diff-test with ereport mirror"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"

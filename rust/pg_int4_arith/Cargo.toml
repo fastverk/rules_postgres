@@ -1,0 +1,28 @@
+[package]
+name = "pg_int4_arith"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+# Smoke-test crate for the Pg.Ir ereport mirror. Hand-written (NOT
+# Lean-emitted yet) int4pl, validating the full round-trip:
+#   - pg_fcinfo TLS error flag
+#   - C oracle's c_oracle_ereport.h macro overrides + setjmp/longjmp
+#     in wrappers.c
+#   - diff-test harness compares (error_state, datum) tuples
+#
+# Once green, this proves the ereport architecture and the full int
+# arithmetic cluster (~24 fns) can lift to Pg.Ir.
+description = "Postgres int arithmetic V1 fmgr smoke test for ereport mirror"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+pg_fcinfo = { path = "../pg_fcinfo" }
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+proptest = "1"
