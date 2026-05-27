@@ -90,11 +90,10 @@ def pg_ir_clusters(clusters):
     """Wire Gate 2 + Gate 3 for ALL Pg.Ir clusters from a centralized list.
 
     Called once from `rust/BUILD.bazel`. Every per-cluster target is
-    generated under `//rust:...` with the crate name as prefix — no
-    per-crate `rust/pg_<crate>/BUILD.bazel` needed. The cluster source
-    files (`c_oracle/*.c`, `src/lib.rs`, `tests/diff_*.rs`) live in
-    their subdirectories under rust/ as plain files, addressed by
-    relative path from `//rust`.
+    generated under `//rust:...` with the crate name as prefix. The
+    hand-written source files live flat under `rust/c_oracle/` and
+    `rust/tests/`; the Lean-emitted crate body comes from
+    `//lean:<base>_rs_emit` at build time.
 
     Naming scheme (all targets in `//rust`):
       - <crate>                          = rust_library
@@ -114,9 +113,15 @@ def pg_ir_clusters(clusters):
 def _wire_cluster(spec):
     crate = spec.crate
     base = spec.c_base
-    sub = crate + "/"  # subdir prefix for file paths
 
     # ── c_oracle cc_library. ──
+    # Hand-written oracle code lives flat under `rust/c_oracle/` —
+    # per-cluster subdirectories were collapsed once Lean became the
+    # source of truth for the Rust + emit C files. What's left is a
+    # uniform 3-file pattern keyed by `<base>`: the vendored real-PG
+    # body (textual_hdr, `#include`-d by the renamed file), the
+    # renaming wrapper (orig_<fn> shim), and the FFI wrappers
+    # (c_<fn> WRAP() expansions).
     cc_deps = ["//rust/pg_fcinfo:ereport_hdr"]
     if spec.uses_palloc:
         cc_deps.append("//rust/pg_palloc:palloc_hdr")
@@ -124,10 +129,10 @@ def _wire_cluster(spec):
     cc_library(
         name = crate + "_c_oracle",
         srcs = [
-            sub + "c_oracle/renamed_{}.c".format(base),
-            sub + "c_oracle/wrappers.c",
+            "c_oracle/renamed_{}.c".format(base),
+            "c_oracle/wrappers_{}.c".format(base),
         ],
-        textual_hdrs = [sub + "c_oracle/{}.c".format(base)],
+        textual_hdrs = ["c_oracle/{}.c".format(base)],
         deps = cc_deps,
     )
 
@@ -162,7 +167,7 @@ def _wire_cluster(spec):
 
         rust_test(
             name = spec.diff_test,
-            srcs = [sub + "tests/{}.rs".format(spec.diff_test)],
+            srcs = ["tests/{}.rs".format(spec.diff_test)],
             edition = "2021",
             deps = test_deps,
         )

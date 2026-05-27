@@ -185,11 +185,11 @@ And:
 > Pg.Ir produces TWO different C files per cluster, with DIFFERENT
 > include strategies:
 >
-> 1. **The C oracle** (`rust/pg_<cluster>/c_oracle/<cluster>.c`) —
->    standalone, vendored body. Self-contained: own typedefs for
->    Datum, NullableDatum, FunctionCallInfoBaseData, own
->    `PG_GETARG_*` / `PG_RETURN_*` macros. Compiles standalone for
->    cargo's diff-test. **DOES NOT include real Postgres headers.**
+> 1. **The C oracle** (`rust/c_oracle/<base>.c`) — standalone,
+>    vendored body. Self-contained: own typedefs for Datum,
+>    NullableDatum, FunctionCallInfoBaseData, own `PG_GETARG_*` /
+>    `PG_RETURN_*` macros. Compiles standalone for Gate 2's diff-test
+>    `rust_test`. **DOES NOT include real Postgres headers.**
 >
 > 2. **The Lean C emit** (`lean/Pg/Ir/Emit/<Cluster>C.lean` →
 >    output) — real-PG-style C for AST grounding. clang

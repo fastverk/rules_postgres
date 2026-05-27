@@ -1,10 +1,9 @@
 """Single source of truth for Pg.Ir cluster metadata.
 
 Every consumer that needs to iterate over the clusters — gate
-test_suites, Gate 1 wiring in `lean/BUILD.bazel`, per-crate Gate 2
-wiring in `rust/pg_<cluster>/BUILD.bazel`, Gate 3 wiring for clusters
-with a C emit — reads `CLUSTERS` from this file rather than carrying
-its own list.
+test_suites, Lean-emit wiring in `lean/BUILD.bazel`, Gate 2 + Gate 3
+wiring in `rust/BUILD.bazel` — reads `CLUSTERS` from this file rather
+than carrying its own list.
 
 Each entry is a struct describing one cluster. Field semantics:
 

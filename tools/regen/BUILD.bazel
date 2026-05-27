@@ -6,7 +6,7 @@ package(default_visibility = ["//visibility:public"])
 # ─── Gate 2 — cluster behavioral diff-test ─────────────────────────
 #
 # Bazel-native via rules_rust + cc_library per cluster, wired by the
-# `pg_ir_cluster()` macro from each //rust/pg_<crate>/BUILD.bazel.
+# `pg_ir_clusters()` macro invoked once from `//rust:BUILD.bazel`.
 # This test_suite picks up every cluster with a `tests/diff_*.rs`
 # harness plus pg_fcinfo's round_trip test.
 test_suite(

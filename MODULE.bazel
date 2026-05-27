@@ -71,7 +71,7 @@ bazel_dep(name = "rules_lora", version = "0.0.1")
 bazel_dep(name = "stardoc", version = "0.7.2", dev_dependency = True)
 
 # Dev-only: rules_rust drives Gate 2 (cluster behavioral diff-test) —
-# every `rust/pg_<cluster>/` becomes a rust_library + cc_library
+# every cluster registers a rust_library + cc_library under //rust:
 # (c_oracle) + rust_test pair. Consumers of rules_postgres don't run
 # these tests, so the whole rules_rust surface is gated dev-only.
 bazel_dep(name = "rules_rust", version = "0.70.0", dev_dependency = True)

@@ -1,7 +1,15 @@
 # Pg.Ir corpus + SFT dataset. Source-of-truth is the Lean spec
-# files + Rust crates under rust/pg_*/; this package exports the
-# extracted training data as Bazel-visible filegroups so the
-# rules_lora `lora_dataset` targets in //lora can reference them.
+# files + hand-written oracles under rust/c_oracle/ / rust/tests/;
+# this package exports the extracted training data as Bazel-visible
+# filegroups so the rules_lora `lora_dataset` targets in //lora can
+# reference them.
+#
+# NOTE: tools/corpus_extract/extract.py reads now-deleted
+# `rust/pg_<crate>/src/lib.rs` paths and is broken under the
+# live-source-of-truth wiring. It needs to be rewritten to consume
+# the bazel-built Lean emits (//lean:<base>_rs_emit) and the flat
+# rust/c_oracle/ layout. Until then, the committed JSONL artifacts
+# below are pinned to a pre-migration snapshot.
 
 package(default_visibility = ["//visibility:public"])
 
