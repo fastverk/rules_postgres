@@ -1,11 +1,11 @@
 """Gate 2 + Gate 3 cluster wiring (rules_rust + rules_lang).
 
-Lives separately from `gate1.bzl` because this module loads
+Lives separately from `lean_emits.bzl` because this module loads
 `@rules_rust` and `@rules_lang`, both of which rules_postgres
 declares as `dev_dependency = True`. Loading is gated behind
-`rust/pg_<crate>/BUILD.bazel` files (themselves dev-only), so
-cross-repo consumers that only reach into `//lean:...` (via
-`gate1.bzl`) never trigger this module's loads.
+`rust/BUILD.bazel` (itself dev-only), so cross-repo consumers that
+only reach into `//lean:...` (via `lean_emits.bzl`) never trigger
+this module's loads.
 
 Public surface:
 
@@ -21,9 +21,9 @@ Public surface:
     iteration helpers used by `tools/regen/BUILD.bazel` to populate
     the `gate2_all` / `gate3_all` test_suite `tests` lists.
 
-Gate 1 (regen idempotence) lives in `gate1.bzl` — split out to keep
-`lean/BUILD.bazel` loadable by cross-repo consumers without pulling
-in rules_rust.
+Lean → Rust/C emits (the build-time source of truth) live in
+`lean_emits.bzl` — split out to keep `lean/BUILD.bazel` loadable by
+cross-repo consumers without pulling in rules_rust.
 """
 
 load("@rules_cc//cc:defs.bzl", "cc_library")
@@ -131,17 +131,20 @@ def _wire_cluster(spec):
         deps = cc_deps,
     )
 
-    # ── rust_library. ──
+    # ── rust_library. The crate body is the Lean emit, produced at
+    # build time by `//lean:<base>_rs_emit` — no committed `src/lib.rs`.
     rust_deps = ["//rust/pg_fcinfo"]
     if spec.uses_palloc:
         rust_deps.append("//rust/pg_palloc")
     if spec.uses_libc:
         rust_deps.append("@crates//:libc")
 
+    rs_emit = "//lean:{}_rs_emit".format(base)
     rust_library(
         name = crate,
         crate_name = crate,
-        srcs = [sub + "src/lib.rs"],
+        srcs = [rs_emit],
+        crate_root = rs_emit,
         edition = "2021",
         deps = rust_deps,
     )
@@ -164,23 +167,13 @@ def _wire_cluster(spec):
             deps = test_deps,
         )
 
-    # ── Filegroups for Gate 1 diff_test consumption. ──
-    native.filegroup(
-        name = crate + "_lib_rs",
-        srcs = [sub + "src/lib.rs"],
-    )
-    if spec.lean_emit_c:
-        native.filegroup(
-            name = "{}_emit_c".format(base),
-            srcs = [sub + "c_oracle/{}_emit.c".format(base)],
-        )
-
-    # ── Gate 3 wiring. ──
+    # ── Gate 3 wiring. The Lean C emit is consumed directly from
+    # `//lean:<base>_c_emit` — no committed `c_oracle/<base>_emit.c`.
     if spec.lean_emit_c and spec.pg_source and spec.gate3_fn_names:
         gate3_cluster(
             name = base,
             pg_source = spec.pg_source,
-            lean_emit_c = ":{}_emit_c".format(base),
+            lean_emit_c = "//lean:{}_c_emit".format(base),
             fn_names = spec.gate3_fn_names,
         )
 

@@ -49,7 +49,7 @@
     "Plus: append a struct to CLUSTERS in tools/regen/clusters.bzl",
 ]
 
-# Verification: refresh.py + bazel test. No host shell-out.
+# Verification: bazel build + bazel test. No host shell-out.
 "crate dir" = "rust/pg_int4_div"
 
 # Other clusters whose gates must keep passing.

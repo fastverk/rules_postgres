@@ -1,21 +1,7 @@
 load("//tools/regen:cluster.bzl", "gate2_test_labels", "gate3_test_labels")
 load("//tools/regen:clusters.bzl", "CLUSTERS")
-load("//tools/regen:gate1.bzl", "gate1_test_labels")
 
 package(default_visibility = ["//visibility:public"])
-
-exports_files(["refresh.py"])
-
-# ─── Gate 1 — regen idempotence ────────────────────────────────────
-#
-# Bazel-native via `lean_emit` + skylib `diff_test` per cluster, wired
-# in //lean:BUILD.bazel via `wire_all_gate1(CLUSTERS)`. This test_suite
-# aggregates all 22 of them (19 Rust emits + 3 C emits for clusters
-# that have one) by iterating the same CLUSTERS list.
-test_suite(
-    name = "gate1_all",
-    tests = gate1_test_labels(CLUSTERS),
-)
 
 # ─── Gate 2 — cluster behavioral diff-test ─────────────────────────
 #
@@ -38,12 +24,13 @@ test_suite(
     tests = gate3_test_labels(CLUSTERS),
 )
 
-# Convenience: run all three Pg.Ir gates + the catalog round-trip
-# under a single test_suite handle.
+# Convenience: run both Pg.Ir gates + the catalog round-trip under a
+# single test_suite handle. (Gate 1 was retired when Lean became the
+# live source of truth for crate bodies — no committed artifact for
+# regen to drift against.)
 test_suite(
     name = "gates_all",
     tests = [
-        ":gate1_all",
         ":gate2_all",
         ":gate3_all",
         "//lean:gate_catalog_dat_round_trip",

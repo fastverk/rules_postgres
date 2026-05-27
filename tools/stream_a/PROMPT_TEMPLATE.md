@@ -28,10 +28,17 @@ Target: <<cluster name>> — <<one-line description + function count>>.
 ## What Pg.Ir is
 
 Lean spec → emits Rust V1 fmgr bodies AND real-style Postgres C.
-Three verification gates, all Bazel-native (run via `bazel test //:gates`):
-1. Lean → Rust regen idempotent (`//tools/regen:gate1_all`)
-2. Cargo diff-test against vendored real-PG bodies (`//tools/regen:gate2_all`)
-3. clang AST structural diff vs real Postgres source (`//tools/regen:gate3_all`)
+Lean is the LIVE source of truth: each `bazel build //rust:<crate>`
+runs the cluster's `lean_emit` and consumes the generated `.rs`
+directly — there is no committed `src/lib.rs` to drift against.
+
+Two verification gates, all Bazel-native (run via `bazel test //:gates`):
+1. Cargo behavioral diff-test vs vendored real-PG bodies (`//tools/regen:gate2_all`)
+2. clang AST structural diff vs real Postgres source (`//tools/regen:gate3_all`)
+
+(Gate 1 — "regen idempotence against the committed `src/lib.rs`" —
+was retired when Lean became the live source. There is nothing for
+regen to drift against; the property is tautological.)
 
 ## Closest exemplar(s) — read FIRST
 
@@ -87,17 +94,15 @@ of each one's last line (the `test result:` / `ok:` line) in your final
 report:
 
 ```bash
-# 1. Generate the Rust + C emits from your Lean spec via Bazel.
-tools/regen/refresh.py <<cluster name>>
-
-# 2. Run all three gates (Gate 1 regen-idempotence, Gate 2 cargo
-#    behavioral diff, Gate 3 clang AST structural diff).
+# Build runs your cluster's lean_emit on every invocation — no
+# separate "refresh" step. Then run both gates:
 bazel test //:gates --test_output=errors
 ```
 
-If `cargo test` reports ANY failures, debug them — DO NOT report success
-until cargo shows `test result: ok. N passed; 0 failed`. Common failure
-mode: see "CRITICAL C oracle conventions" above.
+If Gate 2 (cargo behavioral diff, surfaced through `rust_test`)
+reports ANY failures, debug them — DO NOT report success until the
+`test result: ok. N passed; 0 failed` line shows in the rust_test
+log. Common failure mode: see "CRITICAL C oracle conventions" above.
 
 Also verify no regressions across the rest of the cluster set:
 ```bash

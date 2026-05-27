@@ -1,6 +1,6 @@
 load("@rules_lean//lean:lean.bzl", "lean_main_test", "lean_test")
 load("//tools/regen:clusters.bzl", "CLUSTERS")
-load("//tools/regen:gate1.bzl", "wire_all_gate1")
+load("//tools/regen:lean_emits.bzl", "wire_all_lean_emits")
 
 # Expose all Pg.* Lean source files publicly so cross-repo
 # consumers (e.g. Aion's lean_test targets) can list them in
@@ -13,15 +13,16 @@ exports_files(
     visibility = ["//visibility:public"],
 )
 
-# ─── Gate 1 — regen idempotence (Bazel-native) ─────────────────────
+# ─── Lean → Rust/C emits (live source of truth at build time) ──────
 #
-# Reads the full cluster list from `tools/regen/clusters.bzl` and
-# wires one `gate1_cluster(...)` per spec — generating `<base>_rs_emit`
-# (and `<base>_c_emit` for clusters with a real-PG-headers C variant)
-# plus their accompanying `diff_test`s. Aggregated via
-# `//tools/regen:gate1_all`.
+# One `lean_emit` per cluster, producing `<base>_rs_emit.rs` (and
+# `<base>_c_emit.c` for clusters with a real-PG-headers C variant).
+# These outputs are consumed directly by `//rust:<crate>` and Gate 3's
+# `c_ast_dump_single` — no committed `src/lib.rs` / `c_oracle/<base>_emit.c`
+# exist anymore. Lean is THE source; the old Gate 1 (regen idempotence
+# against committed artifacts) becomes tautological and was removed.
 
-wire_all_gate1(CLUSTERS)
+wire_all_lean_emits(CLUSTERS)
 
 # ─── Catalog gen: .dat round-trip across the FULL bootstrap catalog ─
 #
