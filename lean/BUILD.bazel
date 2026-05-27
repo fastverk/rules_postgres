@@ -33,10 +33,10 @@ load("@rules_lean//lean:lean.bzl", "lean_test")
 lean_test(
     name = "smoke_test",
     srcs = [
+        # Dependency-ordered: lean_test compiles srcs in list order.
+        "@rules_lang//lean:Polyglot/Sql/Ast.lean",
         "Pg/Ty.lean",
         "Pg/RegexAst.lean",
-        "Pg/Ast.lean",
-        "Pg/Pretty.lean",
         "Pg/Catalog/Oid.lean",
         "Pg/Catalog/Tables.lean",
         "Pg/Catalog/RegTypes.lean",
@@ -45,6 +45,8 @@ lean_test(
         "Pg/Catalog/AttributeRef.lean",
         "Pg/Catalog/Generated.lean",
         "Pg/Catalog.lean",
+        "Pg/Ast.lean",
+        "Pg/Pretty.lean",
         "Pg/Smoke.lean",
     ],
     entry = "Pg/Smoke.lean",
