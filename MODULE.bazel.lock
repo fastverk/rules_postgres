@@ -432,6 +432,9 @@
     "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_kotlin/1.9.6/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_lang/0.0.8/MODULE.bazel": "0ccdd9281480e12fbac636d3ea9c2cb4799acfb8f7debe7e195e338987650bf5",
     "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_lang/0.0.8/source.json": "5e689576f943b1dcb11d1a434bbac783f4cf5e49093def33e6252d4d5a5cbb44",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_lean/0.3.5/MODULE.bazel": "not found",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_lean/0.3.7/MODULE.bazel": "not found",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_lean/0.3.8/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_license/0.0.3/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_license/0.0.7/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry-premium/main/modules/rules_license/0.0.8/MODULE.bazel": "not found",
@@ -663,6 +666,10 @@
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_jvm_external/6.7/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_kotlin/1.9.0/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_kotlin/1.9.6/MODULE.bazel": "not found",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lean/0.3.5/MODULE.bazel": "b1f5ea3fd7c60053a25a6e494128abff5c15c3a751a2add213ed7861fc9de690",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lean/0.3.7/MODULE.bazel": "558d8234371f2f8748e090adbad28c1be5056a36e934f267ac1c99cdd6da7678",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lean/0.3.8/MODULE.bazel": "8364ce272d68b384445d3f18ebae9f57b805a82cb7198900f879dac7ddcd48d9",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lean/0.3.8/source.json": "1f55a17f5bf3698a58d23e383a59efc428c68a620fc3f412846f00a97754adeb",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_license/0.0.3/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_license/0.0.7/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_license/0.0.8/MODULE.bazel": "not found",
@@ -729,8 +736,8 @@
   "moduleExtensions": {
     "//postgres:extensions.bzl%pg": {
       "general": {
-        "bzlTransitiveDigest": "FI5Y75SU2ZlWdp+qiYEFxBcNk8G8bOuKkzXs4spw6Ds=",
-        "usagesDigest": "EyL46rNYLz5ygHCAKvkHQPm0W9iVTRjvsT5MO23dGcQ=",
+        "bzlTransitiveDigest": "kQ1NWpx1N6s28LGGwXrll/nPDle/RjmwovJVhdCgOj0=",
+        "usagesDigest": "zCCoXC2o+54+emedlQywmtd5y/8ivcf+0fOBHbPoK/Q=",
         "recordedInputs": [
           "REPO_MAPPING:,rules_github rules_github+"
         ],
@@ -743,7 +750,7 @@
               "tag_format": "{version}",
               "sha256": "e68962c18dbf5890821511be6c5c42261170bf8bfd51a82ea9176069f3d0df8b",
               "allow_unverified": true,
-              "build_file_content": "\nload(\"@rules_cc//cc:defs.bzl\", \"cc_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\n# Vendored protobuf-c runtime. libpg_query bundles a copy under\n# vendor/protobuf-c/. Exposed standalone so other tools can use\n# protobuf-c without pulling in the full parser.\ncc_library(\n    name = \"protobuf_c_runtime\",\n    srcs = [\"vendor/protobuf-c/protobuf-c.c\"],\n    hdrs = [\"vendor/protobuf-c/protobuf-c.h\"],\n    includes = [\"vendor\"],\n    copts = [\n        \"-Wno-unused-function\",\n        \"-Wno-unused-but-set-variable\",\n        \"-fno-strict-aliasing\",\n    ],\n)\n\n# Vendored xxhash — the hash function libpg_query uses internally\n# for parse-tree fingerprinting (pg_query_fingerprint).\ncc_library(\n    name = \"xxhash\",\n    srcs = [\"vendor/xxhash/xxhash.c\"],\n    hdrs = [\"vendor/xxhash/xxhash.h\"],\n    includes = [\"vendor\"],\n    copts = [\n        \"-Wno-unused-function\",\n        \"-fno-strict-aliasing\",\n    ],\n)\n\n# Pre-generated protobuf-c bindings for pg_query.proto. Shipped in the\n# release tarball; used as-is rather than re-running protoc-c.\ncc_library(\n    name = \"pg_query_pb_c\",\n    srcs = [\"protobuf/pg_query.pb-c.c\"],\n    hdrs = [\"protobuf/pg_query.pb-c.h\"],\n    deps = [\":protobuf_c_runtime\"],\n    copts = [\"-Wno-unused-function\"],\n)\n\n# The parser library proper.\ncc_library(\n    name = \"libpg_query\",\n    srcs = glob([\n        \"src/*.c\",\n        \"src/postgres/*.c\",\n    ]),\n    hdrs = [\n        \"pg_query.h\",\n        \"postgres_deparse.h\",\n    ],\n    textual_hdrs = glob(\n        [\n            \"src/*.h\",\n            \"src/include/**/*.c\",\n            \"src/include/**/*.h\",\n            \"src/postgres/include/**/*.h\",\n            \"src/postgres/include/**/*.c\",\n        ],\n        allow_empty = True,\n    ),\n    includes = [\n        \".\",\n        \"src/include\",\n        \"src/postgres/include\",\n    ],\n    deps = [\n        \":protobuf_c_runtime\",\n        \":xxhash\",\n        \":pg_query_pb_c\",\n    ],\n    copts = [\n        \"-Wno-unused-function\",\n        \"-Wno-unused-value\",\n        \"-Wno-unused-variable\",\n        \"-Wno-unused-but-set-variable\",\n        \"-Wno-implicit-fallthrough\",\n        \"-Wno-deprecated-declarations\",\n        \"-fno-strict-aliasing\",\n        \"-fwrapv\",\n    ],\n)\n\n# Raw protobuf schema, exposed for downstream codegen (other-language\n# bindings, type-checked AST readers, etc.).\nexports_files([\"protobuf/pg_query.proto\"])\n\nfilegroup(\n    name = \"pg_query_proto_file\",\n    srcs = [\"protobuf/pg_query.proto\"],\n)\n\n# cc_library bundling libpg_query's vendored PG headers — specifically\n# the generated fmgrprotos.h + errcodes.h that the real PG source tree\n# doesn't carry (they're produced by PG's own build). Consumers needing\n# clang -ast-dump on PG-header-using TUs pair this with\n# @postgres_src//:pg_headers.\ncc_library(\n    name = \"pg_generated_headers\",\n    hdrs = glob([\"src/postgres/include/**/*.h\"], allow_empty = True),\n    includes = [\"src/postgres/include\"],\n)\n"
+              "build_file_content": "\nload(\"@rules_cc//cc:defs.bzl\", \"cc_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\n# Vendored protobuf-c runtime. libpg_query bundles a copy under\n# vendor/protobuf-c/. Exposed standalone so other tools can use\n# protobuf-c without pulling in the full parser.\ncc_library(\n    name = \"protobuf_c_runtime\",\n    srcs = [\"vendor/protobuf-c/protobuf-c.c\"],\n    hdrs = [\"vendor/protobuf-c/protobuf-c.h\"],\n    includes = [\"vendor\"],\n    copts = [\n        \"-Wno-unused-function\",\n        \"-Wno-unused-but-set-variable\",\n        \"-fno-strict-aliasing\",\n    ],\n)\n\n# Vendored xxhash — the hash function libpg_query uses internally\n# for parse-tree fingerprinting (pg_query_fingerprint).\ncc_library(\n    name = \"xxhash\",\n    srcs = [\"vendor/xxhash/xxhash.c\"],\n    hdrs = [\"vendor/xxhash/xxhash.h\"],\n    includes = [\"vendor\"],\n    copts = [\n        \"-Wno-unused-function\",\n        \"-fno-strict-aliasing\",\n    ],\n)\n\n# Pre-generated protobuf-c bindings for pg_query.proto. Shipped in the\n# release tarball; used as-is rather than re-running protoc-c.\ncc_library(\n    name = \"pg_query_pb_c\",\n    srcs = [\"protobuf/pg_query.pb-c.c\"],\n    hdrs = [\"protobuf/pg_query.pb-c.h\"],\n    includes = [\"protobuf\"],\n    deps = [\":protobuf_c_runtime\"],\n    copts = [\"-Wno-unused-function\"],\n)\n\n# The parser library proper.\ncc_library(\n    name = \"libpg_query\",\n    srcs = glob([\n        \"src/*.c\",\n        \"src/postgres/*.c\",\n    ]),\n    hdrs = [\n        \"pg_query.h\",\n        \"postgres_deparse.h\",\n    ],\n    textual_hdrs = glob(\n        [\n            \"src/*.h\",\n            \"src/include/**/*.c\",\n            \"src/include/**/*.h\",\n            \"src/postgres/include/**/*.h\",\n            \"src/postgres/include/**/*.c\",\n        ],\n        allow_empty = True,\n    ),\n    includes = [\n        \".\",\n        \"src/include\",\n        \"src/postgres/include\",\n    ],\n    deps = [\n        \":protobuf_c_runtime\",\n        \":xxhash\",\n        \":pg_query_pb_c\",\n    ],\n    copts = [\n        \"-Wno-unused-function\",\n        \"-Wno-unused-value\",\n        \"-Wno-unused-variable\",\n        \"-Wno-unused-but-set-variable\",\n        \"-Wno-implicit-fallthrough\",\n        \"-Wno-deprecated-declarations\",\n        \"-fno-strict-aliasing\",\n        \"-fwrapv\",\n    ],\n)\n\n# Raw protobuf schema, exposed for downstream codegen (other-language\n# bindings, type-checked AST readers, etc.).\nexports_files([\"protobuf/pg_query.proto\"])\n\nfilegroup(\n    name = \"pg_query_proto_file\",\n    srcs = [\"protobuf/pg_query.proto\"],\n)\n\n# cc_library bundling libpg_query's vendored PG headers — specifically\n# the generated fmgrprotos.h + errcodes.h that the real PG source tree\n# doesn't carry (they're produced by PG's own build). Consumers needing\n# clang -ast-dump on PG-header-using TUs pair this with\n# @postgres_src//:pg_headers.\ncc_library(\n    name = \"pg_generated_headers\",\n    hdrs = glob([\"src/postgres/include/**/*.h\"], allow_empty = True),\n    includes = [\"src/postgres/include\"],\n)\n"
             }
           },
           "postgres_src": {
@@ -751,6 +758,147 @@
             "attributes": {
               "version": "17.6",
               "lay_overlay": true
+            }
+          }
+        }
+      }
+    },
+    "@@aspect_rules_js+//npm:extensions.bzl%pnpm": {
+      "general": {
+        "bzlTransitiveDigest": "dwhXlW4SQsTpPv85jQ9ubJJG6fY7Pgnewai7sxj3Vq0=",
+        "usagesDigest": "7Jq+xZ54ZVYmyZlkPNUSdJ97E94iW1dUGu8WJ3Of0TU=",
+        "recordedInputs": [
+          "REPO_MAPPING:aspect_bazel_lib+,bazel_lib bazel_lib+",
+          "REPO_MAPPING:aspect_bazel_lib+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:aspect_bazel_lib+,bazel_tools bazel_tools",
+          "REPO_MAPPING:aspect_bazel_lib+,tar.bzl tar.bzl+",
+          "REPO_MAPPING:aspect_rules_js+,aspect_bazel_lib aspect_bazel_lib+",
+          "REPO_MAPPING:aspect_rules_js+,aspect_rules_js aspect_rules_js+",
+          "REPO_MAPPING:aspect_rules_js+,bazel_features bazel_features+",
+          "REPO_MAPPING:aspect_rules_js+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:aspect_rules_js+,bazel_tools bazel_tools",
+          "REPO_MAPPING:bazel_features+,bazel_features_globals bazel_features++version_extension+bazel_features_globals",
+          "REPO_MAPPING:bazel_features+,bazel_features_version bazel_features++version_extension+bazel_features_version",
+          "REPO_MAPPING:bazel_lib+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:bazel_lib+,bazel_tools bazel_tools",
+          "REPO_MAPPING:tar.bzl+,aspect_bazel_lib aspect_bazel_lib+",
+          "REPO_MAPPING:tar.bzl+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:tar.bzl+,tar.bzl tar.bzl+"
+        ],
+        "generatedRepoSpecs": {
+          "pnpm": {
+            "repoRuleId": "@@aspect_rules_js+//npm/private:npm_import.bzl%npm_import_rule",
+            "attributes": {
+              "package": "pnpm",
+              "version": "8.6.7",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {},
+              "integrity": "sha512-vRIWpD/L4phf9Bk2o/O2TDR8fFoJnpYrp2TKqTIZF/qZ2/rgL3qKXzHofHgbXsinwMoSEigz28sqk3pQ+yMEQQ==",
+              "url": "",
+              "commit": "",
+              "patch_args": [
+                "-p0"
+              ],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
+              "extra_build_content": "load(\"@aspect_rules_js//js:defs.bzl\", \"js_binary\")\njs_binary(name = \"pnpm\", data = glob([\"package/**\"]), entry_point = \"package/dist/pnpm.cjs\", visibility = [\"//visibility:public\"])",
+              "extract_full_archive": true,
+              "exclude_package_contents": [],
+              "system_tar": "auto"
+            }
+          },
+          "pnpm__links": {
+            "repoRuleId": "@@aspect_rules_js+//npm/private:npm_import.bzl%npm_import_links",
+            "attributes": {
+              "package": "pnpm",
+              "version": "8.6.7",
+              "dev": false,
+              "root_package": "",
+              "link_packages": {},
+              "deps": {},
+              "transitive_closure": {},
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [
+                "no-sandbox"
+              ],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "exclude_package_contents": []
+            }
+          }
+        }
+      }
+    },
+    "@@aspect_rules_ts+//ts:extensions.bzl%ext": {
+      "general": {
+        "bzlTransitiveDigest": "axls+7DzE6tzeppZH+xWR9lJ/k6OusXMYmf7L7yH0eU=",
+        "usagesDigest": "C32tw53HM+0J9pKq30DoP2VUwTrlo3elNMjAlL6kIw0=",
+        "recordedInputs": [
+          "REPO_MAPPING:aspect_rules_ts+,aspect_rules_ts aspect_rules_ts+",
+          "REPO_MAPPING:aspect_rules_ts+,bazel_tools bazel_tools"
+        ],
+        "generatedRepoSpecs": {
+          "npm_typescript": {
+            "repoRuleId": "@@aspect_rules_ts+//ts/private:npm_repositories.bzl%http_archive_version",
+            "attributes": {
+              "version": "5.6.3",
+              "integrity": "",
+              "urls": [
+                "https://registry.npmjs.org/typescript/-/typescript-{}.tgz"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "@@aspect_tools_telemetry+//:extension.bzl%telemetry": {
+      "general": {
+        "bzlTransitiveDigest": "cl5A2O84vDL6Tt+Qga8FCj1DUDGqn+e7ly5rZ+4xvcc=",
+        "usagesDigest": "LO6iRYt6Fi27dQazWidYVCFOnv9Tb5IefWjuR9onIHw=",
+        "recordedInputs": [
+          "REPO_MAPPING:aspect_tools_telemetry+,bazel_lib bazel_lib+",
+          "REPO_MAPPING:aspect_tools_telemetry+,bazel_skylib bazel_skylib+"
+        ],
+        "generatedRepoSpecs": {
+          "aspect_tools_telemetry_report": {
+            "repoRuleId": "@@aspect_tools_telemetry+//:extension.bzl%tel_repository",
+            "attributes": {
+              "deps": {
+                "aspect_rules_ts": "3.8.9",
+                "aspect_tools_telemetry": "0.3.3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "@@pybind11_bazel+//:internal_configure.bzl%internal_configure_extension": {
+      "general": {
+        "bzlTransitiveDigest": "b+RP7Sgl8KN0VHamrgTqzGLuYPcQ/Mo4ptNkkHUIIlA=",
+        "usagesDigest": "D1r3lfzMuUBFxgG8V6o0bQTLMk3GkaGOaPzw53wrwyw=",
+        "recordedInputs": [
+          "REPO_MAPPING:pybind11_bazel+,bazel_tools bazel_tools",
+          "FILE:@@pybind11_bazel+//MODULE.bazel e6f4c20442eaa7c90d7190d8dc539d0ab422f95c65a57cc59562170c58ae3d34"
+        ],
+        "generatedRepoSpecs": {
+          "pybind11": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "build_file": "@@pybind11_bazel+//:pybind11-BUILD.bazel",
+              "strip_prefix": "pybind11-2.12.0",
+              "urls": [
+                "https://github.com/pybind/pybind11/archive/v2.12.0.zip"
+              ]
             }
           }
         }
@@ -816,7 +964,7 @@
     "@@rules_lean+//lean:lake.bzl%lake": {
       "general": {
         "bzlTransitiveDigest": "TSkwKKphDCoYLuQrznBpnrnmoMj4SwnnWW9GsydjB1o=",
-        "usagesDigest": "CMjHW15EaEBGsMAwVcwSJ4HmHcx103kRXTSVdJcxwb4=",
+        "usagesDigest": "Gw7rJ3dVZUInt7VtKvBrgAXqJEMhTDwFvk+9bqNdUU4=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
           "rules_postgres_lake": {
@@ -1198,7 +1346,7 @@
     "@@rules_rust+//crate_universe:extension.bzl%crate%<root>+crate": {
       "general": {
         "bzlTransitiveDigest": "zE8yHvXMtDUiPQ+Cyq39u73tk8hC5YAlSh9RfjXXPjs=",
-        "usagesDigest": "3zl8BdViKqVFWhYMU5w1byP3bsg5JYaPUdOZh4k+xGg=",
+        "usagesDigest": "NVxdNCwNH5eGT21Qb6MmF/u4OlJQYKONneRofavNiqM=",
         "recordedInputs": [
           "ENV:CARGO_BAZEL_DEBUG \\0",
           "ENV:CARGO_BAZEL_GENERATOR_SHA256 \\0",
@@ -5916,6 +6064,272 @@
               "strip_prefix": "zmij-1.0.21",
               "build_file_content": "###############################################################################\n# @generated\n# DO NOT MODIFY: This file is auto-generated by a crate_universe tool. To \n# regenerate this file, run the following:\n#\n#     bazel mod show_repo 'rules_lora'\n###############################################################################\n\nload(\n    \"@rules_rust//cargo:defs.bzl\",\n    \"cargo_build_script\",\n    \"cargo_toml_env_vars\",\n)\n\nload(\"@rules_rust//rust:defs.bzl\", \"rust_library\")\n\n# buildifier: disable=bzl-visibility\nload(\"@rules_rust//crate_universe/private:selects.bzl\", \"selects\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\ncargo_toml_env_vars(\n    name = \"cargo_toml_env_vars\",\n    src = \"Cargo.toml\",\n)\n\nrust_library(\n    name = \"zmij\",\n    deps = [\n        \"@crates__zmij-1.0.21//:build_script_build\",\n    ],\n    compile_data = glob(\n        allow_empty = True,\n        include = [\"**\"],\n        exclude = [\n            \"**/* *\",\n            \".tmp_git_root/**/*\",\n            \"BUILD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n            \"WORKSPACE.bazel\",\n        ],\n    ),\n    crate_root = \"src/lib.rs\",\n    edition = \"2021\",\n    rustc_env_files = [\n        \":cargo_toml_env_vars\",\n    ],\n    rustc_flags = [\n        \"--cap-lints=allow\",\n    ],\n    srcs = glob(\n        allow_empty = True,\n        include = [\"**/*.rs\"],\n    ),\n    tags = [\n        \"cargo-bazel\",\n        \"crate-name=zmij\",\n        \"manual\",\n        \"noclippy\",\n        \"norustfmt\",\n    ],\n    target_compatible_with = select({\n        \"@rules_rust//rust/platform:aarch64-apple-darwin\": [],\n        \"@rules_rust//rust/platform:aarch64-unknown-linux-gnu\": [],\n        \"@rules_rust//rust/platform:wasm32-unknown-unknown\": [],\n        \"@rules_rust//rust/platform:wasm32-wasip1\": [],\n        \"@rules_rust//rust/platform:x86_64-pc-windows-msvc\": [],\n        \"@rules_rust//rust/platform:x86_64-unknown-linux-gnu\": [],\n        \"@rules_rust//rust/platform:x86_64-unknown-nixos-gnu\": [],\n        \"//conditions:default\": [\"@platforms//:incompatible\"],\n    }),\n    version = \"1.0.21\",\n)\n\ncargo_build_script(\n    name = \"_bs\",\n    compile_data = glob(\n        allow_empty = True,\n        include = [\"**\"],\n        exclude = [\n            \"**/* *\",\n            \"**/*.rs\",\n            \".tmp_git_root/**/*\",\n            \"BUILD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n            \"WORKSPACE.bazel\",\n        ],\n    ),\n    crate_name = \"build_script_build\",\n    crate_root = \"build.rs\",\n    data = glob(\n        allow_empty = True,\n        include = [\"**\"],\n        exclude = [\n            \"**/* *\",\n            \".tmp_git_root/**/*\",\n            \"BUILD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n            \"WORKSPACE.bazel\",\n        ],\n    ),\n    edition = \"2021\",\n    pkg_name = \"zmij\",\n    rustc_env_files = [\n        \":cargo_toml_env_vars\",\n    ],\n    rustc_flags = [\n        \"--cap-lints=allow\",\n    ],\n    srcs = glob(\n        allow_empty = True,\n        include = [\"**/*.rs\"],\n    ),\n    tags = [\n        \"cargo-bazel\",\n        \"crate-name=zmij\",\n        \"manual\",\n        \"noclippy\",\n        \"norustfmt\",\n    ],\n    version = \"1.0.21\",\n    visibility = [\"//visibility:private\"],\n)\n\nalias(\n    name = \"build_script_build\",\n    actual = \":_bs\",\n    tags = [\"manual\"],\n)\n"
             }
+          }
+        }
+      }
+    },
+    "@@rules_rust+//crate_universe/private:internal_extensions.bzl%cu_nr": {
+      "general": {
+        "bzlTransitiveDigest": "9wBJW3/C46Vs7pkEZ8rY+9xMeHNP88I44OT0VDZsTNA=",
+        "usagesDigest": "ZmL90WEq2B6/NJ8rtHAqdnDPn+/9xG/GWR5K4UU4tyo=",
+        "recordedInputs": [
+          "REPO_MAPPING:bazel_features+,bazel_features_globals bazel_features++version_extension+bazel_features_globals",
+          "REPO_MAPPING:bazel_features+,bazel_features_version bazel_features++version_extension+bazel_features_version",
+          "REPO_MAPPING:rules_cc+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:rules_cc+,bazel_tools bazel_tools",
+          "REPO_MAPPING:rules_cc+,cc_compatibility_proxy rules_cc++compatibility_proxy+cc_compatibility_proxy",
+          "REPO_MAPPING:rules_cc+,platforms platforms",
+          "REPO_MAPPING:rules_cc+,rules_cc rules_cc+",
+          "REPO_MAPPING:rules_cc++compatibility_proxy+cc_compatibility_proxy,rules_cc rules_cc+",
+          "REPO_MAPPING:rules_rust+,bazel_features bazel_features+",
+          "REPO_MAPPING:rules_rust+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:rules_rust+,bazel_tools bazel_tools",
+          "REPO_MAPPING:rules_rust+,cui rules_rust++cu+cui",
+          "REPO_MAPPING:rules_rust+,rrc rules_rust++i2+rrc",
+          "REPO_MAPPING:rules_rust+,rules_cc rules_cc+",
+          "REPO_MAPPING:rules_rust+,rules_rust rules_rust+"
+        ],
+        "generatedRepoSpecs": {
+          "cargo_bazel_bootstrap": {
+            "repoRuleId": "@@rules_rust+//cargo/private:cargo_bootstrap.bzl%cargo_bootstrap_repository",
+            "attributes": {
+              "srcs": [
+                "@@rules_rust+//crate_universe:src/api.rs",
+                "@@rules_rust+//crate_universe:src/api/lockfile.rs",
+                "@@rules_rust+//crate_universe:src/cli.rs",
+                "@@rules_rust+//crate_universe:src/cli/generate.rs",
+                "@@rules_rust+//crate_universe:src/cli/query.rs",
+                "@@rules_rust+//crate_universe:src/cli/render.rs",
+                "@@rules_rust+//crate_universe:src/cli/splice.rs",
+                "@@rules_rust+//crate_universe:src/cli/vendor.rs",
+                "@@rules_rust+//crate_universe:src/config.rs",
+                "@@rules_rust+//crate_universe:src/context.rs",
+                "@@rules_rust+//crate_universe:src/context/crate_context.rs",
+                "@@rules_rust+//crate_universe:src/context/platforms.rs",
+                "@@rules_rust+//crate_universe:src/lib.rs",
+                "@@rules_rust+//crate_universe:src/lockfile.rs",
+                "@@rules_rust+//crate_universe:src/main.rs",
+                "@@rules_rust+//crate_universe:src/metadata.rs",
+                "@@rules_rust+//crate_universe:src/metadata/cargo_bin.rs",
+                "@@rules_rust+//crate_universe:src/metadata/cargo_tree_resolver.rs",
+                "@@rules_rust+//crate_universe:src/metadata/cargo_tree_rustc_wrapper.bat",
+                "@@rules_rust+//crate_universe:src/metadata/cargo_tree_rustc_wrapper.sh",
+                "@@rules_rust+//crate_universe:src/metadata/dependency.rs",
+                "@@rules_rust+//crate_universe:src/metadata/metadata_annotation.rs",
+                "@@rules_rust+//crate_universe:src/rendering.rs",
+                "@@rules_rust+//crate_universe:src/rendering/template_engine.rs",
+                "@@rules_rust+//crate_universe:src/rendering/templates/module_bzl.j2",
+                "@@rules_rust+//crate_universe:src/rendering/templates/partials/header.j2",
+                "@@rules_rust+//crate_universe:src/rendering/templates/partials/module/aliases_map.j2",
+                "@@rules_rust+//crate_universe:src/rendering/templates/partials/module/deps_map.j2",
+                "@@rules_rust+//crate_universe:src/rendering/templates/partials/module/repo_git.j2",
+                "@@rules_rust+//crate_universe:src/rendering/templates/partials/module/repo_http.j2",
+                "@@rules_rust+//crate_universe:src/rendering/templates/vendor_module.j2",
+                "@@rules_rust+//crate_universe:src/rendering/verbatim/alias_rules.bzl",
+                "@@rules_rust+//crate_universe:src/select.rs",
+                "@@rules_rust+//crate_universe:src/splicing.rs",
+                "@@rules_rust+//crate_universe:src/splicing/cargo_config.rs",
+                "@@rules_rust+//crate_universe:src/splicing/crate_index_lookup.rs",
+                "@@rules_rust+//crate_universe:src/splicing/splicer.rs",
+                "@@rules_rust+//crate_universe:src/test.rs",
+                "@@rules_rust+//crate_universe:src/utils.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/glob.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/label.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/select.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/select_dict.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/select_list.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/select_scalar.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/select_set.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/serialize.rs",
+                "@@rules_rust+//crate_universe:src/utils/starlark/target_compatible_with.rs",
+                "@@rules_rust+//crate_universe:src/utils/symlink.rs",
+                "@@rules_rust+//crate_universe:src/utils/target_triple.rs"
+              ],
+              "binary": "cargo-bazel",
+              "cargo_lockfile": "@@rules_rust+//crate_universe:Cargo.lock",
+              "cargo_toml": "@@rules_rust+//crate_universe:Cargo.toml",
+              "version": "1.95.0",
+              "timeout": 900,
+              "rust_toolchain_cargo_template": "@rust_host_tools//:bin/{tool}",
+              "rust_toolchain_rustc_template": "@rust_host_tools//:bin/{tool}",
+              "compressed_windows_toolchain_names": false
+            }
+          }
+        },
+        "moduleExtensionMetadata": {
+          "explicitRootModuleDirectDeps": [
+            "cargo_bazel_bootstrap"
+          ],
+          "explicitRootModuleDirectDevDeps": [],
+          "useAllRepos": "NO",
+          "reproducible": false
+        }
+      }
+    },
+    "@@rules_uv+//pip:extensions.bzl%pip": {
+      "general": {
+        "bzlTransitiveDigest": "KkNlVHOS57bQ+0mRdDpIHNQcM/hM9Ab0btbO8FSlsJA=",
+        "usagesDigest": "esD70SSaHXP6pELwU4FIJDsUVmSdFtbcWU9rx7dN4Eo=",
+        "recordedInputs": [
+          "REPO_MAPPING:rules_uv+,bazel_tools bazel_tools",
+          "FILE:@@rules_uv+//pip/private/pip_package.BUILD.tpl 81a264ae4afadf1081ff67a3b68984ff2974bb0e5792a4bd74cf10df78a8ce41"
+        ],
+        "generatedRepoSpecs": {
+          "pip__filelock": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/81/47/dd9a212ef6e343a6857485ffe25bba537304f1913bdbed446a23f7f592e1/filelock-3.29.0-py3-none-any.whl",
+              "sha256": "96f5f6344709aa1572bbf631c640e4ebeeb519e08da902c39a001882f30ac258",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the filelock package\n# (version 3.29.0). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip__fsspec": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/e6/ab/fb21f4c939bb440104cc2b396d3be1d9b7a9fd3c6c2a53d98c45b3d7c954/fsspec-2026.2.0-py3-none-any.whl",
+              "sha256": "98de475b5cb3bd66bedd5c4679e87b4fdfe1a3bf4d707b151b3c07e58c9a2437",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the fsspec package\n# (version 2026.2.0). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip__jinja2": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://gitlab.savvifi.com/api/v4/groups/21/-/packages/pypi/files/85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67/jinja2-3.1.6-py3-none-any.whl",
+              "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the jinja2 package\n# (version 3.1.6). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `\"@pip__markupsafe//:pkg\"` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [\"@pip__markupsafe//:pkg\"],\n)\n\n"
+            }
+          },
+          "pip__markupsafe": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/9a/81/7e4e08678a1f98521201c3079f77db69fb552acd56067661f8c2f534a718/markupsafe-3.0.3-cp312-cp312-macosx_11_0_arm64.whl",
+              "sha256": "1872df69a4de6aead3491198eaf13810b565bdbeec3ae2dc8780f14458ec73ce",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the markupsafe package\n# (version 3.0.3). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip__mpmath": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://gitlab.savvifi.com/api/v4/groups/21/-/packages/pypi/files/a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c/mpmath-1.3.0-py3-none-any.whl",
+              "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the mpmath package\n# (version 1.3.0). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip__networkx": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl",
+              "sha256": "d47fbf302e7d9cbbb9e2555a0d267983d2aa476bac30e90dfbe5669bd57f3762",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the networkx package\n# (version 3.6.1). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip__numpy": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/ad/fe/c0a6b7b2ca128a8fb228575147073b660656734b8ebe4d76c8fd748dcc79/numpy-2.4.6-cp312-cp312-macosx_14_0_arm64.whl",
+              "sha256": "3213d622a0283a39a93d188f3cf72b26862df52fbb4ca3697f51705016523d41",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the numpy package\n# (version 2.4.6). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip__setuptools": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/e1/e3/c164c88b2e5ce7b24d667b9bd83589cf4f3520d97cad01534cd3c4f55fdb/setuptools-81.0.0-py3-none-any.whl",
+              "sha256": "fdd925d5c5d9f62e4b74b30d6dd7828ce236fd6ed998a08d81de62ce5a6310d6",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the setuptools package\n# (version 81.0.0). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip__sympy": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/b2/fe/81695a1aa331a842b582453b605175f419fe8540355886031328089d840a/sympy-1.13.1-py3-none-any.whl",
+              "sha256": "db36cdc64bf61b9b24578b6f7bab1ecdd2452cf008f34faa33776680c26d66f8",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the sympy package\n# (version 1.13.1). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `\"@pip__mpmath//:pkg\"` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [\"@pip__mpmath//:pkg\"],\n)\n\n"
+            }
+          },
+          "pip__torch": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://files.pythonhosted.org/packages/81/b4/605ae4173aa37fb5aa14605d100ff31f4f5d49f617928c9f486bb3aaec08/torch-2.6.0-cp312-none-macosx_11_0_arm64.whl",
+              "sha256": "9a610afe216a85a8b9bc9f8365ed561535c93e804c2a317ef7fabcc5deda0989",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the torch package\n# (version 2.6.0). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `\"@pip__filelock//:pkg\", \"@pip__fsspec//:pkg\", \"@pip__jinja2//:pkg\", \"@pip__networkx//:pkg\", \"@pip__setuptools//:pkg\", \"@pip__sympy//:pkg\", \"@pip__typing-extensions//:pkg\"` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [\"@pip__filelock//:pkg\", \"@pip__fsspec//:pkg\", \"@pip__jinja2//:pkg\", \"@pip__networkx//:pkg\", \"@pip__setuptools//:pkg\", \"@pip__sympy//:pkg\", \"@pip__typing-extensions//:pkg\"],\n)\n\n"
+            }
+          },
+          "pip__typing-extensions": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://gitlab.savvifi.com/api/v4/groups/21/-/packages/pypi/files/f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548/typing_extensions-4.15.0-py3-none-any.whl",
+              "sha256": "f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548",
+              "type": "zip",
+              "build_file_content": "# Generated by rules_uv//pip:extensions.bzl for the typing-extensions package\n# (version 4.15.0). Do not edit by hand — re-run `bazel build`\n# after editing the lockfile to regenerate.\n\nload(\"@rules_python//python:defs.bzl\", \"py_library\")\n\npackage(default_visibility = [\"//visibility:public\"])\n\nfilegroup(\n    name = \"whl\",\n    srcs = glob([\"**/*.whl\", \"**/*.tar.gz\"], allow_empty = True),\n)\n\n# `:pkg` is the unconditional dep set — every consumer of this\n# package picks this up. Per-extra targets (`:<extra>`) layer on\n# extra dependencies and re-export `:pkg`. Markers are evaluated at\n# extension time, so the `` and per-extra dep lists here are\n# already filtered against the host + python_version.\npy_library(\n    name = \"pkg\",\n    srcs = glob(\n        [\"**/*.py\"],\n        allow_empty = True,\n    ),\n    data = glob(\n        [\"**/*\"],\n        exclude = [\n            \"**/*.py\",\n            \"**/__pycache__/**\",\n            \"**/*.dist-info/RECORD\",\n            \"BUILD.bazel\",\n            \"WORKSPACE\",\n        ],\n        allow_empty = True,\n    ),\n    imports = [\".\"],\n    deps = [],\n)\n\n"
+            }
+          },
+          "pip": {
+            "repoRuleId": "@@rules_uv+//pip:extensions.bzl%_hub_repo",
+            "attributes": {
+              "hub_name": "pip",
+              "package_names": [
+                "filelock",
+                "fsspec",
+                "jinja2",
+                "markupsafe",
+                "mpmath",
+                "networkx",
+                "numpy",
+                "setuptools",
+                "sympy",
+                "torch",
+                "typing-extensions"
+              ],
+              "group_names": [],
+              "group_members": []
+            }
+          }
+        }
+      }
+    },
+    "@@rules_uv+//uv:extensions.bzl%uv": {
+      "general": {
+        "bzlTransitiveDigest": "IHSiw5G15rcKcNSYIPpt0A/GixuQSnw08KOvWQhKvWo=",
+        "usagesDigest": "8U6gPASFCaQRWKdJMEsyHs6Of2yY/n7LT1XCEGBx+Xs=",
+        "recordedInputs": [
+          "REPO_MAPPING:rules_cc+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:rules_cc+,bazel_tools bazel_tools",
+          "REPO_MAPPING:rules_cc+,cc_compatibility_proxy rules_cc++compatibility_proxy+cc_compatibility_proxy",
+          "REPO_MAPPING:rules_cc+,platforms platforms",
+          "REPO_MAPPING:rules_cc+,rules_cc rules_cc+",
+          "REPO_MAPPING:rules_cc++compatibility_proxy+cc_compatibility_proxy,rules_cc rules_cc+",
+          "REPO_MAPPING:rules_rust+,bazel_skylib bazel_skylib+",
+          "REPO_MAPPING:rules_rust+,bazel_tools bazel_tools",
+          "REPO_MAPPING:rules_rust+,rules_cc rules_cc+",
+          "REPO_MAPPING:rules_rust+,rules_rust rules_rust+",
+          "REPO_MAPPING:rules_uv+,bazel_tools bazel_tools",
+          "REPO_MAPPING:rules_uv+,rules_rust rules_rust+"
+        ],
+        "generatedRepoSpecs": {
+          "uv": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-aarch64-apple-darwin.tar.gz",
+              "sha256": "7e5b336108f8576eda1939920ca0a805b4a9a3c3d3eb2f6140e38b7092fbe4f3",
+              "strip_prefix": "uv-aarch64-apple-darwin",
+              "build_file_content": "package(default_visibility = [\"//visibility:public\"])\n\n# Match the cargo_bootstrap_repository BUILD shape so downstream\n# rules can reference `@uv//:binary` identically across modes.\nexports_files([\"uv\"])\n\nalias(\n    name = \"binary\",\n    actual = \":uv\",\n)\n"
+            }
+          },
+          "uv_source": {
+            "repoRuleId": "@@rules_uv+//uv:extensions.bzl%_empty_repo",
+            "attributes": {}
           }
         }
       }

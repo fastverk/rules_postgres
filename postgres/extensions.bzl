@@ -86,6 +86,7 @@ cc_library(
     name = "pg_query_pb_c",
     srcs = ["protobuf/pg_query.pb-c.c"],
     hdrs = ["protobuf/pg_query.pb-c.h"],
+    includes = ["protobuf"],
     deps = [":protobuf_c_runtime"],
     copts = ["-Wno-unused-function"],
 )

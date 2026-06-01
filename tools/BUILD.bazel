@@ -22,4 +22,15 @@ cc_binary(
     deps = ["@libpg_query"],
 )
 
+# sql_to_protobuf — CLI around libpg_query's `pg_query_parse_protobuf`.
+# Reads a .sql file, parses it, writes the marshalled `ParseResult`
+# protobuf bytes (per @libpg_query//:pg_query.proto) to stdout. This
+# is the canonical AST format consumed by the `sql_*_library` family
+# of rules in rules_lang/polyglot/sql.bzl.
+cc_binary(
+    name = "sql_to_protobuf",
+    srcs = ["sql_to_protobuf.c"],
+    deps = ["@libpg_query"],
+)
+
 exports_files(["run_parse_check.sh"])

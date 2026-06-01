@@ -4,6 +4,77 @@ All notable changes to rules_postgres. The format is loosely
 [Keep a Changelog](https://keepachangelog.com/) — version headers
 mirror the published bazel-registry entries.
 
+## 0.5.0 — SQL toolchain pipeline (sql_to_protobuf + pgpb_to_snapshot)
+
+Adds the rules_postgres half of the `proto_library`-shaped SQL
+toolchain layering jointly hosted with rules_lang 0.0.7+
+(`@rules_lang//polyglot:sql.bzl`). Lands two C tools, a toolchain
+implementation, and a thin macro wrapper for the catalog projection.
+
+**New C tools** (both hermetic, no Python/shell prerequisite):
+
+- `@rules_postgres//tools:sql_to_protobuf` — CLI around libpg_query's
+  `pg_query_parse_protobuf()`. Reads a `.sql` file, writes the
+  marshalled `pg_query.ParseResult` protobuf bytes to stdout. This
+  is the canonical AST format consumed by every `sql_*_library`
+  projection rule. Companion to `parse_check` (which discards the
+  parse tree) and `plpgsql_to_json` (which handles the PL/pgSQL
+  sub-grammar).
+
+- `@rules_postgres//tools/pgpb_to_snapshot:pgpb_to_snapshot` — folds
+  a sequence of `.pgpb` files into a `Pg.Catalog.Snapshot` Lean
+  source. Walks CREATE SCHEMA / DOMAIN / COMPOSITE TYPE / ENUM TYPE /
+  TABLE / FUNCTION across the input series, maintains running catalog
+  state (namespaces, types, relations, attributes, procs, enum-label
+  side-table), and emits a self-contained Lean module ready to feed
+  downstream codegen. Decodes the `.pgpb` bytes via the protobuf-c
+  bindings shipped under `@libpg_query//:pg_query_pb_c` — no protoc
+  step, no Python.
+
+**New toolchain + macro** (`postgres/sql_toolchain.bzl`):
+
+- `pg_sql_toolchain(name, version)` — implements the
+  `postgres_sql_toolchain_type` declared in
+  `@rules_lang//polyglot/sql:BUILD.bazel`. Wraps the
+  `sql_to_protobuf` binary; carries the proto descriptor and
+  version string for downstream readers.
+
+- `pg_sql_catalog_library(name, deps, module_name, output_format)` —
+  thin wrapper around `sql_catalog_library` that pre-fills the
+  `folder` attribute with `pgpb_to_snapshot`. Lets consumers omit
+  the dialect-specific tool name.
+
+**Single-file convenience macro** (`postgres/defs.bzl`):
+
+- `pg_parse_tree(name, sql, out)` — runs `sql_to_protobuf` on a
+  single `.sql` file via a genrule, captures the `.pgpb` output.
+  For one-off inspection; multi-file pipelines should use the full
+  `sql_library` + `sql_ast_library` stack.
+
+**Schema export tightening** (`postgres/extensions.bzl`):
+
+The `@libpg_query//:pg_query_pb_c` cc_library now declares
+`includes = ["protobuf"]` so consumers can `#include "pg_query.pb-c.h"`
+without the directory prefix.
+
+**Why now**
+
+Motivated by Aion's V0 codegen track wanting to derive
+`Pg.Catalog.Snapshot` values directly from savvi-studio's migration
+`.sql` files instead of hand-mirroring them. The full chain
+(0.5.0 layered on the 0.4.3 PgProc fields) is:
+
+    sql_library                  (raw .sql, dialect-tagged)
+        ↓ pg_sql_toolchain
+    sql_ast_library              (.pgpb canonical AST)
+        ↓ pg_sql_catalog_library (pgpb_to_snapshot)
+    Pg.Catalog.Snapshot.lean
+        ↓ functionSpecFromPgProc (Aion-side, 0.4.3 fields)
+    FunctionSpec list → codegen output
+
+Plus an `sql_ast_aspect` for sweeps that need to attach parsed ASTs
+to every transitively-reachable `sql_library` without per-file rules.
+
 ## 0.4.3 — Pg.Catalog.PgProc: + proargnames + proretset + proargmodes
 
 Extends `lean/Pg/Catalog/Tables.lean`'s `PgProc` structure with
