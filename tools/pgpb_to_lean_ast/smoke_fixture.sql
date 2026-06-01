@@ -23,3 +23,15 @@ CREATE TABLE test_smoke.locations (
     name test_smoke.identifier NOT NULL,
     position test_smoke.point NOT NULL
 );
+
+CREATE OR REPLACE FUNCTION test_smoke.distance(
+    p_a test_smoke.point,
+    p_b test_smoke.point
+) RETURNS DOUBLE PRECISION
+LANGUAGE SQL
+AS $$
+    SELECT sqrt(power(p_a.x - p_b.x, 2) + power(p_a.y - p_b.y, 2))::double precision;
+$$;
+
+ALTER TABLE test_smoke.locations ADD COLUMN created_at TIMESTAMPTZ NOT NULL;
+ALTER TABLE test_smoke.locations ALTER COLUMN name DROP NOT NULL;

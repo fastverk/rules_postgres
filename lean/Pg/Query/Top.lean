@@ -32,7 +32,11 @@ Additional variants land in follow-up commits as the C decoder
 grows pre-decode support for them.
 -/
 
+import Pg.Catalog.Tables  -- for ArgMode (proc-param direction)
+
 namespace Pg.Query.Top
+
+open Pg.Catalog (ArgMode)
 
 /-- A qualified `[schema.]name` from a 1-3 part proto qualified-name
     list. The C decoder pre-decodes the proto `String` payloads
@@ -101,6 +105,37 @@ structure TopCreateStmt where
   columns  : List ColumnDefSpec := []
 deriving Repr, Inhabited
 
+/-- A single function-parameter declaration. -/
+structure FunctionParameterSpec where
+  name    : String := ""    -- empty when parameter is unnamed (positional)
+  typeRef : TypeRef
+  mode    : ArgMode := .in_
+
+/-- `CREATE FUNCTION <qualName>(<params>) RETURNS [SETOF] <returnType>`.
+
+    The `proretset` field of `PgProc` comes from `returnSetof`,
+    which the C decoder reads from `TypeName.setof`. -/
+structure TopCreateFunctionStmt where
+  qualName     : QualifiedName
+  parameters   : List FunctionParameterSpec := []
+  returnType   : TypeRef
+  returnSetof  : Bool := false
+
+/-- The codegen-relevant `AlterTableCmd` subtypes. Other subtypes
+    (ADD CONSTRAINT, RENAME, OWNER, …) collapse to `.skip` and the
+    fold leaves the snapshot unchanged. -/
+inductive AlterTableCmd where
+  | addColumn   : ColumnDefSpec → AlterTableCmd
+  | dropColumn  : (name : String) → AlterTableCmd
+  | setNotNull  : (name : String) → AlterTableCmd
+  | dropNotNull : (name : String) → AlterTableCmd
+  | skip        : AlterTableCmd
+
+/-- `ALTER TABLE <qualName> <cmds>`. -/
+structure TopAlterTableStmt where
+  qualName : QualifiedName
+  cmds     : List AlterTableCmd := []
+
 /-- The top-level DDL discriminator the catalog fold dispatches on.
 
     Variants intentionally enumerate only what the fold handles;
@@ -113,6 +148,8 @@ inductive TopStmt where
   | createDomainStmt   : TopCreateDomainStmt   → TopStmt
   | compositeTypeStmt  : TopCompositeTypeStmt  → TopStmt
   | createStmt         : TopCreateStmt         → TopStmt
+  | createFunctionStmt : TopCreateFunctionStmt → TopStmt
+  | alterTableStmt     : TopAlterTableStmt     → TopStmt
   | other              : ByteArray             → TopStmt
 deriving Inhabited  -- ByteArray has no Repr; skip the derive
 

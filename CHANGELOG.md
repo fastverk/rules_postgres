@@ -4,6 +4,93 @@ All notable changes to rules_postgres. The format is loosely
 [Keep a Changelog](https://keepachangelog.com/) — version headers
 mirror the published bazel-registry entries.
 
+## 0.6.2 — Pg.Catalog.Fold Phase 3+5: functions + table alterations
+
+Adds the two remaining structural stmt kinds. ViewStmt (Phase 4)
+needs Lean-side FROM-clause walking and is the only phase left
+before Phase 6's byte-equivalence diff retires the C catalog folder.
+
+PHASE 3 — CreateFunctionStmt
+
+  Pg.Query.Top
+    FunctionParameterSpec   { name, typeRef, mode : ArgMode }
+    TopCreateFunctionStmt   { qualName, parameters, returnType,
+                              returnSetof }
+
+  Imports `Pg.Catalog.Tables.ArgMode` for the proc-param direction
+  enum (in_, out, inout, variadic, tableOut).
+
+  Pg.Catalog.Fold.foldCreateFunction
+    * Resolve each param's typeRef against the in-progress snapshot.
+    * Resolve the return type (fallback to 2278 = void).
+    * Collect names / modes / types in declaration order.
+    * `proargmodes` empty unless any param is non-default-IN
+      (matches pgpb_to_snapshot.c's `has_modes` branch).
+    * Emits a PgProc row with prokind=.function, provolatile=.stable.
+
+  pgpb_to_lean_ast `--typed`
+    arg_mode_lean — proto FunctionParameterMode → Lean ctor name.
+    New createFunctionStmt dispatch arm walks st->parameters,
+    emits each FunctionParameter as a FunctionParameterSpec.
+
+PHASE 5 — AlterTableStmt
+
+  Pg.Query.Top
+    AlterTableCmd inductive   { addColumn, dropColumn, setNotNull,
+                                dropNotNull, skip }
+    TopAlterTableStmt         { qualName, cmds }
+
+  Pg.Catalog.Fold.foldAlterTable
+    * findRelByQual — schema-aware relation lookup; gives up if
+      the target relation isn't in the snapshot (mirrors C tool).
+    * maxAttnumFor — next attnum for ADD COLUMN.
+    * applyAlterCmd — dispatches the four cmd kinds:
+        addColumn   → resolveType + append PgAttribute row
+        dropColumn  → filter out the matching attribute
+        setNotNull  → map attnotnull → true
+        dropNotNull → map attnotnull → false
+        skip        → no-op
+      The fold uses real-delete + map for drop/flip rather than
+      the C tool's tombstone (`attrelid := 0`) since the emit
+      doesn't depend on positional ordering. Same final shape.
+
+  pgpb_to_lean_ast `--typed`
+    New alterTableStmt dispatch arm. For each AlterTableCmd,
+    switches on subtype and emits `.addColumn <spec>` /
+    `.dropColumn "name"` / `.setNotNull "name"` /
+    `.dropNotNull "name"` / `.skip`. Unsupported subtypes
+    (ADD CONSTRAINT, RENAME, OWNER, …) emit `.skip`.
+
+EXTENDED SMOKE FIXTURE
+
+  tools/pgpb_to_lean_ast/smoke_fixture.sql gains:
+
+    CREATE OR REPLACE FUNCTION test_smoke.distance(
+        p_a test_smoke.point, p_b test_smoke.point
+    ) RETURNS DOUBLE PRECISION ...;
+    ALTER TABLE test_smoke.locations ADD COLUMN created_at TIMESTAMPTZ NOT NULL;
+    ALTER TABLE test_smoke.locations ALTER COLUMN name DROP NOT NULL;
+
+  FoldPipelineTest assertions tighten:
+    * 1 proc row, prorettype = 701 (double precision builtin)
+    * proargtypes = [point.oid, point.oid] (user-type resolution)
+    * proargnames = ["p_a", "p_b"]
+    * 6 attributes (was 5; ADD COLUMN added created_at)
+    * created_at.atttypid = 1184 (timestamptz), attnotnull = true
+    * name.attnotnull = false (was true after CREATE TABLE; flipped
+      by DROP NOT NULL)
+
+PHASE COVERAGE
+
+  Phase 0:                 CreateSchema, CreateEnum
+  Phase 1 (0.6.1):         CreateDomain
+  Phase 2 (0.6.1):         CompositeType, CreateStmt
+  Phase 3 (this release):  CreateFunctionStmt
+  Phase 5 (this release):  AlterTableStmt
+  Phase 4 (planned):       ViewStmt
+  Phase 6 (planned):       byte-equivalence diff_test;
+                           pgpb_to_snapshot.c retirement
+
 ## 0.6.1 — Pg.Catalog.Fold Phase 1+2: domains, composites, tables
 
 Extends the kernel-checked catalog fold to three more stmt kinds

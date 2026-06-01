@@ -206,6 +206,19 @@ static void emit_qualified_name(FILE *o,
     fputs(" }", o);
 }
 
+/* Map a proto FunctionParameterMode → its Lean `.arg_mode` ctor name. */
+static const char *arg_mode_lean(PgQuery__FunctionParameterMode m) {
+    switch (m) {
+        case PG_QUERY__FUNCTION_PARAMETER_MODE__FUNC_PARAM_OUT:      return ".out";
+        case PG_QUERY__FUNCTION_PARAMETER_MODE__FUNC_PARAM_INOUT:    return ".inout";
+        case PG_QUERY__FUNCTION_PARAMETER_MODE__FUNC_PARAM_VARIADIC: return ".variadic";
+        case PG_QUERY__FUNCTION_PARAMETER_MODE__FUNC_PARAM_TABLE:    return ".tableOut";
+        case PG_QUERY__FUNCTION_PARAMETER_MODE__FUNC_PARAM_IN:
+        case PG_QUERY__FUNCTION_PARAMETER_MODE__FUNC_PARAM_DEFAULT:
+        default:                                                     return ".in_";
+    }
+}
+
 /* Compute NOT NULL flag for a ColumnDef from its constraints. */
 static int column_notnull(PgQuery__ColumnDef *cd) {
     for (size_t i = 0; i < cd->n_constraints; i++) {
@@ -320,6 +333,81 @@ static int emit_typed_top(FILE *o, PgQuery__Node *node) {
             fputs(" }, columns := ", o);
             emit_column_def_list(o, st->table_elts, st->n_table_elts);
             fputs(" }", o);
+            return 1;
+        }
+        case PG_QUERY__NODE__NODE_CREATE_FUNCTION_STMT: {
+            PgQuery__CreateFunctionStmt *st = node->create_function_stmt;
+            fputs(".createFunctionStmt { qualName := ", o);
+            emit_qualified_name(o, st->funcname, st->n_funcname);
+            fputs(", parameters := [", o);
+            int first = 1;
+            for (size_t i = 0; i < st->n_parameters; i++) {
+                PgQuery__Node *pn = st->parameters[i];
+                if (!pn || pn->node_case != PG_QUERY__NODE__NODE_FUNCTION_PARAMETER) continue;
+                PgQuery__FunctionParameter *p = pn->function_parameter;
+                if (!first) fputs(", ", o);
+                fputs("{ name := ", o);
+                emit_string_literal(o, p->name ? p->name : "");
+                fputs(", typeRef := ", o);
+                emit_type_ref(o, p->arg_type);
+                fprintf(o, ", mode := %s }", arg_mode_lean(p->mode));
+                first = 0;
+            }
+            fputs("], returnType := ", o);
+            emit_type_ref(o, st->return_type);
+            fprintf(o, ", returnSetof := %s }",
+                    (st->return_type && st->return_type->setof) ? "true" : "false");
+            return 1;
+        }
+        case PG_QUERY__NODE__NODE_ALTER_TABLE_STMT: {
+            PgQuery__AlterTableStmt *st = node->alter_table_stmt;
+            fputs(".alterTableStmt { qualName := ", o);
+            const char *schema = (st->relation && st->relation->schemaname
+                                  && st->relation->schemaname[0])
+                ? st->relation->schemaname : NULL;
+            const char *name = (st->relation && st->relation->relname)
+                ? st->relation->relname : "";
+            fputs("{ schema := ", o);
+            if (schema) { fputs("some ", o); emit_string_literal(o, schema); }
+            else        { fputs("none", o); }
+            fputs(", name := ", o);
+            emit_string_literal(o, name);
+            fputs(" }, cmds := [", o);
+            int first = 1;
+            for (size_t i = 0; i < st->n_cmds; i++) {
+                PgQuery__Node *cn = st->cmds[i];
+                if (!cn || cn->node_case != PG_QUERY__NODE__NODE_ALTER_TABLE_CMD) continue;
+                PgQuery__AlterTableCmd *cmd = cn->alter_table_cmd;
+                if (!first) fputs(", ", o);
+                first = 0;
+                switch (cmd->subtype) {
+                    case PG_QUERY__ALTER_TABLE_TYPE__AT_AddColumn:
+                        if (cmd->def &&
+                            cmd->def->node_case == PG_QUERY__NODE__NODE_COLUMN_DEF) {
+                            fputs(".addColumn ", o);
+                            emit_column_def_spec(o, cmd->def->column_def);
+                        } else {
+                            fputs(".skip", o);
+                        }
+                        break;
+                    case PG_QUERY__ALTER_TABLE_TYPE__AT_DropColumn:
+                        fputs(".dropColumn ", o);
+                        emit_string_literal(o, cmd->name ? cmd->name : "");
+                        break;
+                    case PG_QUERY__ALTER_TABLE_TYPE__AT_SetNotNull:
+                        fputs(".setNotNull ", o);
+                        emit_string_literal(o, cmd->name ? cmd->name : "");
+                        break;
+                    case PG_QUERY__ALTER_TABLE_TYPE__AT_DropNotNull:
+                        fputs(".dropNotNull ", o);
+                        emit_string_literal(o, cmd->name ? cmd->name : "");
+                        break;
+                    default:
+                        fputs(".skip", o);
+                        break;
+                }
+            }
+            fputs("] }", o);
             return 1;
         }
         default:
