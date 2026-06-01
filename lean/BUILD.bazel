@@ -332,3 +332,23 @@ lean_test(
     entry = "Pg/Catalog/FoldDiffTest.lean",
     visibility = ["//visibility:public"],
 )
+
+# Pg.Catalog.SnapshotEmit printer smoke. Hand-builds a small
+# Snapshot covering every row kind, runs Snapshot.toLeanSource,
+# native_decide-asserts on well-known substrings of the output.
+# When the lean_emit-backed pg_sql_catalog_library_lean macro
+# lands, a full byte-equivalence diff_test against the C tool's
+# output supersedes this.
+lean_test(
+    name = "pg_catalog_snapshot_emit_test",
+    srcs = [
+        "Pg/Catalog/Oid.lean",
+        "Pg/Catalog/Tables.lean",
+        "Pg/Catalog/RegTypes.lean",
+        "Pg/Catalog/Snapshot.lean",
+        "Pg/Catalog/SnapshotEmit.lean",
+        "Pg/Catalog/SnapshotEmitTest.lean",
+    ],
+    entry = "Pg/Catalog/SnapshotEmitTest.lean",
+    visibility = ["//visibility:public"],
+)

@@ -25,6 +25,7 @@ Also exposes `pg_sql_catalog_library` — a thin wrapper around
 hand-thread the postgres-specific catalog folder."""
 
 load("@rules_lang//polyglot:sql.bzl", "SqlAstInfo", "SqlToolchainInfo", "sql_catalog_library")
+load("@rules_lean//lean:lean.bzl", "lean_emit")
 
 def _pg_sql_toolchain_impl(ctx):
     return [
@@ -158,3 +159,94 @@ pg_sql_typed_library = rule(
     Downstream `lean_test` / `lean_emit` consumers depend on this
     rule and `import <module_name>` to pull in the parsed value.""",
 )
+
+# ─── pg_sql_catalog_library_lean ──────────────────────────────────
+#
+# Drop-in replacement for `pg_sql_catalog_library` whose backend is
+# the kernel-checked Lean fold (Pg.Catalog.Fold + the
+# Snapshot.toLeanSource printer) instead of `pgpb_to_snapshot.c`.
+#
+# Pipeline expanded by the macro:
+#
+#   pg_sql_typed_library(name + "_typed", deps)
+#       → <typed_module>.lean   (Pg.Query.Top.TopParseResult)
+#
+#   genrule(name + "_main_lean") writes a small Main.lean that
+#   imports the typed parse result + the printer, runs
+#       Snapshot.ofTopParseResultAugmentedWithEnums
+#   on it, and IO.println's the printer output.
+#
+#   lean_emit(name) runs Main.lean and captures stdout to
+#       <name>.lean — the same file layout pg_sql_catalog_library
+#       emits today.
+#
+# Once enough consumers migrate, pgpb_to_snapshot.c can be deleted.
+
+_LEAN_DEPS = [
+    "@rules_postgres//lean:Pg/Catalog/Oid.lean",
+    "@rules_postgres//lean:Pg/Catalog/Tables.lean",
+    "@rules_postgres//lean:Pg/Catalog/RegTypes.lean",
+    "@rules_postgres//lean:Pg/Catalog/Snapshot.lean",
+    "@rules_postgres//lean:Pg/Catalog/SnapshotEmit.lean",
+    "@rules_postgres//lean:Pg/Query/Top.lean",
+    "@rules_postgres//lean:Pg/Catalog/Fold.lean",
+]
+
+def pg_sql_catalog_library_lean(
+        name,
+        deps,
+        module_name,
+        skip_other_bytes = True,
+        **kwargs):
+    """Catalog projection backed by the kernel-checked Lean fold.
+
+    Args:
+      name: output target name; emits `<name>.lean`.
+      deps: `sql_ast_library` targets to fold over.
+      module_name: Lean `namespace` for the emitted file (e.g.
+        `"Aion.V0.Codegen.SavviInitialSchema"`). Inside it,
+        `def snapshot : Snapshot` and `def enumLabels` are exported.
+      skip_other_bytes: drop bytes of unrecognized DDL stmts in the
+        typed decoder output. Default `True` — fold ignores them.
+      **kwargs: forwarded to the underlying `lean_emit`.
+    """
+    typed_name = name + "_typed"
+    typed_module = "Typed_" + name
+
+    pg_sql_typed_library(
+        name = typed_name,
+        deps = deps,
+        module_name = typed_module,
+        skip_other_bytes = skip_other_bytes,
+    )
+
+    main_genrule = name + "_main_lean"
+    main_lean = main_genrule + ".lean"
+
+    native.genrule(
+        name = main_genrule,
+        outs = [main_lean],
+        cmd = (
+            "cat > $@ <<'EOF'\n" +
+            "import Pg.Catalog.SnapshotEmit\n" +
+            "import Pg.Catalog.Fold\n" +
+            "import " + typed_module + "\n\n" +
+            "def main : IO Unit :=\n" +
+            "  let (snap, enums) := Pg.Catalog.Snapshot.ofTopParseResultAugmentedWithEnums\n" +
+            "      " + typed_module + ".parseResult\n" +
+            "  IO.println (Pg.Catalog.Snapshot.toLeanSource snap enums " +
+            "\"" + module_name + "\")\n" +
+            "EOF\n"
+        ),
+    )
+
+    lean_emit(
+        name = name,
+        srcs = _LEAN_DEPS + [
+            ":" + typed_name,
+            ":" + main_genrule,
+        ],
+        entry = main_lean,
+        out = name + ".lean",
+        **kwargs
+    )

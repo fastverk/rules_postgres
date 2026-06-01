@@ -4,6 +4,95 @@ All notable changes to rules_postgres. The format is loosely
 [Keep a Changelog](https://keepachangelog.com/) — version headers
 mirror the published bazel-registry entries.
 
+## 0.6.7 — Snapshot.toLeanSource printer + pg_sql_catalog_library_lean macro
+
+The final piece needed for consumer-side migration off
+`pgpb_to_snapshot.c`. Production catalog projection now runs
+through the kernel-checked Lean fold; the C catalog folder stays
+around purely as the parity reference for the byte-equivalence
+gate.
+
+NEW LEAN MODULE (`lean/Pg/Catalog/SnapshotEmit.lean`)
+
+  `Snapshot.toLeanSource snap enums moduleName : String`
+    Mirror of `pgpb_to_snapshot.c::emit_lean`. Emits a complete
+    Lean module containing `def enumLabels` + `def snapshot`
+    in the same format the C tool writes. Field-for-field:
+
+      * Optional `PgType.typrelid` / `typbasetype` / `typelem`
+        omitted when zero.
+      * `PgProc.proargmodes` omitted when empty.
+      * `PgProc.proretset` omitted when false.
+      * Lists use `[ first \n , item2 \n ... \n ]` block form;
+        empty lists are `[]`.
+      * `roles := []` always present.
+
+  Per-field formatters: `emitOid`, `emitStringLit` (with `\\`
+  and `"` escapes), `emitTypType`, `emitRelKind`, `emitProKind`,
+  `emitProVolatile`, `emitArgMode`, `emitBool`.
+
+  Smoke gate (`lean/Pg/Catalog/SnapshotEmitTest.lean`): hand-builds
+  a small Snapshot covering every row kind, runs the printer,
+  native_decide-asserts on well-known output substrings.
+
+EXTENDED LEAN FOLD (`lean/Pg/Catalog/Fold.lean`)
+
+  * `FoldState.enumLabels` — new field tracking
+    `(Oid .type × List String)` rows populated by `foldCreateEnum`.
+  * `Snapshot.ofTopParseResultAugmentedWithEnums` — fold + augment
+    + return BOTH `Snapshot` and `List (Oid .type × List String)`.
+    Used by the lean_emit pipeline that replaces the C tool.
+
+NEW BAZEL MACRO (`postgres/sql_toolchain.bzl`)
+
+  `pg_sql_catalog_library_lean(name, deps, module_name)`
+    Drop-in replacement for `pg_sql_catalog_library` whose backend
+    is the kernel-checked Lean fold. Expands to:
+
+       pg_sql_typed_library(name + "_typed", deps, ...)
+            → Typed_<name>.lean   (Pg.Query.Top.TopParseResult)
+
+       genrule(name + "_main_lean") writes a small Main.lean that
+            imports the typed parse result + Pg.Catalog.SnapshotEmit,
+            runs `Snapshot.ofTopParseResultAugmentedWithEnums`,
+            `IO.println`s the printer output.
+
+       lean_emit(name) runs Main.lean and captures stdout to
+            `<name>.lean` — same file layout `pg_sql_catalog_library`
+            emits today.
+
+  Module imports staged through `@rules_postgres//lean:Pg/Catalog/{Oid,
+  Tables,RegTypes,Snapshot,SnapshotEmit,Fold}.lean` + `Pg/Query/Top.lean`.
+
+CONSUMER MIGRATION
+
+  Aion's `savvi_initial_schema_snapshot_at_module_path` genrule
+  (downstream of `MainSavviDbGeneratedPackage.lean` → emits
+  `@aion/savvi-db-generated/index.ts`) now sources from
+  `pg_sql_catalog_library_lean` instead of `pg_sql_catalog_library`.
+
+  The `savvi-db-generated-index.ts` byte-equivalence diff gate
+  (committed `expected.savvi-db-generated-index.ts`) stays green
+  after the switch — proving the lean-fold-derived Snapshot is
+  semantically identical to what the C tool produced for the full
+  4927-line TS output.
+
+  The C-tool variant is retained in
+  `savvi_initial_schema_snapshot` under the `*C`-suffixed namespace
+  (`Aion.V0.Codegen.SavviInitialSchemaC`) so
+  `savvi_schema_fold_diff_test` can continue to native_decide that
+  the two backends produce identical Snapshot values on the full
+  1384-stmt savvi schema. This is the regression gate.
+
+REMAINING WORK TO DELETE pgpb_to_snapshot.c (deferred)
+
+  The C tool is no longer load-bearing for production catalog
+  projection. It only feeds the diff gate. Deletion can land in a
+  future release once we accept the loss of the byte-equivalence
+  regression check — at that point, the Lean fold's correctness
+  rests on its kernel typecheck plus the unit tests
+  (`pg_catalog_fold_test`, `pg_catalog_fold_pipeline_test`).
+
 ## 0.6.6 — Production-scale byte-equivalence + multi-file decoder
 
 Validates Phase 7's byte-equivalence claim end-to-end on savvi-studio's
