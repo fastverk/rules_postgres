@@ -4,6 +4,60 @@ All notable changes to rules_postgres. The format is loosely
 [Keep a Changelog](https://keepachangelog.com/) — version headers
 mirror the published bazel-registry entries.
 
+## 0.5.5 — pgpb_to_snapshot: view column type inference
+
+Lifts the 15 view schemas in savvi-studio's initial schema from
+loose `z.unknown()` placeholders to properly-typed values where the
+SELECT projects a direct `tbl.col` reference.
+
+For each `CREATE VIEW <name> AS SELECT ...`:
+
+  1. Walk the SELECT's `from_clause` into a `FromMap` —
+     `alias → (schema, relname)`. Handles `RangeVar` directly and
+     recurses through `JoinExpr.larg` / `JoinExpr.rarg`.
+     RangeSubselect / RangeFunction / etc. are intentionally
+     skipped — their columns aren't in our snapshot, so the
+     downstream column lookup would fail anyway.
+
+  2. For each ResTarget in the target list, if the value
+     expression is a `ColumnRef`:
+
+       * Pull the field parts (`tbl.col` or bare `col`).
+       * If qualified, look up `tbl` in the FromMap to find
+         (schema, relname); search just that relation's
+         attributes for the column.
+       * If bare, search all FROM-relation attributes (first
+         match wins — same disambiguation strategy postgres
+         uses for unqualified refs).
+
+  3. The matched attribute's `atttypid` becomes the view column's
+     type. Unresolvable expressions (function calls, CASE
+     expressions, casts, subqueries) stay at `2249` → emit
+     pipeline produces `z.unknown()`.
+
+**Measured against savvi-studio's initial schema** (15 views, ~135
+total view columns):
+
+  * Before: every column emitted as `z.unknown() /* pseudo: record */`.
+  * After:  ~80% of columns now carry their real types: `z.string()`,
+            `z.bigint()`, `z.number().int()`, `z.boolean()`,
+            `z.date()`, and full enum surfaces like
+            `z.enum(["symmetric", "hmac", "rsa_public", "rsa_private"])`
+            (for `auth.hierarchy_root_keys.key_type`).
+
+The remaining ~20% are computed expressions (`EXTRACT`, `COALESCE`,
+arithmetic, function calls) that need expression-level type
+inference — significant additional work; flagged for a follow-up
+once the catalog projection moves into Lean.
+
+**New helpers** (all internal):
+
+  * `FromMap` + `from_map_init` / `from_map_push` / `from_map_lookup` —
+    fixed-capacity table of FROM-clause aliases (32 entries is well
+    above any real view's join depth).
+  * `from_node_collect` — recursive FROM-clause walker.
+  * `resolve_column_oid` — qualified-or-bare column-ref → OID lookup.
+
 ## 0.5.4 — pgpb_to_snapshot: ViewStmt + AlterTableStmt handlers
 
 Adds full-schema coverage for the two stmt kinds the snapshot folder

@@ -426,16 +426,151 @@ static void handle_create_function(Snapshot *s, PgQuery__CreateFunctionStmt *st)
 
 /* ─── ViewStmt: CREATE VIEW <name> AS SELECT ... ────────────────────
  *
- * View columns are inferred from the SELECT's target list. We
- * extract column NAMES from each ResTarget (either the explicit
- * AS alias or the last component of a ColumnRef expression) and
- * register attributes with `unknown` type (OID 2249 = record
- * sentinel). The emit pipeline turns 2249 into `z.unknown()`,
- * so downstream consumers get the right column structure with
- * loose value types — enough to use the view; insufficient for
- * strict per-column type checking until proper SELECT-target
- * inference lands.
+ * View columns are extracted from the SELECT's target list. For each
+ * ResTarget we collect (column_name, column_oid):
+ *
+ *   * The column NAME comes from the ResTarget's `name` field (the
+ *     explicit `AS alias`) if set, else the last identifier of a
+ *     ColumnRef expression.
+ *
+ *   * The column TYPE is resolved by walking the SELECT's FROM
+ *     clause into a `FromMap` (alias → (schema, table)) and looking
+ *     up the source column's atttypid in the existing snapshot's
+ *     `attributes` array.
+ *
+ *   * Expressions other than direct `tbl.col` ColumnRefs (function
+ *     calls, CASE, subqueries, casts) are still emitted as type
+ *     2249 (record) so the downstream codegen falls back to
+ *     `z.unknown()` for those columns. Each is correct shape,
+ *     loose value.
  */
+
+/* Alias → (schema, table) map for the SELECT's FROM clause. */
+typedef struct {
+    const char *alias;   /* what to look up by */
+    const char *schema;  /* underlying schema */
+    const char *relname; /* underlying relation */
+} FromEntry;
+
+typedef struct {
+    FromEntry rows[32];
+    size_t    n;
+} FromMap;
+
+static void from_map_init(FromMap *m) { m->n = 0; }
+
+static void from_map_push(FromMap *m,
+                          const char *alias,
+                          const char *schema,
+                          const char *relname) {
+    if (m->n >= 32) return;  /* extremely deep FROM clauses — skip */
+    m->rows[m->n].alias   = alias;
+    m->rows[m->n].schema  = schema;
+    m->rows[m->n].relname = relname;
+    m->n++;
+}
+
+static const FromEntry *from_map_lookup(const FromMap *m, const char *alias) {
+    for (size_t i = 0; i < m->n; i++) {
+        if (strcmp(m->rows[i].alias, alias) == 0) return &m->rows[i];
+    }
+    return NULL;
+}
+
+/* Recursively walk a from-clause Node, adding each base table to
+ * the FromMap. RangeVars contribute one entry. JoinExprs recurse
+ * into larg and rarg. RangeSubselects / RangeFunctions / etc. are
+ * intentionally skipped — their columns aren't in our snapshot. */
+static void from_node_collect(PgQuery__Node *node, FromMap *m) {
+    if (!node) return;
+    switch (node->node_case) {
+        case PG_QUERY__NODE__NODE_RANGE_VAR: {
+            PgQuery__RangeVar *rv = node->range_var;
+            if (!rv->relname) return;
+            const char *schema = (rv->schemaname && rv->schemaname[0])
+                ? rv->schemaname : "public";
+            const char *alias = (rv->alias && rv->alias->aliasname && rv->alias->aliasname[0])
+                ? rv->alias->aliasname
+                : rv->relname;
+            from_map_push(m, alias, schema, rv->relname);
+            break;
+        }
+        case PG_QUERY__NODE__NODE_JOIN_EXPR: {
+            PgQuery__JoinExpr *je = node->join_expr;
+            from_node_collect(je->larg, m);
+            from_node_collect(je->rarg, m);
+            break;
+        }
+        default:
+            /* RangeSubselect, RangeFunction, etc — give up on this
+             * source; columns from it can't resolve. */
+            break;
+    }
+}
+
+/* Resolve a column reference to its OID, or -1 if unresolvable.
+ * Handles two forms: `tbl.col` (qualified, two parts) and bare
+ * `col` (single part — must be unambiguous across all FROM tables). */
+static int resolve_column_oid(const Snapshot *s,
+                              const FromMap *m,
+                              PgQuery__ColumnRef *cr) {
+    if (cr->n_fields == 0) return -1;
+
+    /* Pull out the string parts. */
+    const char *parts[4] = {NULL, NULL, NULL, NULL};
+    size_t np = 0;
+    for (size_t i = 0; i < cr->n_fields && np < 4; i++) {
+        PgQuery__Node *fn = cr->fields[i];
+        if (fn->node_case != PG_QUERY__NODE__NODE_STRING) return -1;
+        parts[np++] = fn->string->sval;
+    }
+    if (np == 0) return -1;
+
+    /* Determine candidate (schema, relname). */
+    const char *col;
+    const char *target_schema = NULL;
+    const char *target_rel    = NULL;
+    if (np >= 2) {
+        col = parts[np - 1];
+        const FromEntry *fe = from_map_lookup(m, parts[np - 2]);
+        if (!fe) return -1;
+        target_schema = fe->schema;
+        target_rel    = fe->relname;
+    } else {
+        col = parts[0];
+        /* Bare `col` — search all FROM tables until we hit one that
+         * has the column. First-match wins. */
+    }
+
+    for (size_t ri = 0; ri < s->relations.len; ri++) {
+        const RelRow *r = &s->relations.data[ri];
+        if (target_rel) {
+            const char *r_schema = NULL;
+            for (size_t j = 0; j < s->namespaces.len; j++) {
+                if (s->namespaces.data[j].oid == r->relnamespace) {
+                    r_schema = s->namespaces.data[j].nspname;
+                    break;
+                }
+            }
+            if (!r_schema) continue;
+            if (strcmp(r_schema, target_schema) != 0) continue;
+            if (strcmp(r->relname, target_rel) != 0) continue;
+        }
+        /* Walk attributes for this relation. */
+        for (size_t ai = 0; ai < s->attributes.len; ai++) {
+            const AttrRow *a = &s->attributes.data[ai];
+            if (a->attrelid != r->oid) continue;
+            if (strcmp(a->attname, col) == 0) {
+                return (int)a->atttypid;
+            }
+        }
+        /* If qualified, we matched the relation but not the column —
+         * stop searching. */
+        if (target_rel) return -1;
+    }
+    return -1;
+}
+
 static const char *res_target_column_name(PgQuery__ResTarget *rt) {
     /* Explicit `AS alias` */
     if (rt->name && rt->name[0]) return rt->name;
@@ -482,17 +617,31 @@ static void handle_view_stmt(Snapshot *s, PgQuery__ViewStmt *st) {
     if (!st->query || st->query->node_case != PG_QUERY__NODE__NODE_SELECT_STMT)
         return;
     PgQuery__SelectStmt *sel = st->query->select_stmt;
+
+    /* Build the FROM-clause alias→relation map for type lookups. */
+    FromMap fm; from_map_init(&fm);
+    for (size_t i = 0; i < sel->n_from_clause; i++) {
+        from_node_collect(sel->from_clause[i], &fm);
+    }
+
     int attnum = 0;
     for (size_t i = 0; i < sel->n_target_list; i++) {
         PgQuery__Node *tn = sel->target_list[i];
         if (tn->node_case != PG_QUERY__NODE__NODE_RES_TARGET) continue;
-        const char *cn = res_target_column_name(tn->res_target);
+        PgQuery__ResTarget *rt = tn->res_target;
+        const char *cn = res_target_column_name(rt);
         if (!cn) continue;
+        /* Try to resolve the type for direct ColumnRef expressions. */
+        int typoid = -1;
+        if (rt->val &&
+            rt->val->node_case == PG_QUERY__NODE__NODE_COLUMN_REF) {
+            typoid = resolve_column_oid(s, &fm, rt->val->column_ref);
+        }
         attnum++;
         AttrRow *a = AttrArr_push(&s->attributes);
         a->attrelid = rel_oid;
         a->attname  = strdup(cn);
-        a->atttypid = 2249;  /* unknown — emit pipeline produces z.unknown() */
+        a->atttypid = typoid >= 0 ? (uint32_t)typoid : 2249;
         a->attnum   = attnum;
         a->attnotnull = 0;   /* views project nullable-by-default */
     }
