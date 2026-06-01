@@ -4,6 +4,108 @@ All notable changes to rules_postgres. The format is loosely
 [Keep a Changelog](https://keepachangelog.com/) — version headers
 mirror the published bazel-registry entries.
 
+## 0.6.6 — Production-scale byte-equivalence + multi-file decoder
+
+Validates Phase 7's byte-equivalence claim end-to-end on savvi-studio's
+full initial_schema (13 .sql files, 1384 stmts, 8 schemas, 56 user
+types, 46 relations, 308 attributes, 268 procs). The Lean fold is now
+proven a drop-in replacement for `pgpb_to_snapshot.c` on real-world
+production input — not just the 8-stmt smoke fixture.
+
+NEW TOOLING
+
+  `tools/pgpb_to_lean_ast` — multi-file support
+    Accepts multiple `.pgpb` inputs and produces ONE combined
+    `TopParseResult` with stmts concatenated in input-file order.
+    Matches `pgpb_to_snapshot.c`'s behavior. Single-file usage
+    unchanged.
+
+    New `--skip-other-bytes` flag replaces unrecognized stmts'
+    opaque payload with `_root_.ByteArray.empty`. Saves ~ms of Lean
+    elaboration on each .pgpb byte literal; semantically irrelevant
+    because the fold ignores `.other` entirely. Production-scale
+    schemas (savvi's PLpgSQL bodies, DO blocks, GRANT, COMMENT,
+    etc.) need this to stay within Lean's elaboration budget.
+
+  `tools/pgpb_to_lean_ast/pgpb_to_lean_ast.c` — set_option header
+    Auto-emits `set_option maxRecDepth 65536` and
+    `set_option maxHeartbeats 64000000` after the `import` block.
+    Default 512 / 200000 limits can't elaborate a 1384-element
+    list literal; these bumps handle inputs up to ~30k stmts.
+
+  `postgres/sql_toolchain.bzl` — `pg_sql_typed_library` rule
+    Walks a `sql_ast_library`'s `SqlAstInfo.asts`, sorts by
+    `sql.short_path` for determinism (matches
+    `sql_catalog_library`'s convention), invokes
+    `pgpb_to_lean_ast --typed`. Produces a `<module_name>.lean`
+    file with `def parseResult : Pg.Query.Top.TopParseResult`.
+    Optional `skip_other_bytes` attribute forwards the flag.
+
+FOLD SEMANTIC ALIGNMENTS
+
+  Four discrepancies surfaced and fixed when scaling from smoke
+  fixture to savvi:
+
+  1. `resolveType` always returned 2249 (record) on miss; the C
+     tool's `type_name_to_oid` returns -1 and handlers pick
+     per-context fallbacks. Added `resolveTypeOpt : TypeRef →
+     FoldState → Option Nat`; updated handlers to pick:
+
+       foldCreateDomain     → 0    (Oid.invalid for typbasetype)
+       composite/table col  → skip the attribute
+       foldCreateFunction argtype → 2249 (record)
+       foldCreateFunction rettype → 2278 (void)
+       AT_AddColumn         → skip the attribute
+
+  2. `addRelationWithColumns` gained a `useSourceIndex : Bool`:
+
+       foldCompositeType passes true  — attnum = `i + 1` (source
+         index, leaves gaps for skipped columns; matches the C
+         tool's composite handler)
+       foldCreateTable  passes false  — attnum is a counter that
+         only increments for emitted attributes (matches the
+         C tool's CREATE TABLE handler)
+
+  3. `resolveBareColumn` previously walked only the FROM list.
+     The C tool's `resolve_column_oid` for unqualified refs
+     walks ALL snapshot relations in registration order (first
+     match wins). Mirrored — bare ColumnRefs in views now resolve
+     against any relation with a matching column name, not just
+     the SELECT's FROM tables. This is a quirk of the C tool but
+     necessary for byte-equivalence.
+
+  4. Non-typed mode's import-after-set_option ordering — fixed
+     by moving the import to the top.
+
+NEW AION-SIDE TEST (`Aion/V0/Codegen/SavviSchemaFoldDiffTest.lean`)
+
+  Imports `Aion.V0.Codegen.SavviInitialSchema.snapshot` (C tool
+  output) AND `SavviInitialSchemaTyped.parseResult` (Lean typed
+  decoder output), runs `Snapshot.ofTopParseResultAugmented`,
+  native_decide-asserts equality on:
+
+    namespaces  — full equality
+    types       — full equality (Phase 7 augmentation)
+    relations   — full equality
+    attributes  — 308 rows, every field of every row
+    procs       — 268 rows, oid/name/namespace/rettype/argtypes
+                  /argnames/retset (via BEq)
+
+  Gated in `//ci:pr_gates`. pr_gates 258 → 259 green.
+
+REMAINING WORK TO RETIRE THE C CATALOG FOLDER
+
+  The Lean fold is now PROVED a drop-in replacement on real
+  savvi data. The remaining migration is consumer-side:
+
+    * Write `Snapshot.toLeanSource` printer so a `lean_emit` can
+      produce a `.lean` file in the same shape `pgpb_to_snapshot.c`
+      emits.
+    * Switch `pg_sql_catalog_library` macro to expand to a
+      `pg_sql_typed_library` + `lean_emit` over the fold + printer.
+    * Delete `tools/pgpb_to_snapshot/` and `pg_sql_catalog_library`'s
+      C-tool default.
+
 ## 0.6.5 — Pg.Catalog.Fold Phase 7: builtins augmentation → full byte-equivalence
 
 The kernel-checked Lean catalog projection now emits a `Snapshot`

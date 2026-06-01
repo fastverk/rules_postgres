@@ -24,7 +24,7 @@ Also exposes `pg_sql_catalog_library` — a thin wrapper around
 `@rules_postgres//tools:pgpb_to_snapshot`, so consumers don't have to
 hand-thread the postgres-specific catalog folder."""
 
-load("@rules_lang//polyglot:sql.bzl", "SqlToolchainInfo", "sql_catalog_library")
+load("@rules_lang//polyglot:sql.bzl", "SqlAstInfo", "SqlToolchainInfo", "sql_catalog_library")
 
 def _pg_sql_toolchain_impl(ctx):
     return [
@@ -81,3 +81,80 @@ def pg_sql_catalog_library(name, deps, module_name = None, output_format = "lean
         output_format = output_format,
         **kwargs
     )
+
+# ─── pg_sql_typed_library ──────────────────────────────────────────
+#
+# Produces a `Pg.Query.Top.TopParseResult` Lean module from a list
+# of `sql_ast_library` deps, using `pgpb_to_lean_ast --typed`. The
+# resulting `.lean` source can be fed into the kernel-checked Lean
+# catalog fold (`Snapshot.ofTopParseResultAugmented`) — the
+# Phase 0-7 path that's byte-equivalent to `pg_sql_catalog_library`'s
+# C-tool output.
+#
+# Inputs are sorted by short_path for determinism (same convention
+# `sql_catalog_library` uses), so the resulting `TopParseResult.stmts`
+# list mirrors the C tool's stmt order exactly.
+
+def _pg_sql_typed_library_impl(ctx):
+    entries = []
+    for d in ctx.attr.deps:
+        entries.extend(d[SqlAstInfo].asts.to_list())
+    entries = sorted(entries, key = lambda e: e.sql.short_path)
+    ast_files = [e.ast for e in entries]
+
+    out = ctx.actions.declare_file(ctx.attr.module_name + ".lean")
+    args = ctx.actions.args()
+    args.add("--typed")
+    if ctx.attr.skip_other_bytes:
+        args.add("--skip-other-bytes")
+    args.add("--module", ctx.attr.module_name)
+    args.add("--output", out.path)
+    for ast in ast_files:
+        args.add(ast.path)
+
+    ctx.actions.run(
+        inputs = ast_files,
+        outputs = [out],
+        executable = ctx.executable._tool,
+        arguments = [args],
+        mnemonic = "PgSqlTyped",
+        progress_message = "pgpb_to_lean_ast --typed: %d AST(s) -> %s" %
+                           (len(ast_files), out.short_path),
+    )
+    return [DefaultInfo(files = depset(direct = [out]))]
+
+pg_sql_typed_library = rule(
+    implementation = _pg_sql_typed_library_impl,
+    attrs = {
+        "deps": attr.label_list(
+            providers = [SqlAstInfo],
+            mandatory = True,
+            doc = "`sql_ast_library` targets to combine.",
+        ),
+        "module_name": attr.string(
+            mandatory = True,
+            doc = "Lean module name AND output filename stem " +
+                  "(no dots — Bazel target names can't have them).",
+        ),
+        "skip_other_bytes": attr.bool(
+            default = False,
+            doc = "Replace unrecognized stmts' opaque payload with " +
+                  "`_root_.ByteArray.empty`. Saves a lot of Lean " +
+                  "elaboration time on schemas heavy in PLpgSQL " +
+                  "function bodies. The fold ignores `.other` Nodes " +
+                  "entirely, so this never affects Snapshot semantics " +
+                  "— only debug info that nothing currently consumes.",
+        ),
+        "_tool": attr.label(
+            default = "@rules_postgres//tools/pgpb_to_lean_ast:pgpb_to_lean_ast",
+            executable = True,
+            cfg = "exec",
+        ),
+    },
+    doc = """Run `pgpb_to_lean_ast --typed` over all `.pgpb` files in
+    the dep closure, producing a single `<module_name>.lean` file
+    with a `def parseResult : Pg.Query.Top.TopParseResult`.
+
+    Downstream `lean_test` / `lean_emit` consumers depend on this
+    rule and `import <module_name>` to pull in the parsed value.""",
+)
