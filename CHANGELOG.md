@@ -4,6 +4,43 @@ All notable changes to rules_postgres. The format is loosely
 [Keep a Changelog](https://keepachangelog.com/) — version headers
 mirror the published bazel-registry entries.
 
+## 0.4.3 — Pg.Catalog.PgProc: + proargnames + proretset + proargmodes
+
+Extends `lean/Pg/Catalog/Tables.lean`'s `PgProc` structure with
+three new fields + introduces an `ArgMode` enum:
+
+- `proargnames : List String  := []` — per-argument source name.
+  Empty means "fall back to positional `arg0` / `arg1` / …".
+- `proretset   : Bool         := false` — set-returning flag
+  (`SETOF X`, `RETURNS TABLE(...)`).
+- `proargmodes : List ArgMode := []` — IN / OUT / INOUT /
+  VARIADIC / TABLE_OUT per argument. Empty means "all IN".
+
+`ArgMode` mirrors postgres's single-char encoding via a closed
+inductive (`.in_` / `.out` / `.inout` / `.variadic` / `.tableOut`)
+plus a `.toChar` projection for round-tripping with on-disk
+representations.
+
+All three new fields default to safe sentinels so existing
+`PgProc` literal sites (notably `Pg.Catalog.Generated`'s 3314
+procs) compile unchanged. Consumers wanting the precision
+populate them explicitly.
+
+Motivated by Aion's V0 codegen Slice 1 (catalog → FunctionSpec
+derivation, replacing the hand-coded FunctionSpec list with one
+mechanically built from a `Snapshot`'s `procs`). The new fields
+are the data the deriver needs:
+
+  * `proargnames` — for naming the TS wrapper's input fields
+                    (`p_username` rather than `arg0`).
+  * `proretset`   — drives `FunctionSpec.isSetOf`.
+  * `proargmodes` — separates IN args (input schema) from OUT
+                    args (composite return) and handles INOUT
+                    (input AND output) properly.
+
+The extension is additive — no breaking changes — so the
+upgrade is a one-line bazel_dep bump.
+
 ## 0.4.2 — Pg.Catalog.PgType: + typbasetype + typelem
 
 Extends `lean/Pg/Catalog/Tables.lean`'s `PgType` structure with two
