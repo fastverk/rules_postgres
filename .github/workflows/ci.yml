@@ -37,21 +37,11 @@ jobs:
           chmod +x /usr/local/bin/buildifier
       - run: buildifier --mode=check --lint=warn -r .
 
-  # Gate 1 — regen idempotence. Re-emits every cluster from its Lean
-  # source via lean_emit and asserts the committed Rust/C files match
-  # via skylib diff_test. Lean toolchain is hermetic via rules_lean —
-  # no elan install needed.
-  gate1_regen_idempotence:
-    name: gate 1 — regen idempotence
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: bazel-contrib/setup-bazel@0.10.0
-        with:
-          bazelisk-cache: true
-          disk-cache: gate1-${{ github.workflow }}
-          repository-cache: true
-      - run: bazel test --jobs=4 //tools/regen:gate1_all --test_output=errors
+  # Gate 1 — regen idempotence: RETIRED. It diffed the committed Rust/C
+  # artifacts against a fresh lean_emit, but "Lean is the live source of truth"
+  # (433e668) dropped those committed artifacts, removing //tools/regen:gate1_all.
+  # The Lean→Rust/C emit is still exercised: Gate 2 builds every cluster from its
+  # generated source, so a broken emit fails there.
 
   # Gate 2 — cluster behavioral diff-test. Bazel-native: each
   # rust/pg_<cluster>/ ships cc_library(c_oracle) + rust_library +
@@ -79,8 +69,17 @@ jobs:
   # rules_lang's c_ast_dump_single (cc toolchain → AST JSON) +
   # c_ast_struct_diff_test (hermetic rust_binary). Catches algorithmic
   # divergence even when Gate 2 (behavioral) passes on sampled inputs.
+  #
+  # DECOUPLED from public CI: the diff/IR tools live in //crates/pipeline,
+  # which stays private in aion/polyglot (the public @rules_lang ships only the
+  # //rules/c rule *defs*, not the Rust tools). So //tools/regen:gate3_all
+  # cannot resolve here. Gate 3 runs in the private aion/polyglot engine CI,
+  # where crates/pipeline is present. Re-enable here only if those tools are
+  # published to the public rules_lang. (Disabled, not deleted, to document the
+  # contract + keep re-enabling trivial.)
   gate3_clang_struct_diff:
     name: gate 3 — clang struct diff
+    if: false
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false

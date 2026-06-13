@@ -54,7 +54,7 @@ def pg_parse_tree(name, sql, out = None, **kwargs):
       out: output filename. Defaults to `name + ".pgpb"`.
       **kwargs: forwarded to the underlying `genrule`.
 
-    Output:
+    Returns:
       A `.pgpb` file whose bytes are exactly the marshalled
       `pg_query.ParseResult` (see `@libpg_query//:pg_query.proto`).
     """

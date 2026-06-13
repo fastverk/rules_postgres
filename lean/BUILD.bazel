@@ -124,7 +124,6 @@ lean_test(
     name = "smoke_test",
     srcs = [
         # Dependency-ordered: lean_test compiles srcs in list order.
-        "@polyglot_ast//lean:Polyglot/Sql/Ast.lean",
         "Pg/Ty.lean",
         "Pg/RegexAst.lean",
         "Pg/Catalog/Oid.lean",
@@ -144,6 +143,9 @@ lean_test(
     ],
     entry = "Pg/Smoke.lean",
     visibility = ["//visibility:public"],
+    # Polyglot.Sql.Ast arrives as a prebuilt, toolchain-matched olean (no
+    # recompile), replacing the former @polyglot_ast source include.
+    deps = ["@rules_lang//lean:atlas"],
 )
 
 # Smoke test that exercises cross-repo wiring with the polyglot_ast
@@ -159,12 +161,11 @@ lean_test(
 # files, so the stage layout works.
 lean_test(
     name = "polyglot_sql_smoke_test",
-    srcs = [
-        "Polyglot/SqlSmoke.lean",
-        "@polyglot_ast//lean:Polyglot/Sql/Ast.lean",
-    ],
+    srcs = ["Polyglot/SqlSmoke.lean"],
     entry = "Polyglot/SqlSmoke.lean",
     visibility = ["//visibility:public"],
+    # Polyglot.Sql.Ast as a prebuilt olean dep (was an @polyglot_ast source).
+    deps = ["@rules_lang//lean:atlas"],
 )
 
 # ─── Pg AST per-constructor smoke tests ────────────────────────────
@@ -269,10 +270,11 @@ lean_test(
         "Pg/Spec.lean",
         "Pg/Stmt.lean",
         "Pg/Ty.lean",
-        "@polyglot_ast//lean:Polyglot/Sql/Ast.lean",
     ],
     entry = "Pg/Plpgsql/JsonReaderTest.lean",
     visibility = ["//visibility:public"],
+    # Polyglot.Sql.Ast as a prebuilt olean dep (was an @polyglot_ast source).
+    deps = ["@rules_lang//lean:atlas"],
 )
 
 # Pg.Query.Generated typecheck — the DDL-slice stubbed surface
