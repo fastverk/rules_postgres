@@ -52,15 +52,16 @@ use_repo(lake, "rules_postgres_lake")
 
 register_toolchains("@rules_postgres_lake//:lean_toolchain_def")
 
-# rules_lang — the `c_ast_struct_diff_test` rule that backs Gate 3 (clang
-# AST structural diff vs real Postgres source). Resolved via the premium
-# private registry (see .bazelrc).
-bazel_dep(name = "rules_lang", version = "0.0.8")
-
-# polyglot_ast — the shared Lean kernel; `Polyglot.Sql.Ast` (the generic SQL
-# atlas) moved here from rules_lang. Pg.Ast's Pattern-A `Ext` slot consumes
-# it cross-repo (see //lean:BUILD.bazel). Premium private registry.
-bazel_dep(name = "polyglot_ast", version = "0.0.6")
+# rules_lang — the public rules layer. Provides:
+#   * @rules_lang//lean:atlas — Polyglot.* as prebuilt, toolchain-matched
+#     oleans (v4.30.0-rc2). Replaces the former @polyglot_ast Sql/Ast source
+#     include; Pg.Ast's Pattern-A `Ext` slot consumes it (see //lean:BUILD).
+#   * @rules_lang//rules/c — the C/clang AST-dump + struct-diff rule defs that
+#     back Gate 3. The heavy Rust diff tools (//crates/pipeline) stay private
+#     in aion/polyglot, so Gate 3 is dev-only here; the rule loads still
+#     resolve for the rest of the build.
+# Public registry (was: premium-private rules_lang + polyglot_ast).
+bazel_dep(name = "rules_lang", version = "0.2.0")
 
 # rules_lora — Bazel-native LoRA fine-tuning. Used by Pg.Ir's
 # local-model fine-tune track: the Stream A LLM-authoring loop's
