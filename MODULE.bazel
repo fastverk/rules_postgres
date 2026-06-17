@@ -1,6 +1,6 @@
 module(
     name = "rules_postgres",
-    version = "0.7.0",
+    version = "0.8.0",
     compatibility_level = 1,
 )
 
@@ -61,7 +61,11 @@ register_toolchains("@rules_postgres_lake//:lean_toolchain_def")
 #     in aion/polyglot, so Gate 3 is dev-only here; the rule loads still
 #     resolve for the rest of the build.
 # Public registry (was: premium-private rules_lang + polyglot_ast).
-bazel_dep(name = "rules_lang", version = "0.2.0")
+# 0.3.0 — the atlas gained a generic `Polyglot.Sql.Ast.Stmt` (+ Java);
+# Pg.Stmt's pretty-printer hides it (see lean/Pg/Pretty.lean). Pinned here
+# so rules_postgres CI tests against the same atlas its consumers
+# (aion/lean) force via single_version_override.
+bazel_dep(name = "rules_lang", version = "0.3.0")
 
 # rules_lora — Bazel-native LoRA fine-tuning. Used by Pg.Ir's
 # local-model fine-tune track: the Stream A LLM-authoring loop's

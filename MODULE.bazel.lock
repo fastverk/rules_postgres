@@ -315,8 +315,8 @@
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_jvm_external/6.3/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_jvm_external/6.7/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_kotlin/1.9.6/MODULE.bazel": "not found",
-    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lang/0.2.0/MODULE.bazel": "a96ff6385ef4fe49b93b6652a0f67556947e134c9645f265e2abe0492730ba9f",
-    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lang/0.2.0/source.json": "9148f658fbcd2b6bf1fa5789ab723a63b42e6b9815b156ff34ffe42125606417",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lang/0.3.0/MODULE.bazel": "78011aa5300eb96d84d2de12f75c440a84ee1c1b7f2e40eea674e1feac5a1137",
+    "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lang/0.3.0/source.json": "821df695eed0a994a3f8ae9dda5714cb746d906485807221f974b330d7f0face",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lean/0.5.0/MODULE.bazel": "361f7741abcf3d9811a649ef769f38d09d3a851ca988c7174dd5af7822cb2278",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lean/0.5.1/MODULE.bazel": "bf8cbdedae612917f79ddaad86379e69f7986a95ce7c1815b05b807def10ea0c",
     "https://raw.githubusercontent.com/fastverk/bazel-registry/main/modules/rules_lean/0.5.1/source.json": "52fdbbd32e5485c38ea56283a82a7468c6c4a25dffc4bbbcad1ebc35b6c6be50",
@@ -372,7 +372,7 @@
     "//postgres:extensions.bzl%pg": {
       "general": {
         "bzlTransitiveDigest": "CYQf3nqAk+sTZuMj7dWoFEdt+95LzbRgniXT0itXswo=",
-        "usagesDigest": "5MldPhUjFHkq2qia+Bem1CNBKQq2/rJ9IBzCT9xHspY=",
+        "usagesDigest": "ec3P4Mp/cezp/Olkn878MF1/OF8x3qi16Y2YoJIXsLM=",
         "recordedInputs": [
           "REPO_MAPPING:,rules_github rules_github+"
         ],
@@ -455,10 +455,37 @@
         }
       }
     },
+    "@@rules_lang+//lean:atlas.bzl%atlas_ext": {
+      "general": {
+        "bzlTransitiveDigest": "jKaQ/2W39bxBrQkKjK2pY7s3a+bbcClI0EeHPQgihwM=",
+        "usagesDigest": "yT+EkhlTzzgIl3suM5ix2tRaxkMNdMmEQfwFvmmI3uI=",
+        "recordedInputs": [
+          "REPO_MAPPING:rules_lang+,bazel_tools bazel_tools"
+        ],
+        "generatedRepoSpecs": {
+          "polyglot_atlas_linux_x86_64": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://github.com/fastverk/rules_lang/releases/download/atlas-v0.3.1/polyglot_atlas-linux_x86_64.tar.gz",
+              "sha256": "3db0d0108edcfd52d74a007c635d605e46b20bcacbcebe5eb1847ea50ba4d3a6",
+              "build_file_content": "exports_files([\".lean_root\"])\n\nfilegroup(\n    name = \"all\",\n    srcs = glob([\"**\"]),\n    visibility = [\"//visibility:public\"],\n)\n"
+            }
+          },
+          "polyglot_atlas_darwin_arm64": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "url": "https://github.com/fastverk/rules_lang/releases/download/atlas-v0.3.1/polyglot_atlas-darwin_arm64.tar.gz",
+              "sha256": "bb53a9abe0cdb13fdb67c32d2fefdfd6a5043bda25c179b4c6df129710e1356e",
+              "build_file_content": "exports_files([\".lean_root\"])\n\nfilegroup(\n    name = \"all\",\n    srcs = glob([\"**\"]),\n    visibility = [\"//visibility:public\"],\n)\n"
+            }
+          }
+        }
+      }
+    },
     "@@rules_lean+//lean:lake.bzl%lake": {
       "general": {
         "bzlTransitiveDigest": "TSkwKKphDCoYLuQrznBpnrnmoMj4SwnnWW9GsydjB1o=",
-        "usagesDigest": "4KDTCqB3a7OSyBSTTgGRrLB9cQFo6uMTqPaOqsf4eiU=",
+        "usagesDigest": "7rnD2EYQd+X3D00kgMcS1livjpxlr+ScyEvkBWuowZo=",
         "recordedInputs": [],
         "generatedRepoSpecs": {
           "rules_postgres_lake": {
