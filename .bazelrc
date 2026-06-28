@@ -10,7 +10,7 @@ common --experimental_isolated_extension_usages
 # (0.2.0, with the Lean atlas + //rules/c defs), rules_lora, rules_meson,
 # rules_github, rules_lean — now resolves from the public registry. The
 # defunct premium-private registry has been removed.
-common --registry=https://raw.githubusercontent.com/fastverk/bazel-registry/main/
+common --registry=https://registry.fastverk.com/
 common --registry=https://bcr.bazel.build/
 
 # Credential helper for GitHub tarball fetches — forwards `gh auth token`
